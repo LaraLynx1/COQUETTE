@@ -1,16 +1,18 @@
-import { whotofollow } from './data/data';
-import CardFollow from './components/mainPage/cardFollow/cardfollow';
-import CrearWhotofollow, { datacosas } from './components/mainPage/toFollow/tofollow';
+import { whotofollow } from '../../../data/data';
+import CrearWhotofollow, { datacosas } from '../toFollow/tofollow';
+import styles from './cardfollow.css';
 
-class appContainer extends HTMLElement {
+class CardFollow extends HTMLElement {
 	profiles: CrearWhotofollow[] = [];
-	tarjeta?: CardFollow;
 
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
+		console.log('dos');
+	}
 
-		this.tarjeta = this.ownerDocument.createElement('tarjeta-seguir') as CardFollow;
+	connectedCallback() {
+		console.log('yyyy');
 
 		whotofollow.forEach((profile) => {
 			const recomcard = this.ownerDocument.createElement('crear-whotofollow') as CrearWhotofollow;
@@ -20,22 +22,26 @@ class appContainer extends HTMLElement {
 
 			this.profiles.push(recomcard);
 		});
-	}
-	connectedCallback() {
-		console.log('antes de render abuelo');
-
 		this.render();
 	}
 
+	attributeChangedCallback(attrName: datacosas, oldVal: any, newVal: any) {
+		this.render();
+	}
 	render() {
+		console.log('xxx');
+
 		if (this.shadowRoot) {
-			this.shadowRoot?.appendChild(this.tarjeta!);
-			console.log('despues d apend child abuelo', this.tarjeta);
 			this.profiles.forEach((profile) => {
 				this.shadowRoot?.appendChild(profile);
 			});
 		}
+
+		const cssprofile = this.ownerDocument.createElement('style');
+		cssprofile.innerHTML = styles;
+		this.shadowRoot?.appendChild(cssprofile);
 	}
 }
 
-window.customElements.define('app-container', appContainer);
+window.customElements.define('tarjeta-seguir', CardFollow);
+export default CardFollow;
