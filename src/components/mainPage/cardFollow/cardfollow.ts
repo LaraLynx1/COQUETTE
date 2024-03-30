@@ -52,6 +52,7 @@ class CardFollow extends HTMLElement {
 		let contador = 0;
 		if (this.shadowRoot) {
 			const tarjeta = this.ownerDocument.createElement('div');
+			tarjeta.className = 'wrapper-tarjeta';
 
 			const titulo = this.ownerDocument.createElement('h2');
 			titulo.innerHTML = 'Who to follow';
