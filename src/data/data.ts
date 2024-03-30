@@ -15,4 +15,22 @@ export const whotofollow = [
 		name: 'How To bows',
 		arroba: '@howtobows',
 	},
+	{
+		image:
+			'https://www.semana.com/resizer/r0OI-UL1npAMnFaFqySPh7RqzLU=/arc-anglerfish-arc2-prod-semana/public/MDNDZ5QVPFDUFMXQFO54CL7PVA.jpg',
+		name: 'How To bows',
+		arroba: '@howtobows',
+	},
+	{
+		image:
+			'https://www.semana.com/resizer/r0OI-UL1npAMnFaFqySPh7RqzLU=/arc-anglerfish-arc2-prod-semana/public/MDNDZ5QVPFDUFMXQFO54CL7PVA.jpg',
+		name: 'How To bows',
+		arroba: '@howtobows',
+	},
+	{
+		image:
+			'https://www.semana.com/resizer/r0OI-UL1npAMnFaFqySPh7RqzLU=/arc-anglerfish-arc2-prod-semana/public/MDNDZ5QVPFDUFMXQFO54CL7PVA.jpg',
+		name: 'How To bows',
+		arroba: '@howtobows',
+	},
 ];

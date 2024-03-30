@@ -1,0 +1,17 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.csstitulo {
+	color: red;
+}
+
+.ocultar {
+	display: none;
+}
+
+.mostrar {
+	display: block;
+}

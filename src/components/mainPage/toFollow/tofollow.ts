@@ -14,7 +14,6 @@ class CrearWhotofollow extends HTMLElement {
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
-		console.log('hijo');
 	}
 
 	static get observedAttributes() {
