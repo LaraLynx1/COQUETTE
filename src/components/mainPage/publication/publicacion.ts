@@ -63,7 +63,9 @@ class Crearpublicacion extends HTMLElement {
 					<button id="seguir2">FOLLOW</button>
 				</div>
 				<img class="fotopublic" src="${this.image}" />
-				<div class="footer"> </div>
+				<div class="footer">
+				// <i class='bx bx-heart'></i>
+				 </div>
 				<p>${this.likes} Me gusta</p>
 			</div>
       `;

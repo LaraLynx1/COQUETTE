@@ -51,3 +51,9 @@ export const publics = [
 		likes: '488',
 	},
 ];
+export const useropinion = [
+	{
+		userpfp:
+			'https://www.semana.com/resizer/r0OI-UL1npAMnFaFqySPh7RqzLU=/arc-anglerfish-arc2-prod-semana/public/MDNDZ5QVPFDUFMXQFO54CL7PVA.jpg',
+	},
+];
