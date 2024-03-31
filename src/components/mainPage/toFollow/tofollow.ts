@@ -6,6 +6,9 @@ export enum datacosas {
 }
 
 class CrearWhotofollow extends HTMLElement {
+	user(user: any, user1: any) {
+		throw new Error('Method not implemented.');
+	}
 	image?: string;
 	name?: string;
 	arroba?: string;

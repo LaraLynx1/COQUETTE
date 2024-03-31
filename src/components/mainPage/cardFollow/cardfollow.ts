@@ -1,6 +1,8 @@
 import { whotofollow } from '../../../data/data';
 import CrearWhotofollow, { datacosas } from '../toFollow/tofollow';
 import styles from './cardfollow.css';
+/* import boxicon from './../../iconcss/box-icon.css';
+import 'boxicons'; */
 
 class CardFollow extends HTMLElement {
 	profiles: CrearWhotofollow[] = [];
@@ -51,6 +53,10 @@ class CardFollow extends HTMLElement {
 	render() {
 		let contador = 0;
 		if (this.shadowRoot) {
+			/* 			const icono = this.ownerDocument.createElement('i');
+			icono.className = 'bx bx-user';
+			this.shadowRoot?.appendChild(icono);
+ */
 			const tarjeta = this.ownerDocument.createElement('div');
 			tarjeta.className = 'wrapper-tarjeta';
 
@@ -80,6 +86,10 @@ class CardFollow extends HTMLElement {
 		const csscardfollow = this.ownerDocument.createElement('style');
 		csscardfollow.innerHTML = styles;
 		this.shadowRoot?.appendChild(csscardfollow);
+
+		/* 				const cssbox = this.ownerDocument.createElement('style');
+		cssbox.innerHTML = boxicon;
+		this.shadowRoot?.appendChild(cssbox); */
 	}
 }
 
