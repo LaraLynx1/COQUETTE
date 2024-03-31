@@ -31,11 +31,15 @@ class publicwrapper extends HTMLElement {
 			const tarjeta2 = this.ownerDocument.createElement('div');
 			tarjeta2.className = 'wrapper-publicacion';
 
+			this.profiles.forEach((profile) => {
+				tarjeta2.appendChild(profile);
+			});
+
 			this.shadowRoot?.appendChild(tarjeta2);
+			const csscardfollow = this.ownerDocument.createElement('style');
+			csscardfollow.innerHTML = styles;
+			this.shadowRoot?.appendChild(csscardfollow);
 		}
-		const csscardfollow = this.ownerDocument.createElement('style');
-		csscardfollow.innerHTML = styles;
-		this.shadowRoot?.appendChild(csscardfollow);
 	}
 }
 

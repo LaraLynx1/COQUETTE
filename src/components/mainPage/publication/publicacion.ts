@@ -59,7 +59,7 @@ class Crearpublicacion extends HTMLElement {
 			<div id="publicacion">
 				<div class="header">
 					<img class="fotopfp" src="${this.userpfp}" />
-					<h3>"${this.user}"</h3>
+					<h3>${this.user}</h3>
 					<button id="seguir2">FOLLOW</button>
 				</div>
 				<img class="fotopublic" src="${this.image}" />
