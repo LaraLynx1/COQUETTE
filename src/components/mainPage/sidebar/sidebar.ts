@@ -1,4 +1,4 @@
-import styles from '../../mainPage/sidebar/sidebar.css'
+import styles from './sidebar.css'
 
 export enum databarra {
 	'coquette' = 'coquette',
@@ -25,18 +25,28 @@ class cardInicio extends HTMLElement {
 		this.attachShadow({ mode: 'open' });
 	}
 
-    // static get observedAttributes() {
-	// 	const fijacion: Record<databarra, null> = {
-	// 		coquette: null,
-	// 		inicio: null,
-	// 		busqueda: null,
-	// 		mensajes: null,
-	// 		notificaciones: null,
-	// 		crear: null,
-	// 		perfil: null,
-	// 	};
-	// 	return Object.keys(fijacion);
-	// }
+    static get observedAttributes() {
+		const attrs: Record<databarra, null> = {
+			coquette: null,
+			inicio: null,
+			busqueda: null,
+			mensajes: null,
+			notificaciones: null,
+			crear: null,
+			perfil: null,
+		};
+		return Object.keys(attrs);
+	}
+
+	attributeChangedCallback (propName: databarra, oldValue: string | undefined, newValue: string | undefined) {
+		switch (propName) {
+		
+			default:
+				this[propName] = newValue;
+				break;
+		}
+		this.render();
+	}
 
     connectedCallback() {
 		this.render();
@@ -45,15 +55,18 @@ class cardInicio extends HTMLElement {
     render() {
 		if (this.shadowRoot) {
 			this.shadowRoot.innerHTML = `
+			<style>
+			${styles}
+			</style>
             <div class="sidebar">
             <h2 class="etiqueta">Coquette</h2>
             <ul>
-				<li><a class="texto" href="index.html">${this.inicio}</a></li>
-                <li><a class="texto" href="#">${this.busqueda}</a></li>
-                <li><a class="texto" href="#">${this.mensajes}</a></li>
-                <li><a class="texto" href="#">${this.notificaciones}</a></li>
-                <li><a class="texto" href="#">${this.crear}</a></li>
-                <li><a class="texto" href="#">${this.perfil}</a></li>
+				<li><a class="texto" href="index.html">Inicio</a></li>
+                <li><a class="texto" href="#">Búsqueda</a></li>
+                <li><a class="texto" href="#">Mensajes</a></li>
+                <li><a class="texto" href="#">Notificaciones</a></li>
+                <li><a class="texto" href="#">Crear</a></li>
+                <li><a class="texto" href="#">Perfil</a></li>
             </ul>
         </div>
           `;
@@ -64,5 +77,5 @@ class cardInicio extends HTMLElement {
 	}
 }
 
-window.customElements.define('card-inicio', cardInicio);
+customElements.define('card-inicio', cardInicio);
 export default cardInicio;

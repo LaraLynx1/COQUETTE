@@ -83,12 +83,7 @@ class CardFollow extends HTMLElement {
 	}
 }
 
-class sidebar extends HTMLElement {
-	constructor() {
-		super();
-		this.attachShadow({ mode: 'open' });
-	}
-}
 
-window.customElements.define('tarjeta-whotofollow', CardFollow);
+
+customElements.define('tarjeta-whotofollow', CardFollow);
 export default CardFollow;

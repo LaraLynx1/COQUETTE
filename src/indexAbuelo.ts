@@ -1,30 +1,34 @@
 import './components/mainPage/mainPagePadre';
 import CardFollow from './components/mainPage/cardFollow/cardfollow';
 import cardInicio from './components/mainPage/sidebar/sidebar';
+import storyCard from './components/mainPage/stories/stories'
 
 
 class appContainer extends HTMLElement {
-	tarjeta?: CardFollow;
-	barra?: cardInicio;
+
 
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
 
-		this.tarjeta = this.ownerDocument.createElement('tarjeta-whotofollow') as CardFollow;
-		this.barra = this.ownerDocument.createElement('barra-inicio') as cardInicio;
+
 	}
 	connectedCallback() {
 		this.render();
 	}
 
 	render() {
-		if (this.shadowRoot) {
-			this.shadowRoot?.appendChild(this.tarjeta!);
-			this.shadowRoot?.appendChild(this.barra!);
+		const tarjeta = this.ownerDocument.createElement('tarjeta-whotofollow') as CardFollow;
+		const barra = this.ownerDocument.createElement('card-inicio') as cardInicio;
+		const story = this.ownerDocument.createElement('story-inicio') as storyCard;
+
+		
+		this.shadowRoot?.appendChild(tarjeta);
+		this.shadowRoot?.appendChild(barra);
+		this.shadowRoot?.appendChild(story);
 		}
 	}
-}
 
 
-window.customElements.define('app-container', appContainer);
+
+customElements.define('app-container', appContainer);

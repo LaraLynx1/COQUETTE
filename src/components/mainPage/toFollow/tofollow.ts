@@ -70,5 +70,5 @@ class CrearWhotofollow extends HTMLElement {
 	}
 }
 
-window.customElements.define('crear-whotofollow', CrearWhotofollow);
+customElements.define('crear-whotofollow', CrearWhotofollow);
 export default CrearWhotofollow;

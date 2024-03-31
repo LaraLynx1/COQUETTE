@@ -1,0 +1,15 @@
+.foto {
+    width: 30px; /* Ajusta el tamaño de la foto según sea necesario */
+    height: 30%; /* Ajusta el tamaño de la foto según sea necesario */
+    padding: 0 4% 0% 0%;
+}
+
+.slider {
+    display: flex;
+    overflow-x: auto; /* Permite desplazarse horizontalmente */
+}
+
+.slide {
+    flex: 0 0 auto;
+    margin-right: 10px; /* Espacio entre las imágenes */
+}
