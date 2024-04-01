@@ -44,8 +44,14 @@ class storyCard extends HTMLElement {
 			this.shadowRoot.innerHTML = `
 			
     <div class="stories">
-      <img class= "pfp" src="${this.image}">
-      <p>${this.name}</p>
+	<div class="completo">
+	<img class="pfp" src="${this.image}">
+	  <div class="user">
+	  <p>${this.name}</p>
+	  </div>
+	</div>
+      
+      
     </div>
           `;
 		}

@@ -1,7 +1,10 @@
 .pfp {
-    width: 40px; /* Ajusta el tamaño de la foto según sea necesario */
-    height: 40%; /* Ajusta el tamaño de la foto según sea necesario */
+    height: 70px;
+	width: 70px;
+	border-radius: 40%;
     padding: 0 4% 0% 0%;
+    border-radius: 50%;
+    margin: 10px;
 }
 
 .slider {
@@ -13,3 +16,11 @@
     flex: 0 0 auto;
     margin-right: 10px; /* Espacio entre las imágenes */
 }
+
+.stories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
