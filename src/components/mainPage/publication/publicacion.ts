@@ -49,6 +49,15 @@ class Crearpublicacion extends HTMLElement {
 		}
 		this.megusta = !this.megusta;
 	}
+	favoritotoggle() {
+		const corazon = this.shadowRoot?.querySelector('#favorito');
+		if (this.megusta) {
+			corazon?.setAttribute('type', 'regular');
+		} else {
+			corazon?.setAttribute('type', 'solid');
+		}
+		this.megusta = !this.megusta;
+	}
 
 	connectedCallback() {
 		this.render();
@@ -56,6 +65,9 @@ class Crearpublicacion extends HTMLElement {
 
 		this.shadowRoot?.querySelector('#corazon')?.addEventListener('click', () => {
 			this.corazontoggle();
+		});
+		this.shadowRoot?.querySelector('#favorito')?.addEventListener('click', () => {
+			this.favoritotoggle();
 		});
 	}
 
@@ -108,7 +120,14 @@ class Crearpublicacion extends HTMLElement {
 			corazon.setAttribute('size', 'md');
 			corazon.setAttribute('color', 'red');
 
+			const favorito = this.ownerDocument.createElement('box-icon');
+			favorito.setAttribute('id', 'favorito');
+			favorito.setAttribute('name', 'message-alt');
+			favorito.setAttribute('size', 'md');
+			favorito.setAttribute('color', 'yellow');
+
 			pie.appendChild(corazon);
+			pie.appendChild(favorito);
 
 			const likes = this.ownerDocument.createElement('p');
 			likes.innerHTML = this.likes + ' Likes';
