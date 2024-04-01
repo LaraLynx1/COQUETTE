@@ -57,6 +57,8 @@ class CardFollow extends HTMLElement {
 			icono.className = 'bx bx-user';
 			this.shadowRoot?.appendChild(icono);
  */
+			this.shadowRoot!.innerHTML = '<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>';
+
 			const tarjeta = this.ownerDocument.createElement('div');
 			tarjeta.className = 'wrapper-tarjeta';
 
@@ -80,12 +82,18 @@ class CardFollow extends HTMLElement {
 			showmore.setAttribute('id', 'btntoggle');
 			tarjeta.appendChild(showmore);
 
+			const rocket = this.ownerDocument.createElement('box-icon');
+			rocket.setAttribute('name', 'rocket');
+			rocket.setAttribute('size', 'lg');
+			tarjeta.appendChild(rocket);
+
 			this.shadowRoot?.appendChild(tarjeta);
 		}
 
 		const csscardfollow = this.ownerDocument.createElement('style');
 		csscardfollow.innerHTML = styles;
 		this.shadowRoot?.appendChild(csscardfollow);
+		//this.shadowRoot!.innerHTML = '<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>';
 
 		/* 				const cssbox = this.ownerDocument.createElement('style');
 		cssbox.innerHTML = boxicon;

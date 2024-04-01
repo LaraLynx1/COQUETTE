@@ -20,11 +20,11 @@ class Crearopinion extends HTMLElement {
 	}
 
 	onClickPost() {
-		if (this.innerHTML == 'UNFOLLOW') {
-			this.innerHTML = 'FOLLOW';
+		if (this.innerHTML == 'POSTED') {
+			this.innerHTML = 'POST';
 			this.className = 'habilitar';
 		} else {
-			this.innerHTML = 'UNFOLLOW';
+			this.innerHTML = 'POSTED';
 			this.className = 'deshabilitar';
 		}
 	}
@@ -47,17 +47,19 @@ class Crearopinion extends HTMLElement {
 	render() {
 		if (this.shadowRoot) {
 			this.shadowRoot.innerHTML = `
-			<div id="opinion-square">
+
 				<div class="headeropinion">
 					<img class="fotopfp" src="${this.userpfp}" />
           <h2>What is happening?</h2>
         </div>
+
         <div class="textopinion">
         <input id="write" type="text" placeholder="write" />
         <button id="post">POST</button>
-        </div>
 
-			</div>
+        </div>
+<div class="linea"></div>
+
       `;
 		}
 		const cssprofile = this.ownerDocument.createElement('style');

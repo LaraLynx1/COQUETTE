@@ -1,4 +1,6 @@
 import styles from './publicacion.css';
+import 'boxicons';
+
 export enum datacosas2 {
 	'user' = 'user',
 	'userpfp' = 'userpfp',
@@ -12,6 +14,7 @@ class Crearpublicacion extends HTMLElement {
 	image?: string;
 	likes?: string;
 	botonfollow!: HTMLElement;
+	megusta: boolean = false;
 
 	constructor() {
 		super();
@@ -37,10 +40,23 @@ class Crearpublicacion extends HTMLElement {
 			this.className = 'deshabilitar';
 		}
 	}
+	corazontoggle() {
+		const corazon = this.shadowRoot?.querySelector('#corazon');
+		if (this.megusta) {
+			corazon?.setAttribute('type', 'regular');
+		} else {
+			corazon?.setAttribute('type', 'solid');
+		}
+		this.megusta = !this.megusta;
+	}
 
 	connectedCallback() {
 		this.render();
 		this.shadowRoot?.querySelector('#seguir2')?.addEventListener('click', this.followprofile);
+
+		this.shadowRoot?.querySelector('#corazon')?.addEventListener('click', () => {
+			this.corazontoggle();
+		});
 	}
 
 	attributeChangedCallback(attrName: datacosas2, oldVal: any, newVal: any) {
@@ -56,19 +72,65 @@ class Crearpublicacion extends HTMLElement {
 	render() {
 		if (this.shadowRoot) {
 			this.shadowRoot.innerHTML = `
-			<div id="publicacion">
-				<div class="header">
-					<img class="fotopfp" src="${this.userpfp}" />
-					<h3>${this.user}</h3>
-					<button id="seguir2">FOLLOW</button>
-				</div>
-				<img class="fotopublic" src="${this.image}" />
-				<div class="footer">
-				// <i class='bx bx-heart'></i>
-				 </div>
-				<p>${this.likes} Me gusta</p>
-			</div>
-      `;
+			<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>`;
+
+			const contenedor = this.ownerDocument.createElement('div');
+			contenedor.setAttribute('id', 'publicacion');
+
+			const cabecera = this.ownerDocument.createElement('div');
+			cabecera.className = 'header';
+
+			const imagenpfp = this.ownerDocument.createElement('img');
+			imagenpfp.className = 'fotopfp';
+			imagenpfp.setAttribute('src', this.userpfp!);
+
+			const usrname = this.ownerDocument.createElement('h3');
+			usrname.innerHTML = this.user!;
+
+			const btnfollow = this.ownerDocument.createElement('button');
+			btnfollow.setAttribute('id', 'seguir2');
+			btnfollow.innerHTML = 'FOLLOW';
+
+			cabecera.appendChild(imagenpfp);
+			cabecera.appendChild(usrname);
+			cabecera.appendChild(btnfollow);
+
+			const imagenpublic = this.ownerDocument.createElement('img');
+			imagenpublic.className = 'fotopublic';
+			imagenpublic.setAttribute('src', this.image!);
+
+			const pie = this.ownerDocument.createElement('div');
+			pie.className = 'footer';
+
+			const corazon = this.ownerDocument.createElement('box-icon');
+			corazon.setAttribute('id', 'corazon');
+			corazon.setAttribute('name', 'heart');
+			corazon.setAttribute('size', 'md');
+			corazon.setAttribute('color', 'red');
+
+			pie.appendChild(corazon);
+
+			const likes = this.ownerDocument.createElement('p');
+			likes.innerHTML = this.likes + ' Likes';
+
+			contenedor.appendChild(cabecera);
+			contenedor.appendChild(imagenpublic);
+			contenedor.appendChild(pie);
+			contenedor.appendChild(likes);
+
+			//<div id="publicacion">
+			//<div class="header">
+			//<img class="fotopfp" src="${this.userpfp}" />
+			//<h3>${this.user}</h3>
+			//<button id="seguir2">FOLLOW</button>
+			//</div>
+			//<img class="fotopublic" src="${this.image}" />
+			//<div class="footer">
+			///????????
+			// </div>
+			//<p>${this.likes} Me gusta</p>
+
+			this.shadowRoot?.appendChild(contenedor);
 		}
 		const cssprofile = this.ownerDocument.createElement('style');
 		cssprofile.innerHTML = styles;

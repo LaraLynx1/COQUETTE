@@ -4,8 +4,12 @@
 	box-sizing: border-box;
 }
 .wrapper-publicacion {
-	width: auto;
-	max-width: 800px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 32rem;
+
 	height: auto;
 	background-color: rgb(141, 128, 255);
 }
