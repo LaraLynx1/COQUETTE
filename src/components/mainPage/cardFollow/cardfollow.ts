@@ -1,8 +1,6 @@
 import { whotofollow } from '../../../data/data';
 import CrearWhotofollow, { datacosas } from '../toFollow/tofollow';
 import styles from './cardfollow.css';
-/* import boxicon from './../../iconcss/box-icon.css';
-import 'boxicons'; */
 
 class CardFollow extends HTMLElement {
 	profiles: CrearWhotofollow[] = [];
