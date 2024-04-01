@@ -1,5 +1,5 @@
 import { stories } from "../../../data/data";
-import styles from "../stories/stories.css"
+import styles from "../stories/stories.css";
 
 export enum storyType {
 	'image' = 'image',

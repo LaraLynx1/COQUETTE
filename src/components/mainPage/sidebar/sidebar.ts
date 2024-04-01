@@ -1,4 +1,4 @@
-import styles from './sidebar.css'
+import styles from './sidebar.css';
 
 export enum databarra {
 	'coquette' = 'coquette',
