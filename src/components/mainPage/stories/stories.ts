@@ -1,4 +1,3 @@
-import { stories } from "../../../data/data";
 import styles from "../stories/stories.css";
 
 export enum storyType {
@@ -45,7 +44,7 @@ class storyCard extends HTMLElement {
 			this.shadowRoot.innerHTML = `
 			
     <div class="stories">
-      <img src="${this.image}">
+      <img class= "pfp" src="${this.image}">
       <p>${this.name}</p>
     </div>
           `;

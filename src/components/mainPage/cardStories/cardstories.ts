@@ -10,16 +10,28 @@ class cardStories extends HTMLElement {
 		this.attachShadow({ mode: 'open' });
 	}
 
+    // connectedCallback() {
+    //     stories.forEach((historia) => {
+    //         const story1 = this.ownerDocument.createElement('crear-story') as storyCard;
+    //         story1.setAttribute(storyType.image, historia.image);
+    //         story1.setAttribute(storyType.name, historia.name);
+
+    //         this.storiesArray.push(story1);
+    //     });
+    //     this.render();
+    // }
+
     connectedCallback() {
         stories.forEach((historia) => {
-            const story1 = this.ownerDocument.createElement('crear-story') as storyCard;
+            const story1 = new storyCard(); // Crear instancia de storyCard
             story1.setAttribute(storyType.image, historia.image);
             story1.setAttribute(storyType.name, historia.name);
-
+    
             this.storiesArray.push(story1);
         });
         this.render();
     }
+    
 
     attributeChangedCallback(attrName: storyType, oldVal: any, newVal: any) {
         this.render();
@@ -30,7 +42,8 @@ class cardStories extends HTMLElement {
             const ficha = this.ownerDocument.createElement('div');
             ficha.className = 'wrapper-ficha';
 
-            this.storiesArray;
+            this.storiesArray.forEach((profile) => {
+				ficha.appendChild(profile);})
 
             this.shadowRoot?.appendChild(ficha);
         }

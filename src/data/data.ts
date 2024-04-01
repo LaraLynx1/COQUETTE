@@ -47,27 +47,27 @@ export const whotofollow = [
 
 export const stories = [
 	{
-	image: caitlyn,
-	name: 'Caitlyn',
+	image: "https://prod.api.assets.riotgames.com/public/v1/asset/lol/14.5.1/CHAMPION_SKIN/51039/ICON",
+	name: 'Caitlyn'
 	},
 	{
-	image: akali,
-	name: 'Akali',
+	image: "https://prod.api.assets.riotgames.com/public/v1/asset/lol/14.6.1/CHAMPION_SKIN/235046/ICON",
+	name: 'Senna',
 	},
 	{
-	image: kaisa,
+	image: "https://prod.api.assets.riotgames.com/public/v1/asset/lol/14.6.1/CHAMPION_SKIN/145040/ICON",
 	name: 'Kaisa',
 	},
 	{
-	image: lux,
+	image: "https://preview.redd.it/lovestruck-lux-port-mission-v0-2vwnvbfsnfac1.jpeg?auto=webp&s=161092691f8478293c7b88da9f08ac2848f167e6",
 	name: 'Lux',
 	},
 	{
-	image: sera,
+	image: "https://i1.sndcdn.com/artworks-DzKaeKvz64CglhKq-O7Jy1w-t500x500.jpg",
 	name: 'Seraphine',
 	},
 	{
-	image: syndra,
+	image: "https://prod.api.assets.riotgames.com/public/v1/asset/lol/14.5.1/CHAMPION_SKIN/134044/ICON",
 	name: 'Syndra',
 	},
 ];
