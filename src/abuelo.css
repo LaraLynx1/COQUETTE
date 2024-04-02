@@ -9,6 +9,7 @@
 }
 .div-izquierda {
 	display: flex;
+	justify-content: flex-end;
 	width: 25%;
 }
 .div-centro {
