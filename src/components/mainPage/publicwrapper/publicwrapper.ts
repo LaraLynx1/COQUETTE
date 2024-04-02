@@ -36,6 +36,7 @@ class publicwrapper extends HTMLElement {
 			});
 
 			this.shadowRoot?.appendChild(tarjeta2);
+
 			const csscardfollow = this.ownerDocument.createElement('style');
 			csscardfollow.innerHTML = styles;
 			this.shadowRoot?.appendChild(csscardfollow);

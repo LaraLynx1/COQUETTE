@@ -14,8 +14,9 @@
 	flex-direction: column;
 	width: 400px;
 	height: auto;
-	background-color: aqua;
+	background-color: white;
 	border-radius: 10%;
+	margin-top: 40px;
 }
 
 .ocultar {
@@ -30,6 +31,7 @@
 	height: 40px;
 	border-color: transparent;
 	background-color: white;
-	margin-left: 10px;
+	border-radius: 20px;
+	margin-left: 20px;
 	margin-top: 10px;
 }

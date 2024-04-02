@@ -5,15 +5,7 @@
 	border-radius: 40%;
 	margin-right: 10px;
 }
-
-.linea {
-	width: 100%;
-	height: 5px;
-	background-color: pink;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
-.headeropinion {
+aderopinion {
 	display: flex;
 
 	width: 22rem;
@@ -39,8 +31,20 @@
 	background-color: rgb(212, 101, 162) !important;
 	color: rgb(255, 255, 255);
 }
+.headeropinion {
+	display: flex;
+	margin-bottom: 10px;
+}
 
 .habilitar {
 	background-color: rgb(255, 187, 224) !important;
 	color: black;
+}
+.linea {
+	width: 100%;
+	height: 5px;
+	background-color: pink;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 20px;
 }

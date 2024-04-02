@@ -58,8 +58,7 @@ class Crearopinion extends HTMLElement {
         <button id="post">POST</button>
 
         </div>
-<div class="linea"></div>
-
+				<div class="linea"></div>
       `;
 		}
 		const cssprofile = this.ownerDocument.createElement('style');

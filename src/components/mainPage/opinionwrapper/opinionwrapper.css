@@ -1,8 +1,11 @@
 .wrapper-opinion {
-	background-color: aquamarine;
-	height: 10rem;
-	width: 30rem;
+	background-color: white;
+	height: 11rem;
+	width: 38rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 20px;
+	margin-bottom: 20px;
+	margin-top: 10px;
 }

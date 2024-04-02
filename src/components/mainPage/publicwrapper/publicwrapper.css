@@ -8,8 +8,9 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 32rem;
-
+	width: 38rem;
+	padding-top: 30px;
+	border-radius: 30px;
 	height: auto;
-	background-color: rgb(141, 128, 255);
+	background-color: white;
 }

@@ -1,4 +1,24 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.div-todo {
+	display: flex;
+	background-color: bisque;
+}
+.div-izquierda {
+	display: flex;
+	justify-content: flex-end;
+	width: 25%;
+}
 .div-centro {
-	height: 100%;
-	background-color: rgb(234, 127, 255);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 50%;
+}
+.div-derecha {
+	display: flex;
+	width: 25%;
 }

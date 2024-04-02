@@ -4,3 +4,6 @@ export { default as Crearpublicacion } from './publication/publicacion';
 export { default as publicwrapper } from './publicwrapper/publicwrapper';
 export { default as Crearopinion } from './shareopinion/shareopinion';
 export { default as wrapperopinion } from './opinionwrapper/opinionwrapper';
+export { default as cardInicio } from './sidebar/sidebar';
+export { default as cardStories } from './cardStories/cardStories';
+export { default as storyCard } from './stories/stories';

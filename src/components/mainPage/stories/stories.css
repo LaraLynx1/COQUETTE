@@ -1,0 +1,24 @@
+.pfp {
+	height: 70px;
+	width: 70px;
+	border-radius: 40%;
+	padding: 0 4% 0% 0%;
+	border-radius: 50%;
+	margin: 10px;
+}
+
+.slider {
+	display: flex;
+	overflow-x: auto; /* Permite desplazarse horizontalmente */
+}
+
+.slide {
+	flex: 0 0 auto;
+	margin-right: 10px; /* Espacio entre las imágenes */
+}
+
+.stories {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

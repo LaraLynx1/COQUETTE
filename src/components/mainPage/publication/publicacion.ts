@@ -130,24 +130,13 @@ class Crearpublicacion extends HTMLElement {
 			pie.appendChild(favorito);
 
 			const likes = this.ownerDocument.createElement('p');
+			likes.className = 'margintexto';
 			likes.innerHTML = this.likes + ' Likes';
 
 			contenedor.appendChild(cabecera);
 			contenedor.appendChild(imagenpublic);
 			contenedor.appendChild(pie);
 			contenedor.appendChild(likes);
-
-			//<div id="publicacion">
-			//<div class="header">
-			//<img class="fotopfp" src="${this.userpfp}" />
-			//<h3>${this.user}</h3>
-			//<button id="seguir2">FOLLOW</button>
-			//</div>
-			//<img class="fotopublic" src="${this.image}" />
-			//<div class="footer">
-			///????????
-			// </div>
-			//<p>${this.likes} Me gusta</p>
 
 			this.shadowRoot?.appendChild(contenedor);
 		}

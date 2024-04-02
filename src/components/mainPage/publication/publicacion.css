@@ -16,6 +16,10 @@
 	height: 20rem;
 	display: flex;
 }
+#publicacion {
+	background-color: rgb(228, 228, 228);
+	border-radius: 20px;
+}
 #seguir2 {
 	background-color: rgb(255, 187, 224);
 	margin-right: 15px;
@@ -27,6 +31,10 @@
 .deshabilitar {
 	background-color: rgb(212, 101, 162) !important;
 	color: rgb(255, 255, 255);
+}
+.margintexto {
+	margin-left: 10px;
+	padding-bottom: 15px;
 }
 
 .habilitar {
