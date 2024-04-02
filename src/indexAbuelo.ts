@@ -35,7 +35,9 @@ class appContainer extends HTMLElement {
 
 			this.tarjeta = this.ownerDocument.createElement('tarjeta-whotofollow') as CardFollow;
 			this.tarjeta2 = this.ownerDocument.createElement('public-wrapper') as publicwrapper;
+			this.tarjeta2.className = 'contenedorpub';
 			this.tarjeta3 = this.ownerDocument.createElement('wrapper-opinion') as wrapperopinion;
+			this.tarjeta3.className = 'contenedoropinion';
 			this.tarjeta4 = this.ownerDocument.createElement('card-inicio') as cardInicio;
 			this.tarjeta5 = this.ownerDocument.createElement('card-stories') as cardStories;
 

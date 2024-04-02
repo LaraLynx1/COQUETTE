@@ -14,3 +14,8 @@
 	height: auto;
 	background-color: white;
 }
+@media (max-width: 600px) {
+	.wrapper-publicacion {
+		width: 100%;
+	}
+}

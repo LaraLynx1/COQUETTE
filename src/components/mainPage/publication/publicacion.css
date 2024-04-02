@@ -53,3 +53,9 @@ img {
 	display: flex;
 	justify-content: space-between;
 }
+@media (max-width: 600px) {
+	.fotopublic {
+		height: 500px;
+		width: 430px;
+	}
+}

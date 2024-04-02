@@ -20,7 +20,7 @@ body {
 	background-color: white;
 	padding: 20px;
 	box-sizing: border-box;
-	height: 18rem;
+	height: auto;
 	margin-right: 30px;
 	margin-top: 50px;
 	border-radius: 30px;
@@ -89,4 +89,40 @@ body {
 .slide {
 	flex: 0 0 auto;
 	margin-right: 10px; /* Espacio entre las imágenes */
+}
+
+.menuiconos {
+	display: flex;
+	flex-direction: column;
+}
+
+@media (max-width: 600px) {
+	* {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+
+	a {
+		display: none;
+	}
+	li {
+		padding-right: 1rem;
+	}
+	i {
+		font-size: 2rem;
+	}
+	.menuiconos {
+		display: flex;
+		flex-direction: row;
+	}
+	.sidebar {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		width: 100%;
+		margin-right: 0px;
+		margin-top: 1rem;
+	}
 }

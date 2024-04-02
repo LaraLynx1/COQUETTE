@@ -2,3 +2,10 @@
 	display: flex;
 	justify-content: center;
 }
+
+@media (max-width: 600px) {
+	.wrapper-ficha {
+		flex-wrap: wrap;
+		margin-top: 2rem;
+	}
+}
