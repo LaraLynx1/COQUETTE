@@ -115,6 +115,7 @@ body {
 	.menuiconos {
 		display: flex;
 		flex-direction: row;
+		margin-top: 12px;
 	}
 	.sidebar {
 		display: flex;

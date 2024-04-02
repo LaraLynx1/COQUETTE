@@ -48,3 +48,12 @@ aderopinion {
 	margin-bottom: 10px;
 	border-radius: 20px;
 }
+
+@media (max-width: 600px) {
+	.headeropinion {
+		width: 100%;
+	}
+	#write {
+		width: auto;
+	}
+}
