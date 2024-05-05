@@ -34,9 +34,11 @@
 		display: flex;
 		justify-content: center;
 		width: 90%;
+		order: 1;
 	}
 	.div-centro {
 		width: 90%;
+		order: 3;
 	}
 	.contenedoropinion {
 		width: 90%;
@@ -47,5 +49,6 @@
 	.div-derecha {
 		width: 90%;
 		justify-content: center;
+		order: 2;
 	}
 }
