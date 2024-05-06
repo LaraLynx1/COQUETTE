@@ -9,8 +9,13 @@ class login extends HTMLElement {
 	}
 
     render(){
-        const login = this.ownerDocument.createElement( 'login-page');
-        this.shadowRoot?.appendChild(login);
+        if(this.shadowRoot){
+            this.shadowRoot.innerHTML = ``;
+            
+         const login = this.ownerDocument.createElement( 'login-page');
+        this.shadowRoot?.appendChild(login);   
+        }
+        
     }
 }
 
