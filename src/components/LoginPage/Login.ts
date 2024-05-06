@@ -12,7 +12,6 @@ class login extends HTMLElement {
         if(this.shadowRoot){
             this.shadowRoot.innerHTML = ``;
 
-
             const title = this.ownerDocument.createElement('h1');
 			title.innerText = 'Log in';
 			this.shadowRoot?.appendChild(title);
