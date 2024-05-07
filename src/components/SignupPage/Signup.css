@@ -1,38 +1,37 @@
-
-                :host {
-                    display: block;
-                    max-width: 340px;
-                    font-family: Arial, sans-serif;
-                }
-                h2 {
-                    text-align: center;
-                }
-                form {
-                    display: flex;
-                    flex-direction: column;
-                }
-                input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="date"] {
-                    padding: 8px;
-                    margin: 8px 0;
-                    border: 1px solid #ccc;
-                    border-radius: 4px;
-                }
-                input[type="submit"] {
-                    background-color: pink;
-                    color: white;
-                    padding: 10px;
-                    border: none;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    margin-top: 10px;
-                }
-                input[type="submit"]:hover {
-                    background-color: #ff85a2;
-                }
-                .footer-links {
-                    display: flex;
-                    justify-content: center;
-                    font-size: 12px;
-                    margin-top: 10px;
-                }
+:host {
+display: block;
+max-width: 340px;
+font-family: Arial, sans-serif;
+}
+h2 {
+text-align: center;
+}
+form {
+display: flex;
+flex-direction: column;
+}
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="date"] {
+padding: 8px;
+margin: 8px 0;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+input[type="submit"] {
+background-color: pink;
+color: white;
+padding: 10px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+margin-top: 10px;
+}
+input[type="submit"]:hover {
+background-color: #ff85a2;
+}
+.footer-links {
+display: flex;
+justify-content: center;
+font-size: 12px;
+margin-top: 10px;
+}
            
