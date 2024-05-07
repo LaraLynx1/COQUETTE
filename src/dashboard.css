@@ -1,0 +1,54 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.div-todo {
+	display: flex;
+	background-color: bisque;
+}
+.div-izquierda {
+	display: flex;
+	justify-content: flex-end;
+	width: 25%;
+}
+.div-centro {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 50%;
+}
+.div-derecha {
+	display: flex;
+	width: 25%;
+}
+
+@media (max-width: 600px) {
+	.div-todo {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: bisque;
+	}
+	.div-izquierda {
+		display: flex;
+		justify-content: center;
+		width: 90%;
+		order: 1;
+	}
+	.div-centro {
+		width: 90%;
+		order: 3;
+	}
+	.contenedoropinion {
+		width: 90%;
+	}
+	.contenedorpub {
+		width: 90%;
+	}
+	.div-derecha {
+		width: 90%;
+		justify-content: center;
+		order: 2;
+	}
+}

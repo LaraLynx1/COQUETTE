@@ -1,0 +1,61 @@
+.fotopfp {
+	margin-left: 10px;
+	height: 70px;
+	width: 70px;
+	border-radius: 40%;
+}
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.publicacion {
+	background-color: black;
+	height: 20rem;
+	display: flex;
+}
+#publicacion {
+	background-color: rgb(228, 228, 228);
+	border-radius: 20px;
+}
+#seguir2 {
+	background-color: rgb(255, 187, 224);
+	margin-right: 15px;
+	border-color: transparent;
+	width: 85px;
+	height: 30px;
+	border-radius: 30px;
+}
+.deshabilitar {
+	background-color: rgb(212, 101, 162) !important;
+	color: rgb(255, 255, 255);
+}
+.margintexto {
+	margin-left: 10px;
+	padding-bottom: 15px;
+}
+
+.habilitar {
+	background-color: rgb(255, 187, 224) !important;
+	color: black;
+}
+.fotopublic {
+	height: 500px;
+	width: 500px;
+}
+img {
+	width: 100%;
+	max-width: 600px;
+}
+.footer {
+	display: flex;
+	justify-content: space-between;
+}
+@media (max-width: 600px) {
+	.fotopublic {
+		width: 100%;
+		object-fit: contain;
+	}
+}

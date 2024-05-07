@@ -14,6 +14,7 @@ module.exports = {
 				use: 'ts-loader',
 				exclude: /node_modules/,
 			},
+<<<<<<< HEAD
 			{
 				test: /\.(png|jpe?g|gif)$/i,
 				use: [
@@ -25,6 +26,8 @@ module.exports = {
 					},
 				],
 			},
+=======
+>>>>>>> 22e0a98b70b3c75bf9a609a5b226d90fe4dc2a1f
 		],
 	},
 	resolve: {

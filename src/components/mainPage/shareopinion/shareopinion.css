@@ -1,0 +1,59 @@
+.fotopfp {
+	margin-left: 10px;
+	height: 70px;
+	width: 70px;
+	border-radius: 40%;
+	margin-right: 10px;
+}
+aderopinion {
+	display: flex;
+
+	width: 22rem;
+	margin-bottom: 20px;
+}
+.textopinion {
+	display: flex;
+}
+#write {
+	border-color: transparent;
+	margin-right: 20px;
+	width: 15rem;
+}
+#post {
+	background-color: rgb(255, 187, 224);
+	margin-right: 15px;
+	border-color: transparent;
+	width: 85px;
+	height: 30px;
+	border-radius: 30px;
+}
+.deshabilitar {
+	background-color: rgb(212, 101, 162) !important;
+	color: rgb(255, 255, 255);
+}
+.headeropinion {
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.habilitar {
+	background-color: rgb(255, 187, 224) !important;
+	color: black;
+}
+.linea {
+	width: 100%;
+	height: 5px;
+	background-color: pink;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 20px;
+}
+
+@media (max-width: 600px) {
+	.headeropinion {
+		width: 100%;
+	}
+	#write {
+		width: auto;
+	}
+}

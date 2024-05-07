@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     margin: 0;
     padding: 0;
@@ -84,3 +85,134 @@ body {
     flex: 0 0 auto;
     margin-right: 10px; /* Espacio entre las imágenes */
 }
+=======
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	display: flex;
+	background-color: #ffdbd1;
+}
+
+.etiqueta {
+	color: #fa9ebc;
+}
+
+.texto {
+	color: #570228;
+	margin: 0;
+	font-size: 15pt;
+}
+
+.sidebar {
+	background-color: white;
+	padding: 20px;
+	box-sizing: border-box;
+	height: auto;
+	margin-right: 30px;
+	margin-top: 50px;
+	border-radius: 30px;
+	width: 13rem;
+}
+
+.sidebar h2,
+.follow h2 {
+	margin-top: 0;
+}
+
+.sidebar ul,
+.follow ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.sidebar ul li,
+.follow ul li {
+	margin-bottom: 10px;
+}
+
+.sidebar ul li a,
+.follow ul li a {
+	text-decoration: none;
+}
+
+.content {
+	flex: 1;
+	padding: 20px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start; /* Ajuste para alinear el contenido arriba */
+}
+
+.seguir {
+	background-color: #fa9ebc;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+.pequeno {
+	font-size: small;
+}
+
+.sugerencias {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.foto {
+	width: 30px; /* Ajusta el tamaño de la foto según sea necesario */
+	height: 30%; /* Ajusta el tamaño de la foto según sea necesario */
+	padding: 0 4% 0% 0%;
+}
+
+.slider {
+	display: flex;
+	overflow-x: auto; /* Permite desplazarse horizontalmente */
+}
+
+.slide {
+	flex: 0 0 auto;
+	margin-right: 10px; /* Espacio entre las imágenes */
+}
+
+.menuiconos {
+	display: flex;
+	flex-direction: column;
+}
+
+@media (max-width: 600px) {
+	* {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+
+	a {
+		display: none;
+	}
+	li {
+		padding-right: 1rem;
+	}
+	i {
+		font-size: 2rem;
+	}
+	.menuiconos {
+		display: flex;
+		flex-direction: row;
+		margin-top: 12px;
+	}
+	.sidebar {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		width: 100%;
+		margin-right: 0px;
+		margin-top: 1rem;
+	}
+}
+>>>>>>> 22e0a98b70b3c75bf9a609a5b226d90fe4dc2a1f

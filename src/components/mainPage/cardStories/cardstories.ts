@@ -26,12 +26,12 @@ class cardStories extends HTMLElement {
             const story1 = new storyCard(); // Crear instancia de storyCard
             story1.setAttribute(storyType.image, historia.image);
             story1.setAttribute(storyType.name, historia.name);
-    
+
             this.storiesArray.push(story1);
         });
         this.render();
     }
-    
+
 
     attributeChangedCallback(attrName: storyType, oldVal: any, newVal: any) {
         this.render();

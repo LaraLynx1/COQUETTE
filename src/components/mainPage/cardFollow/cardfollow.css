@@ -14,8 +14,14 @@
 	flex-direction: column;
 	width: 400px;
 	height: auto;
+<<<<<<< HEAD
 	background-color: aqua;
 	border-radius: 10%;
+=======
+	background-color: white;
+	border-radius: 10%;
+	margin-top: 40px;
+>>>>>>> 22e0a98b70b3c75bf9a609a5b226d90fe4dc2a1f
 }
 
 .ocultar {
@@ -30,6 +36,19 @@
 	height: 40px;
 	border-color: transparent;
 	background-color: white;
+<<<<<<< HEAD
 	margin-left: 10px;
 	margin-top: 10px;
 }
+=======
+	border-radius: 20px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+	.wrapper-tarjeta {
+		width: 100%;
+	}
+}
+>>>>>>> 22e0a98b70b3c75bf9a609a5b226d90fe4dc2a1f

@@ -1,0 +1,18 @@
+.wrapper-opinion {
+	background-color: white;
+	height: 11rem;
+	width: 38rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+	margin-bottom: 20px;
+	margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+	.wrapper-opinion {
+		width: 100%;
+		flex-shrink: 1;
+	}
+}
