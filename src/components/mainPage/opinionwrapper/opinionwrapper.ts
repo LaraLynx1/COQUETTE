@@ -11,7 +11,7 @@ class wrapperopinion extends HTMLElement {
 	opinions: Crearopinion[] = [];
 
 	connectedCallback() {
-		useropinion.forEach((person) => {
+		useropinion.forEach((person: any) => {
 			const publicate = this.ownerDocument.createElement('crear-opinion') as Crearopinion;
 			publicate.setAttribute(datacosas3.userpfp, person.userpfp);
 			this.opinions.push(publicate);

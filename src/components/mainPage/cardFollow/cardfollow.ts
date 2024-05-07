@@ -80,14 +80,6 @@ class CardFollow extends HTMLElement {
 		const csscardfollow = this.ownerDocument.createElement('style');
 		csscardfollow.innerHTML = styles;
 		this.shadowRoot?.appendChild(csscardfollow);
-<<<<<<< HEAD
-	}
-}
-
-
-
-customElements.define('tarjeta-whotofollow', CardFollow);
-=======
 		//this.shadowRoot!.innerHTML = '<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>';
 
 		/* 				const cssbox = this.ownerDocument.createElement('style');
@@ -97,5 +89,4 @@ customElements.define('tarjeta-whotofollow', CardFollow);
 }
 
 window.customElements.define('tarjeta-whotofollow', CardFollow);
->>>>>>> 22e0a98b70b3c75bf9a609a5b226d90fe4dc2a1f
 export default CardFollow;

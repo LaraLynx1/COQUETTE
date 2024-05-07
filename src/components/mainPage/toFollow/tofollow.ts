@@ -6,12 +6,9 @@ export enum datacosas {
 }
 
 class CrearWhotofollow extends HTMLElement {
-<<<<<<< HEAD
-=======
 	user(user: any, user1: any) {
 		throw new Error('Method not implemented.');
 	}
->>>>>>> 22e0a98b70b3c75bf9a609a5b226d90fe4dc2a1f
 	image?: string;
 	name?: string;
 	arroba?: string;
@@ -76,9 +73,5 @@ class CrearWhotofollow extends HTMLElement {
 	}
 }
 
-<<<<<<< HEAD
-customElements.define('crear-whotofollow', CrearWhotofollow);
-=======
 window.customElements.define('crear-whotofollow', CrearWhotofollow);
->>>>>>> 22e0a98b70b3c75bf9a609a5b226d90fe4dc2a1f
 export default CrearWhotofollow;

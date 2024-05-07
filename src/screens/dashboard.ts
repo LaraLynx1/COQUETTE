@@ -4,7 +4,7 @@ import publicwrapper from '../components/mainPage/publicwrapper/publicwrapper';
 import wrapperopinion from '../components/mainPage/opinionwrapper/opinionwrapper';
 import styles from '../dashboard.css';
 import cardInicio from '../components/mainPage/sidebar/sidebar';
-import cardStories from '../components/mainPage/cardStories/cardStories';
+import cardStories from '../components/mainPage/sidebar/sidebar';
 
 class dashboard extends HTMLElement {
 	tarjeta?: CardFollow;

@@ -1,12 +1,12 @@
 import './components/mainPage/mainPagePadre';
-import './exportscreens';
+import './screens/exportscreens';
 import CardFollow from './components/mainPage/cardFollow/cardfollow';
-import dashboard from './screens/dashboard';
+
 import styles from './abuelo.css';
 
 class appContainer extends HTMLElement {
-    tarjeta?: CardFollow;
-    pantallaprincipal?: dashboard;
+    // tarjeta?: CardFollow;
+    // pantallaprincipal?: dashboard;
 
     constructor() {
         super();
@@ -29,12 +29,15 @@ class appContainer extends HTMLElement {
             this.shadowRoot?.appendChild(csscardfollow);
 
             // Create elements based on the imported classes
-            this.tarjeta = this.ownerDocument.createElement('tarjeta-whotofollow') as CardFollow;
-            this.pantallaprincipal = this.ownerDocument.createElement('create-dashboard') as dashboard;
+            // this.tarjeta = this.ownerDocument.createElement('tarjeta-whotofollow') as CardFollow;
+            // this.pantallaprincipal = this.ownerDocument.createElement('create-dashboard') as dashboard;
+
+			const dashboard = this.ownerDocument.createElement('create-dashbard');
+        this.shadowRoot?.appendChild(dashboard);
             
             // Append new elements
-            this.shadowRoot?.appendChild(this.tarjeta);
-            this.shadowRoot?.appendChild(this.pantallaprincipal);
+            // this.shadowRoot?.appendChild(this.tarjeta);
+            // this.shadowRoot?.appendChild(this.pantallaprincipal);
         }
     }
 }
