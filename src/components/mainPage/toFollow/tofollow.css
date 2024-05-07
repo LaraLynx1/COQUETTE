@@ -31,11 +31,7 @@
 	border-color: transparent;
 	width: 85px;
 	height: 30px;
-<<<<<<< HEAD
-	border-radius: 30px;
-=======
 	border-radius: 50px;
->>>>>>> 22e0a98b70b3c75bf9a609a5b226d90fe4dc2a1f
 }
 .deshabilitar {
 	background-color: rgb(212, 101, 162) !important;
