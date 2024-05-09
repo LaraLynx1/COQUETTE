@@ -9,7 +9,7 @@ import { addObserver, dispatch } from '../store/index';
 import { navigate } from '../types/store';
 import { PANTALLAS } from '../types/enumeraciones';
 
-class dashboard extends HTMLElement {
+class dashboardprueba extends HTMLElement {
 	tarjeta?: CardFollow;
 	tarjeta2?: publicwrapper;
 	tarjeta3?: wrapperopinion;
@@ -23,10 +23,9 @@ class dashboard extends HTMLElement {
 
 	connectedCallback() {
 		this.render();
-		const button = this.shadowRoot?.querySelector('#cambio');
-
+		const button = this.shadowRoot?.querySelector('#regreso');
 		button?.addEventListener('click', () => {
-			dispatch(navigate(PANTALLAS.DASHBOARDPRUEBA));
+			dispatch(navigate(PANTALLAS.PANTALLA3));
 		});
 	}
 	attributeChangedCallback(attrName: any, oldVal: any, newVal: any) {
@@ -35,8 +34,15 @@ class dashboard extends HTMLElement {
 
 	render() {
 		if (this.shadowRoot) {
+			this.shadowRoot.innerHTML = '';
+			const btnregresar = this.ownerDocument.createElement('button');
+			btnregresar.setAttribute('id', 'regreso');
+			btnregresar.innerHTML = 'regreso estoy en pantalla prueba';
+			this.shadowRoot.appendChild(btnregresar);
+
+			/*
 			const divtodo = this.ownerDocument.createElement('div');
-			divtodo.className = 'div-todo';
+			divtodo.className = 'div-todo2';
 
 			const divcentro = this.ownerDocument.createElement('div');
 			divcentro.className = 'div-centro';
@@ -62,22 +68,20 @@ class dashboard extends HTMLElement {
 			divderecha.className = 'div-derecha';
 			divderecha.appendChild(this.tarjeta!);
 
-			const btncambio = this.ownerDocument.createElement('button');
-			btncambio.setAttribute('id', 'cambio');
-			btncambio.innerHTML = 'cambio';
+
 
 			const csscardfollow = this.ownerDocument.createElement('style');
 			csscardfollow.innerHTML = styles;
 			this.shadowRoot?.appendChild(csscardfollow);
 
 			divtodo.appendChild(divizquierda);
-			divtodo.appendChild(btncambio);
+			divtodo.appendChild(btnregresar);
 			divtodo.appendChild(divcentro);
 			divtodo.appendChild(divderecha);
-			this.shadowRoot.appendChild(divtodo);
+			this.shadowRoot.appendChild(divtodo); */
 		}
 	}
 }
 
-window.customElements.define('create-dashbard', dashboard);
-export default dashboard;
+window.customElements.define('create-dashbard2', dashboardprueba);
+export default dashboardprueba;

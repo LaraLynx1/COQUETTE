@@ -7,6 +7,10 @@
 	display: flex;
 	background-color: bisque;
 }
+.div-todo2 {
+	display: flex;
+	background-color: rgb(254, 175, 78);
+}
 .div-izquierda {
 	display: flex;
 	justify-content: flex-end;

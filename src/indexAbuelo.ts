@@ -1,19 +1,18 @@
 import './components/mainPage/mainPagePadre';
-import './exportscreens';
+import './screens/exportscreens';
 import dashboard from './screens/dashboard';
-/* import CardFollow from './components/mainPage/cardFollow/cardfollow'; */
-/* import publicwrapper from './components/mainPage/publicwrapper/publicwrapper';
-import wrapperopinion from './components/mainPage/opinionwrapper/opinionwrapper'; */
 import styles from './abuelo.css';
-/* import cardInicio from './components/mainPage/sidebar/sidebar';
-import cardStories from './components/mainPage/cardStories/cardStories'; */
+import { AppState } from './types/store';
+import { addObserver, appState } from './store/index';
+import dashboardprueba from './screens/pantallaprueba';
+import { PANTALLAS } from './types/enumeraciones';
+import { dashboardprueba3 } from './screens/exportscreens';
 
 class appContainer extends HTMLElement {
-	pantallaprincipal?: dashboard;
-
 	constructor() {
 		super();
 		this.attachShadow({ mode: 'open' });
+		addObserver(this);
 	}
 
 	connectedCallback() {
@@ -25,17 +24,38 @@ class appContainer extends HTMLElement {
 
 	render() {
 		if (this.shadowRoot) {
-			const divbase = this.ownerDocument.createElement('div');
-			divbase.className = 'div-base';
-
-			this.pantallaprincipal = this.ownerDocument.createElement('create-dashbard') as dashboard;
-
+			this.shadowRoot.innerHTML = '';
 			const csscardfollow = this.ownerDocument.createElement('style');
 			csscardfollow.innerHTML = styles;
 			this.shadowRoot?.appendChild(csscardfollow);
 
-			divbase.appendChild(this.pantallaprincipal);
-			this.shadowRoot.appendChild(divbase);
+			const divbase = this.ownerDocument.createElement('div');
+			divbase.className = 'div-base';
+
+			switch (appState.screen) {
+				case PANTALLAS.DASHBOARD:
+					const pantallaprincipal = this.ownerDocument.createElement('create-dashbard') as dashboard;
+					divbase.appendChild(pantallaprincipal);
+					this.shadowRoot.appendChild(divbase);
+					break;
+
+				case PANTALLAS.DASHBOARDPRUEBA:
+					const pantallaprueba = this.ownerDocument.createElement('create-dashbard2') as dashboardprueba;
+
+					divbase.appendChild(pantallaprueba);
+					this.shadowRoot.appendChild(divbase);
+					break;
+
+				case PANTALLAS.PANTALLA3:
+					const pantallaprueba2 = this.ownerDocument.createElement('create-dashbard3') as dashboardprueba3;
+
+					divbase.appendChild(pantallaprueba2);
+					this.shadowRoot.appendChild(divbase);
+					break;
+
+				default:
+					break;
+			}
 		}
 	}
 }
