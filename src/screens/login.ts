@@ -16,9 +16,6 @@ class LOGIN extends HTMLElement {
     render() {
         if (this.shadowRoot) {
 
-
-        
-
         const divFondo = document.createElement('div');
         divFondo.className = 'div-fondo';
 
