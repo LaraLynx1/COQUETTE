@@ -15,7 +15,16 @@ class SIGNUP extends HTMLElement {
 
     render() {
         if (this.shadowRoot) {
-            
+
+            const divFondo = document.createElement('div');
+        divFondo.className = 'div-fondo';
+
+        const SignUpComponent = document.createElement('signup-component');
+        divFondo.appendChild(SignUpComponent);
+
+        this.shadowRoot.appendChild(divFondo);
         }
 }
 }
+window.customElements.define('signup-component', SIGNUP);
+export default SIGNUP;

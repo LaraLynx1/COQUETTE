@@ -9,6 +9,7 @@ import LoginComponent from './components/LoginPage/Login';
 import {LOGIN} from './screens/exportscreens';
 import { PANTALLAS } from './types/enumeraciones';
 import { Perfil } from './screens/exportscreens';
+import {SIGNUP} from './screens/exportscreens';
 
 class appContainer extends HTMLElement {
 	constructor() {
@@ -44,6 +45,10 @@ class appContainer extends HTMLElement {
 					const pantallaLogin = this.ownerDocument.createElement('login-container') as LOGIN;
 					this.shadowRoot.appendChild(pantallaLogin);
 					break;
+
+				case PANTALLAS.SIGNUP:
+					const pantallaSignup = this.ownerDocument.createElement('signup-component') as SIGNUP;
+					this.shadowRoot.appendChild(pantallaSignup);
 
 				default:
 					break;

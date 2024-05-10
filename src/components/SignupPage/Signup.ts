@@ -1,4 +1,7 @@
 import styles from '.signup.css';
+import { addObserver, dispatch } from '../../store/index';
+import { navigate } from '../../types/store';
+import { PANTALLAS } from '../../types/enumeraciones';
 
 class SignUpComponent extends HTMLElement {
     constructor() {
@@ -24,6 +27,9 @@ class SignUpComponent extends HTMLElement {
         const password = (this.shadowRoot?.querySelector('#password') as HTMLInputElement).value;
         console.log(`Username: ${username}, Email: ${email}, Birthday: ${birthday}, Phone: ${phone}, Password: ${password}`);
         const buttonSignUp = this.shadowRoot?.querySelector('#signup');
+        buttonSignUp?.addEventListener('click', () => {
+			dispatch(navigate(PANTALLAS.DASHBOARD));
+		});
         // Aquí puedes añadir la lógica para procesar el registro.
     }
 
