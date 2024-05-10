@@ -49,7 +49,7 @@ class appContainer extends HTMLElement {
 				case PANTALLAS.SIGNUP:
 					const pantallaSignup = this.ownerDocument.createElement('signup-component') as SIGNUP;
 					this.shadowRoot.appendChild(pantallaSignup);
-
+					break;
 				default:
 					break;
 			}

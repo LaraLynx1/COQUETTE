@@ -13,7 +13,16 @@ class LoginComponent extends HTMLElement {
 
     connectedCallback() {
         this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.onSubmit);
+
+        const buttonLogin = this.shadowRoot?.querySelector('#login');
+        buttonLogin?.addEventListener('click', () => {
+			dispatch(navigate(PANTALLAS.DASHBOARD));
+		});
     }
+
+    attributeChangedCallback(attrName: any, oldVal: any, newVal: any) {
+		this.render();
+	}
 
     disconnectedCallback() {
         this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.onSubmit);
@@ -26,15 +35,12 @@ class LoginComponent extends HTMLElement {
         const username = (this.shadowRoot?.querySelector('#username') as HTMLInputElement)?.value;
         const password = (this.shadowRoot?.querySelector('#password') as HTMLInputElement)?.value;
         console.log(`Username: ${username}, Password: ${password}`);
-        const buttonLogin = this.shadowRoot?.querySelector('#login');
-        buttonLogin?.addEventListener('click', () => {
-			dispatch(navigate(PANTALLAS.DASHBOARD));
-		});
-        // Implementar lógica de autenticación aquí
+        
+        
     }
 
     render() {
-        if (!this.shadowRoot) return;
+        if (this.shadowRoot) {
 
        
         this.shadowRoot.innerHTML = `
@@ -54,7 +60,8 @@ class LoginComponent extends HTMLElement {
                 </div>
             </form>
         `;
-    }
+   } 
+}
 }
 
 window.customElements.define('login-component', LoginComponent);
