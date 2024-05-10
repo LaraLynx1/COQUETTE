@@ -4,15 +4,11 @@ import publicwrapper from '../components/mainPage/publicwrapper/publicwrapper';
 import wrapperopinion from '../components/mainPage/opinionwrapper/opinionwrapper';
 import styles from '../dashboard.css';
 import cardInicio from '../components/mainPage/sidebar/sidebar';
-<<<<<<< HEAD
-import cardStories from '../components/mainPage/sidebar/sidebar';
-=======
 import { cardStories } from '../components/mainPage/mainPagePadre';
 import { addObserver, dispatch } from '../store/index';
 import { navigate } from '../types/store';
 import { PANTALLAS } from '../types/enumeraciones';
 import { publics } from '../data/data';
->>>>>>> 57cae36f0a8d5138fdd1ed694ba99516e028c70a
 
 class dashboard extends HTMLElement {
 	tarjeta?: CardFollow;
