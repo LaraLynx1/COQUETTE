@@ -4,27 +4,26 @@ import { navigate } from '../types/store';
 import { PANTALLAS } from '../types/enumeraciones';
 
 class SIGNUP extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-    }
+	constructor() {
+		super();
+		this.attachShadow({ mode: 'open' });
+	}
 
-    connectedCallback() {
-        this.render();
-    }
+	connectedCallback() {
+		this.render();
+	}
 
-    render() {
-        if (this.shadowRoot) {
+	render() {
+		if (this.shadowRoot) {
+			const divFondo = document.createElement('div');
+			divFondo.className = 'div-fondo';
 
-            const divFondo = document.createElement('div');
-        divFondo.className = 'div-fondo';
+			const SignUpComponent = document.createElement('signup-component');
+			divFondo.appendChild(SignUpComponent);
 
-        const SignUpComponent = document.createElement('signup-component');
-        divFondo.appendChild(SignUpComponent);
-
-        this.shadowRoot.appendChild(divFondo);
-        }
+			this.shadowRoot.appendChild(divFondo);
+		}
+	}
 }
-}
-window.customElements.define('signup-component', SIGNUP);
+window.customElements.define('signup-screen', SIGNUP);
 export default SIGNUP;

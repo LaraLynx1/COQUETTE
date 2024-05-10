@@ -5,11 +5,13 @@ import dashboard from './screens/dashboard';
 import styles from './abuelo.css';
 import { AppState } from './types/store';
 import { addObserver, appState } from './store/index';
-import {LoginComponent} from './components/LoginPage/Login';
-import {LOGIN} from './screens/exportscreens';
+import { LoginComponent } from './components/LoginPage/Login';
+import './components/LoginPage/LoginPadre';
+import './components/SignupPage/SignupPadre';
+import { LOGIN } from './screens/exportscreens';
 import { PANTALLAS } from './types/enumeraciones';
 import { Perfil } from './screens/exportscreens';
-import {SIGNUP} from './screens/exportscreens';
+import { SIGNUP } from './screens/exportscreens';
 
 class appContainer extends HTMLElement {
 	constructor() {
@@ -18,10 +20,9 @@ class appContainer extends HTMLElement {
 		addObserver(this);
 	}
 
-    connectedCallback() {
-        this.render();
-
-    }
+	connectedCallback() {
+		this.render();
+	}
 
 	render() {
 		if (this.shadowRoot) {
@@ -48,7 +49,7 @@ class appContainer extends HTMLElement {
 					break;
 
 				case PANTALLAS.SIGNUP:
-					const pantallaSignup = this.ownerDocument.createElement('signup-component') as SIGNUP;
+					const pantallaSignup = this.ownerDocument.createElement('signup-screen') as SIGNUP;
 					this.shadowRoot.appendChild(pantallaSignup);
 					break;
 				default:
