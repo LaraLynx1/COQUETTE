@@ -1,0 +1,19 @@
+
+.div-fondo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #fff; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px; 
+    width: 100%; 
+    max-width: 400px; 
+    margin: auto; 
+    font-family: Arial, sans-serif; 
+}
+
+.sign-up-component {
+    background-color: black;
+}

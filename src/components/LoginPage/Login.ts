@@ -1,4 +1,4 @@
-import styles from './login.css';
+import styles from './Login.css';
 import { addObserver, dispatch } from '../../store/index';
 import { navigate } from '../../types/store';
 import { PANTALLAS } from '../../types/enumeraciones';
@@ -103,7 +103,7 @@ console.log(`Username: ${username}, Password: ${password}`);
             cssLogin.textContent = styles;
             this.shadowRoot.appendChild(cssLogin);
             
-            //
+            
         }
     }
 }

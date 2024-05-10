@@ -1,4 +1,5 @@
 import "../components/indexPadre";
+import styles from './signup.css';
 import { addObserver, dispatch } from '../store/index';
 import { navigate } from '../types/store';
 import { PANTALLAS } from '../types/enumeraciones';
@@ -22,6 +23,11 @@ class SIGNUP extends HTMLElement {
 			divFondo.appendChild(SignUpComponent);
 
 			this.shadowRoot.appendChild(divFondo);
+
+			const cssSignup = this.ownerDocument.createElement('style');
+			cssSignup.innerHTML = styles;
+			this.shadowRoot?.appendChild(cssSignup);
+			
 		}
 	}
 }

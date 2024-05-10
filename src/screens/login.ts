@@ -26,9 +26,9 @@ class LOGIN extends HTMLElement {
         const LoginCompo = document.createElement('login-component');
         LoginComponent.appendChild(LoginCompo);
 
-        const cssLogin = this.ownerDocument.createElement('style');
-			cssLogin.innerHTML = styles;
-			this.shadowRoot?.appendChild(cssLogin);
+        const csslogin = this.ownerDocument.createElement('style');
+			csslogin.innerHTML = styles;
+			this.shadowRoot?.appendChild(csslogin);
 
         this.shadowRoot.appendChild(LoginComponent);
    }
