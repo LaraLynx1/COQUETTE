@@ -3,7 +3,7 @@ import { addObserver, dispatch } from '../../store/index';
 import { navigate } from '../../types/store';
 import { PANTALLAS } from '../../types/enumeraciones';
 
-class LoginComponent extends HTMLElement {
+export class LoginComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -65,4 +65,3 @@ class LoginComponent extends HTMLElement {
 }
 
 window.customElements.define('login-component', LoginComponent);
-export default LoginComponent;

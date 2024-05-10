@@ -1,4 +1,4 @@
-import LoginComponent from "../components/LoginPage/Login";
+import {LoginComponent} from "../components/LoginPage/Login";
 import { addObserver, dispatch } from '../store/index';
 import { navigate } from '../types/store';
 import { PANTALLAS } from '../types/enumeraciones';
@@ -15,14 +15,17 @@ class LOGIN extends HTMLElement {
 
     render() {
         if (this.shadowRoot) {
+			this.shadowRoot.innerHTML = ``;
+            
 
-        const divFondo = document.createElement('div');
-        divFondo.className = 'div-fondo';
+        const LoginComponent = document.createElement('div');
+        LoginComponent.className = 'div-fondo';
+        console.log('hola');
 
-        const loginComponent = document.createElement('login-component');
-        divFondo.appendChild(loginComponent);
+        const LoginCompo = document.createElement('login-component');
+        LoginComponent.appendChild(LoginCompo);
 
-        this.shadowRoot.appendChild(divFondo);
+        this.shadowRoot.appendChild(LoginComponent);
    }
  }
 }

@@ -5,7 +5,7 @@ import dashboard from './screens/dashboard';
 import styles from './abuelo.css';
 import { AppState } from './types/store';
 import { addObserver, appState } from './store/index';
-import LoginComponent from './components/LoginPage/Login';
+import {LoginComponent} from './components/LoginPage/Login';
 import {LOGIN} from './screens/exportscreens';
 import { PANTALLAS } from './types/enumeraciones';
 import { Perfil } from './screens/exportscreens';
@@ -20,6 +20,7 @@ class appContainer extends HTMLElement {
 
     connectedCallback() {
         this.render();
+
     }
 
 	render() {
