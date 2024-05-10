@@ -28,7 +28,7 @@ class fotowrapper extends HTMLElement {
 		if (this.shadowRoot) {
 			this.shadowRoot.innerHTML = '';
 			const fotocuadrara = this.ownerDocument.createElement('div');
-			fotocuadrara.className = 'foto-cuadrara';
+			fotocuadrara.className = 'foto-contenedor';
 
 			this.profiles.forEach((profile) => {
 				fotocuadrara.appendChild(profile);

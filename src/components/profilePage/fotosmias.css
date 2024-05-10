@@ -1,0 +1,11 @@
+.fotocuadrado {
+	width: 350px;
+	height: 350px;
+	margin-top: 15px;
+	margin-right: 15px;
+}
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}

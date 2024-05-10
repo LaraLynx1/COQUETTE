@@ -1,5 +1,5 @@
 import '../components/mainPage/mainPagePadre';
-import styles from '../profile.css';
+import styles from './profile.css';
 import { fotosperfil } from '../data/data';
 import fotowrapper from '../components/profilePage/fotoswrapper';
 import { addObserver, dispatch } from '../store/index';
@@ -48,7 +48,7 @@ class Perfil extends HTMLElement {
 			divarribatexto.className = 'div-arribatexto';
 
 			const divarribatextonombre = this.ownerDocument.createElement('div');
-			divarribatexto.className = 'div-arribatexto';
+			divarribatextonombre.className = 'div-arribatextoboton';
 
 			const usrname = this.ownerDocument.createElement('h3');
 			usrname.innerHTML = 'Mochi_miel';
