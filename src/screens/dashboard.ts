@@ -54,7 +54,7 @@ class dashboard extends HTMLElement {
 			formulario.className = 'formulario';
 			const titulo = this.ownerDocument.createElement('H1');
 			formulario.appendChild(titulo);
-			titulo.innerHTML = 'Datos dl Post';
+			titulo.innerHTML = 'Datos del Post';
 			const guardar = this.ownerDocument.createElement('button');
 			guardar.setAttribute('id', 'guardar');
 			formulario.appendChild(guardar);

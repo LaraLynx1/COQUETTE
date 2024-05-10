@@ -2,23 +2,24 @@ class LoginComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
+        this.onSubmit = this.onSubmit.bind(this); // Asegurar que 'this' esté vinculado correctamente
         this.render();
     }
 
     connectedCallback() {
-        this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.onSubmit.bind(this));
+        this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.onSubmit);
     }
 
     disconnectedCallback() {
-        this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.onSubmit.bind(this));
+        this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.onSubmit);
     }
 
-    onSubmit(event: Event) {
+    onSubmit(event: any) {
         event.preventDefault();
-        const username = (this.shadowRoot?.querySelector('#username') as HTMLInputElement).value;
-        const password = (this.shadowRoot?.querySelector('#password') as HTMLInputElement).value;
+        const username = (this.shadowRoot?.querySelector('#username') as HTMLInputElement)?.value;
+        const password = (this.shadowRoot?.querySelector('#password') as HTMLInputElement)?.value;
         console.log(`Username: ${username}, Password: ${password}`);
-        // Aquí puedes añadir la lógica para validar el usuario.
+        // Implementar lógica de autenticación aquí
     }
 
     render() {
@@ -44,3 +45,4 @@ class LoginComponent extends HTMLElement {
 }
 
 window.customElements.define('login-component', LoginComponent);
+export default LoginComponent;
