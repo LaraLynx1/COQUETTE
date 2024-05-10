@@ -7,113 +7,105 @@ export class LoginComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.onSubmit = this.onSubmit.bind(this); // Asegurar que 'this' esté vinculado correctamente
+/*         this.onSubmit = this.onSubmit.bind(this);
+        this.handleLoginButton = this.handleLoginButton.bind(this); */
         this.render();
     }
 
     connectedCallback() {
         this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.onSubmit);
 
-        const buttonLogin = this.shadowRoot?.querySelector('#login');
-      
-        handleLoginButton() {
-            dispatch(navigate(PANTALLAS.DASHBOARD));
-    }
-    }
+        const button = this.shadowRoot?.querySelector('#botonregreso');
 
-    attributeChangedCallback(attrName: any, oldVal: any, newVal: any) {
-		this.render();
-	}
-
+        button?.addEventListener('click', () => {
+			dispatch(navigate(PANTALLAS.DASHBOARD));
+		});
+    }
+    
     disconnectedCallback() {
         this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.onSubmit);
     }
-
-    
-
+/* 
+    handleLoginButton(event:any) {
+        event.preventDefault(); 
+        dispatch(navigate(PANTALLAS.DASHBOARD));
+    }
+ */
     onSubmit(event: any) {
-        event.preventDefault();
-        const username = (this.shadowRoot?.querySelector('#username') as HTMLInputElement)?.value;
-        const password = (this.shadowRoot?.querySelector('#password') as HTMLInputElement)?.value;
-        console.log(`Username: ${username}, Password: ${password}`);
-        
-        
+        const username = (this.shadowRoot!.querySelector('#username') as HTMLInputElement).value;
+const password = (this.shadowRoot!.querySelector('#password') as HTMLInputElement).value;
+console.log(`Username: ${username}, Password: ${password}`);
+
     }
 
     render() {
         if (this.shadowRoot) {
+            this.shadowRoot.innerHTML = ''; // Asegúrate de limpiar cualquier contenido anterior
 
-            this.shadowRoot.innerHTML = ``
-            // Create the container for the login form
-const formContainer = document.createElement('div');
+           
+            const formContainer = document.createElement('div');
+            const header = document.createElement('h2');
+            header.textContent = 'Login Now';
 
-// Create and append the header
-const header = document.createElement('h2');
-header.textContent = 'Login Now';
-formContainer.appendChild(header);
+            formContainer.appendChild(header);
+            const form = document.createElement('form');
+            const usernameLabel = document.createElement('label');
+            usernameLabel.textContent = 'Username';
 
-// Create the form
-const form = document.createElement('form');
+            form.appendChild(usernameLabel);
+            const usernameInput = document.createElement('input');
+            usernameInput.id = 'username';
+            usernameInput.type = 'text';
+            usernameInput.placeholder = 'Enter your username';
 
-// Create and append the username label and input
-const usernameLabel = document.createElement('label');
-usernameLabel.textContent = 'Username';
-form.appendChild(usernameLabel);
-const usernameInput = document.createElement('input');
-usernameInput.id = 'username';
-usernameInput.type = 'text';
-usernameInput.placeholder = 'Enter your username';
-form.appendChild(usernameInput);
+            form.appendChild(usernameInput);
+            const passwordLabel = document.createElement('label');
+            passwordLabel.textContent = 'Password';
+            form.appendChild(passwordLabel);
+            const passwordInput = document.createElement('input');
 
-// Create and append the password label and input
-const passwordLabel = document.createElement('label');
-passwordLabel.textContent = 'Password';
-form.appendChild(passwordLabel);
-const passwordInput = document.createElement('input');
-passwordInput.id = 'password';
-passwordInput.type = 'password';
-passwordInput.placeholder = 'Enter your password';
-form.appendChild(passwordInput);
+            passwordInput.id = 'password';
+            passwordInput.type = 'password';
+            passwordInput.placeholder = 'Enter your password';
+            form.appendChild(passwordInput);
 
-// Create and append the remember me checkbox
-const rememberMeLabel = document.createElement('label');
-const rememberMeCheckbox = document.createElement('input');
-rememberMeCheckbox.type = 'checkbox';
-rememberMeLabel.appendChild(rememberMeCheckbox);
-rememberMeLabel.append(' Remember me'); // Append text node after the checkbox
-form.appendChild(rememberMeLabel);
+            const rememberMeLabel = document.createElement('label');
+            const rememberMeCheckbox = document.createElement('input');
 
-// Create and append the login button
-const loginButton = document.createElement('button');
-loginButton.className = 'hola';
-loginButton.textContent = 'login';
-form.appendChild(loginButton);
+            rememberMeCheckbox.type = 'checkbox';
+            rememberMeLabel.appendChild(rememberMeCheckbox);
+            rememberMeLabel.append(' Remember me');
+            form.appendChild(rememberMeLabel);
 
-// Create and append the links container
-const linksContainer = document.createElement('div');
-linksContainer.className = 'footer-links';
-const signUpLink = document.createElement('a');
-signUpLink.href = '#';
-signUpLink.textContent = 'Don’t have an account?';
-linksContainer.appendChild(signUpLink);
-const forgotPasswordLink = document.createElement('a');
-forgotPasswordLink.href = '#';
-forgotPasswordLink.textContent = 'Forgot password?';
-linksContainer.appendChild(forgotPasswordLink);
+            const loginButton = document.createElement('button');
+            loginButton.setAttribute('id', 'botonregreso')
+            loginButton.textContent = 'login';
 
-// Append the links container to the form
-form.appendChild(linksContainer);
+            form.appendChild(loginButton);
+            const linksContainer = document.createElement('div');
+            linksContainer.className = 'footer-links';
+            const signUpLink = document.createElement('a');
+            signUpLink.href = '#';
 
-// Finally, append the form to the form container
-formContainer.appendChild(form);
+            signUpLink.textContent = 'Don’t have an account?';
+            linksContainer.appendChild(signUpLink);
+            const forgotPasswordLink = document.createElement('a');
+            forgotPasswordLink.href = '#';
 
+            forgotPasswordLink.textContent = 'Forgot password?';
+            linksContainer.appendChild(forgotPasswordLink);
+            form.appendChild(linksContainer);
+            formContainer.appendChild(form);
+            this.shadowRoot.appendChild(formContainer);
 
-        loginButton.addEventListener("click", this.handleLoginButton);
-        const cssLogin = this.ownerDocument.createElement('style');
-			cssLogin.innerHTML = styles;
-			this.shadowRoot?.appendChild(cssLogin);
-   } 
-}
+            
+            const cssLogin = document.createElement('style');
+            cssLogin.textContent = styles;
+            this.shadowRoot.appendChild(cssLogin);
+            
+            //
+        }
+    }
 }
 
 window.customElements.define('login-component', LoginComponent);

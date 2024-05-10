@@ -3,7 +3,7 @@ import { addObserver, dispatch } from '../../store/index';
 import { navigate } from '../../types/store';
 import { PANTALLAS } from '../../types/enumeraciones';
 
-class SignUpComponent extends HTMLElement {
+export class SignUpComponent extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
