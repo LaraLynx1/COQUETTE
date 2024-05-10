@@ -67,13 +67,15 @@ class Perfil extends HTMLElement {
 			const seguidores = this.ownerDocument.createElement('h3');
 			seguidores.innerHTML = '300 seguidores';
 
-			const btnlogin = this.ownerDocument.createElement('button');
-			btnlogin.setAttribute('id', 'alogin');
-			btnlogin.innerHTML = 'Log in';
-
 			divarribatexto.appendChild(divarribatextonombre);
 			divarribatexto.appendChild(btneditar);
 			divarribatexto.appendChild(seguidores);
+
+			const divalinea = this.ownerDocument.createElement('div');
+			divalinea.className = 'div-linea';
+
+			divarribatexto.appendChild(divalinea);
+
 			divarriba.appendChild(divarribafoto);
 			divarriba.appendChild(divarribatexto);
 

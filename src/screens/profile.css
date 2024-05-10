@@ -7,7 +7,7 @@
 }
 .div-arriba {
 	display: flex;
-	background-color: aqua;
+	background-color: white;
 	width: 80%;
 }
 .div-fotos {
@@ -32,6 +32,7 @@
 }
 .div-arribatextoboton {
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 }
 #cerrarperfil {
@@ -49,4 +50,37 @@
 	width: 85px;
 	height: 30px;
 	border-radius: 30px;
+}
+.div-linea {
+	width: 90%;
+	background-color: black;
+	height: 2px;
+}
+@media (max-width: 600px) {
+	.fotopfp {
+		width: 70px;
+		height: 70px;
+		border-radius: 30px;
+		margin-top: 10px;
+	}
+	.div-arribatextoboton {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 10px;
+	}
+	.div-arribatexto {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 70%;
+	}
+	.div-arribafoto {
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		width: 30%;
+	}
 }
