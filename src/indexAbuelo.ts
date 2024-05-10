@@ -6,9 +6,7 @@ import styles from './abuelo.css';
 import { AppState } from './types/store';
 import { addObserver, appState } from './store/index';
 import { LoginComponent } from './components/LoginPage/Login';
-import {SignUpComponent} from './components/SignupPage/Signup'
 import './components/LoginPage/LoginPadre';
-import './components/SignupPage/SignupPadre'
 import { LOGIN } from './screens/exportscreens';
 import { PANTALLAS } from './types/enumeraciones';
 import { Perfil } from './screens/exportscreens';

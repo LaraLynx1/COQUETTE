@@ -7,3 +7,4 @@ export { default as wrapperOpinion } from '../components/mainPage/opinionwrapper
 export { default as cardInicio } from '../components/mainPage/sidebar/sidebar';
 export { default as cardStories } from '../components/mainPage/cardStories/cardStories';
 export { default as storyCard } from '../components/mainPage/stories/stories';
+export { default as SignUpComponent } from '../components/SignupPage/Signup';

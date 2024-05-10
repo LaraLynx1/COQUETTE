@@ -1,4 +1,4 @@
-import SignUpComponent from '../components/SignupPage/Signup';
+import "../components/indexPadre";
 import { addObserver, dispatch } from '../store/index';
 import { navigate } from '../types/store';
 import { PANTALLAS } from '../types/enumeraciones';
@@ -18,7 +18,7 @@ class SIGNUP extends HTMLElement {
 			const divFondo = document.createElement('div');
 			divFondo.className = 'div-fondo';
 
-			const SignUpComponent = document.createElement('signup-component');
+			const SignUpComponent = document.createElement('sign-up-component');
 			divFondo.appendChild(SignUpComponent);
 
 			this.shadowRoot.appendChild(divFondo);
