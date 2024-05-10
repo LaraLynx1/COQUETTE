@@ -1,3 +1,4 @@
+
 .div-fondo {
     display: flex;
     flex-direction: column;
@@ -7,7 +8,7 @@
     max-width: 300px; /* Ajusta el ancho máximo a 300px */
     margin: 0 auto; /* Centra el formulario en la página */
     padding: 20px;
-    background-color: #f9f9f9; /* Color de fondo del formulario */
+    background-color: #FAFAFA; /* Color de fondo del formulario */
     border-radius: 8px; /* Bordes redondeados */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera para el contenedor */
     font-family: Arial, sans-serif; /* Tipo de letra */
@@ -28,7 +29,7 @@ input[type="text"], input[type="password"] {
     box-sizing: border-box;
 }
 
-button {
+.botonregreso {
     width: 100%;
     padding: 10px;
     border: none;
