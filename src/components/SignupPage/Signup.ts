@@ -100,10 +100,9 @@ class SignUpComponent extends HTMLElement {
     form.appendChild(passwordInput);
 
     // Create submit button
-    const submitButton = document.createElement('input');
-    submitButton.type = 'submit';
-    submitButton.value = 'Sign up';
-    form.appendChild(submitButton);
+    const submitButton = document.createElement('button');
+    submitButton.setAttribute('id', 'botonregreso')
+    submitButton.textContent = 'Sign up';
 
     // Create footer links div
     const footerLinks = document.createElement('div');
