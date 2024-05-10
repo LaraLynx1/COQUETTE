@@ -1,5 +1,6 @@
 import styles from './login.css';
 
+
 class LoginComponent extends HTMLElement {
     constructor() {
         super();
@@ -16,6 +17,8 @@ class LoginComponent extends HTMLElement {
         this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.onSubmit);
     }
 
+    
+
     onSubmit(event: any) {
         event.preventDefault();
         const username = (this.shadowRoot?.querySelector('#username') as HTMLInputElement)?.value;
@@ -26,6 +29,8 @@ class LoginComponent extends HTMLElement {
 
     render() {
         if (!this.shadowRoot) return;
+
+       
         this.shadowRoot.innerHTML = `
             <h2>Login Now</h2>
             <form>
