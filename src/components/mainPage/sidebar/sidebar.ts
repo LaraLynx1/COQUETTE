@@ -73,7 +73,6 @@ class cardInicio extends HTMLElement {
 					<li><i class="bx bx-search-alt-2"></i> <a class="texto" href="#">Búsqueda</a></li>
 					<li><i class="bx bx-message-square-detail"></i> <a class="texto" href="#">Mensajes</a></li>
 					<li><i class="bx bx-bell"></i> <a class="texto" href="#">Notificaciones</a></li>
-					<li><i class="bx bxs-plus-circle"></i> <a class="texto" href="#">Crear</a></li>
 					<li id='aperfil'><i class="bx bxs-user"></i> <a class="texto" href="#">Perfil</a></li>
 				</ul>
 			</div>

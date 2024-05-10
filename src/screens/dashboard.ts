@@ -16,7 +16,7 @@ class dashboard extends HTMLElement {
 	tarjeta3?: wrapperopinion;
 	tarjeta4?: cardInicio;
 	tarjeta5?: cardStories;
-	modal?: HTMLElement;
+	/* modal?: HTMLElement; */
 
 	constructor() {
 		super();
@@ -35,12 +35,11 @@ class dashboard extends HTMLElement {
 		button2?.addEventListener('click', () => {
 			dispatch(navigate(PANTALLAS.SIGNUP));
 		});
-		const buttonGuardar = this.shadowRoot?.querySelector('#guardar');
+		/* const buttonGuardar = this.shadowRoot?.querySelector('#guardar');
 		buttonGuardar?.addEventListener('click', () => {
-			this.modal!.className! = 'contenedorpost ocultarpost';
-			//push array de post
-			//publics.push({})
-		});
+			this.modal!.className! = 'contenedorpost ocultarpost'; */
+		//push array de post
+		//publics.push({})
 	}
 	attributeChangedCallback(attrName: any, oldVal: any, newVal: any) {
 		this.render();
@@ -48,7 +47,7 @@ class dashboard extends HTMLElement {
 
 	render() {
 		if (this.shadowRoot) {
-			this.modal = this.ownerDocument.createElement('div');
+			/* 	this.modal = this.ownerDocument.createElement('div');
 			this.modal.className = 'contenedorpost mostrarpost';
 			const formulario = this.ownerDocument.createElement('div');
 			formulario.className = 'formulario';
@@ -60,7 +59,7 @@ class dashboard extends HTMLElement {
 			formulario.appendChild(guardar);
 			guardar.innerHTML = 'SAVE';
 
-			this.modal.appendChild(formulario);
+			this.modal.appendChild(formulario); */
 
 			const divtodobotones = this.ownerDocument.createElement('div');
 			divtodobotones.className = 'div-botones';
@@ -119,7 +118,7 @@ class dashboard extends HTMLElement {
 
 			divtodobotones.appendChild(divtodo);
 			this.shadowRoot.appendChild(divtodobotones);
-			this.shadowRoot.appendChild(this.modal);
+			/* 	this.shadowRoot.appendChild(this.modal); */
 		}
 	}
 }
