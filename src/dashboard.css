@@ -3,9 +3,41 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+.div-botones {
+	display: flex;
+	flex-direction: column;
+}
+.div-primero {
+	background-color: bisque;
+	width: 100%;
+	height: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#alogin {
+	background-color: white;
+	margin-right: 15px;
+	border-color: transparent;
+	width: 85px;
+	height: 30px;
+	border-radius: 30px;
+}
+#asingup {
+	background-color: white;
+	margin-right: 15px;
+	border-color: transparent;
+	width: 85px;
+	height: 30px;
+	border-radius: 30px;
+}
 .div-todo {
 	display: flex;
 	background-color: bisque;
+}
+.div-todo2 {
+	display: flex;
+	background-color: rgb(254, 175, 78);
 }
 .div-izquierda {
 	display: flex;
@@ -51,4 +83,33 @@
 		justify-content: center;
 		order: 2;
 	}
+}
+
+.contenedorpost {
+	display: flex;
+	background-color: rgba(255, 0, 0, 0.258);
+	width: 100%;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.ocultarpost {
+	display: none;
+}
+
+.mostrarpost {
+	display: flex;
+}
+
+.formulario {
+	background-color: white;
+	width: 60%;
+	height: 50vh;
+	opacity: 1;
+	z-index: 10;
 }

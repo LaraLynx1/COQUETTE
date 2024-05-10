@@ -4,7 +4,15 @@ import publicwrapper from '../components/mainPage/publicwrapper/publicwrapper';
 import wrapperopinion from '../components/mainPage/opinionwrapper/opinionwrapper';
 import styles from '../dashboard.css';
 import cardInicio from '../components/mainPage/sidebar/sidebar';
+<<<<<<< HEAD
 import cardStories from '../components/mainPage/sidebar/sidebar';
+=======
+import { cardStories } from '../components/mainPage/mainPagePadre';
+import { addObserver, dispatch } from '../store/index';
+import { navigate } from '../types/store';
+import { PANTALLAS } from '../types/enumeraciones';
+import { publics } from '../data/data';
+>>>>>>> 57cae36f0a8d5138fdd1ed694ba99516e028c70a
 
 class dashboard extends HTMLElement {
 	tarjeta?: CardFollow;
@@ -12,6 +20,7 @@ class dashboard extends HTMLElement {
 	tarjeta3?: wrapperopinion;
 	tarjeta4?: cardInicio;
 	tarjeta5?: cardStories;
+	modal?: HTMLElement;
 
 	constructor() {
 		super();
@@ -20,6 +29,22 @@ class dashboard extends HTMLElement {
 
 	connectedCallback() {
 		this.render();
+		const button = this.shadowRoot?.querySelector('#alogin');
+
+		button?.addEventListener('click', () => {
+			dispatch(navigate(PANTALLAS.LOGIN));
+		});
+		const button2 = this.shadowRoot?.querySelector('#asingup');
+
+		button2?.addEventListener('click', () => {
+			dispatch(navigate(PANTALLAS.SIGNUP));
+		});
+		const buttonGuardar = this.shadowRoot?.querySelector('#guardar');
+		buttonGuardar?.addEventListener('click', () => {
+			this.modal!.className! = 'contenedorpost ocultarpost';
+			//push array de post
+			//publics.push({})
+		});
 	}
 	attributeChangedCallback(attrName: any, oldVal: any, newVal: any) {
 		this.render();
@@ -27,8 +52,36 @@ class dashboard extends HTMLElement {
 
 	render() {
 		if (this.shadowRoot) {
+			this.modal = this.ownerDocument.createElement('div');
+			this.modal.className = 'contenedorpost mostrarpost';
+			const formulario = this.ownerDocument.createElement('div');
+			formulario.className = 'formulario';
+			const titulo = this.ownerDocument.createElement('H1');
+			formulario.appendChild(titulo);
+			titulo.innerHTML = 'Datos dl Post';
+			const guardar = this.ownerDocument.createElement('button');
+			guardar.setAttribute('id', 'guardar');
+			formulario.appendChild(guardar);
+			guardar.innerHTML = 'SAVE';
+
+			this.modal.appendChild(formulario);
+
+			const divtodobotones = this.ownerDocument.createElement('div');
+			divtodobotones.className = 'div-botones';
+
 			const divtodo = this.ownerDocument.createElement('div');
 			divtodo.className = 'div-todo';
+
+			const divprimero = this.ownerDocument.createElement('div');
+			divprimero.className = 'div-primero';
+
+			const btnlogin = this.ownerDocument.createElement('button');
+			btnlogin.setAttribute('id', 'alogin');
+			btnlogin.innerHTML = 'Log in';
+
+			const btnsignup = this.ownerDocument.createElement('button');
+			btnsignup.setAttribute('id', 'asingup');
+			btnsignup.innerHTML = 'Sign up';
 
 			const divcentro = this.ownerDocument.createElement('div');
 			divcentro.className = 'div-centro';
@@ -58,10 +111,19 @@ class dashboard extends HTMLElement {
 			csscardfollow.innerHTML = styles;
 			this.shadowRoot?.appendChild(csscardfollow);
 
+			divprimero.appendChild(btnlogin);
+			divprimero.appendChild(btnsignup);
+			divtodobotones.appendChild(divprimero);
+
+			divtodo.appendChild(divcentro);
+
 			divtodo.appendChild(divizquierda);
 			divtodo.appendChild(divcentro);
 			divtodo.appendChild(divderecha);
-			this.shadowRoot.appendChild(divtodo);
+
+			divtodobotones.appendChild(divtodo);
+			this.shadowRoot.appendChild(divtodobotones);
+			this.shadowRoot.appendChild(this.modal);
 		}
 	}
 }

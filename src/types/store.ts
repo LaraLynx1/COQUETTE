@@ -1,16 +1,24 @@
 export type Observer = { render: () => void } & HTMLElement;
 
 export type AppState = {
-  something: {};
+	screen: string;
 };
 
 export enum SomeActions {
-  "X" = "X",
+	'X' = 'X',
+	'changescreen' = 'changescreen',
 }
 
 export interface XAction {
-  action: SomeActions.X;
-  payload: Pick<AppState, "something">;
+	action: SomeActions.X;
+	payload: Pick<AppState, 'screen'>;
 }
 
 export type Actions = XAction;
+
+export const navigate = (screen: string) => {
+	return {
+		action: SomeActions.changescreen,
+		payload: screen,
+	};
+};
