@@ -58,6 +58,31 @@ export const useropinion = [
 	},
 ];
 
+export const fotosperfil = [
+	{
+		image:
+			'https://https://i0.wp.com/newspack-yucatan.s3.amazonaws.com/uploads/2024/01/IMG-48310704.jpg.semana.com/resizer/r0OI-UL1npAMnFaFqySPh7RqzLU=/arc-anglerfish-arc2-prod-semana/public/MDNDZ5QVPFDUFMXQFO54CL7PVA.jpg',
+	},
+	{
+		image: 'https://i.ytimg.com/vi/BpL_Xf7Q5Ug/maxresdefault.jpg',
+	},
+	{
+		image:
+			'https://garden.spoonflower.com/c/16489465/p/f/m/uzyRE3hAb8N_lzKKI7PnneYTTtozInVWrjmRYKkXb0WcRHIrUXDW/12%22%20%20Pink%20Bow%20Print%20-%20Coquette%20Aesthetic%20Ribbon%20Bow%20-%20Girls%20Room%20Decor.jpg',
+	},
+	{
+		image:
+			'https://garden.spoonflower.com/c/15318157/p/f/m/1LnuXKYBlwmrakVRjfShkqpcy2ZdhvzxzzQYBEZT9-Ekfrw3Pc4H1d8/Brown%20vintage%20ribbon%20bows%20on%20soft%20blush%20pink%2FMEDIUM.jpg',
+	},
+	{
+		image: 'https://t4.ftcdn.net/jpg/06/81/50/51/360_F_681505176_MjOXAmjMqHtphlRmbwc6HFdSdY9YKpzX.jpg',
+	},
+	{
+		image:
+			'https://www.elsoldehermosillo.com.mx/doble-via/xekztl-moda-coquette-lolita/ALTERNATES/LANDSCAPE_1140/Moda%20Coquette%20Lolita',
+	},
+];
+
 export const stories = [
 	{
 		image: 'https://prod.api.assets.riotgames.com/public/v1/asset/lol/14.5.1/CHAMPION_SKIN/51039/ICON',

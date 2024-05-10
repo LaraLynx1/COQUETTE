@@ -1,3 +1,6 @@
+import { dispatch } from '../../../store/index';
+import { PANTALLAS } from '../../../types/enumeraciones';
+import { navigate } from '../../../types/store';
 import styles from './sidebar.css';
 
 export enum databarra {
@@ -48,6 +51,12 @@ class cardInicio extends HTMLElement {
 
 	connectedCallback() {
 		this.render();
+
+		const button = this.shadowRoot?.querySelector('#aperfil');
+
+		button?.addEventListener('click', () => {
+			dispatch(navigate(PANTALLAS.PERFIL));
+		});
 	}
 
 	render() {
@@ -65,7 +74,7 @@ class cardInicio extends HTMLElement {
 					<li><i class="bx bx-message-square-detail"></i> <a class="texto" href="#">Mensajes</a></li>
 					<li><i class="bx bx-bell"></i> <a class="texto" href="#">Notificaciones</a></li>
 					<li><i class="bx bxs-plus-circle"></i> <a class="texto" href="#">Crear</a></li>
-					<li><i class="bx bxs-user"></i> <a class="texto" href="#">Perfil</a></li>
+					<li id='aperfil'><i class="bx bxs-user"></i> <a class="texto" href="#">Perfil</a></li>
 				</ul>
 			</div>
           `;

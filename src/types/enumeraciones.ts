@@ -2,4 +2,5 @@ export enum PANTALLAS {
 	'DASHBOARD' = 'DASHBOARD',
 	'LOGIN' = 'LOGIN',
 	'SIGNUP' = 'SIGNUP',
+	'PERFIL' = 'PERFIL',
 }

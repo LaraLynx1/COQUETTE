@@ -8,6 +8,7 @@ import { cardStories } from '../components/mainPage/mainPagePadre';
 import { addObserver, dispatch } from '../store/index';
 import { navigate } from '../types/store';
 import { PANTALLAS } from '../types/enumeraciones';
+import { publics } from '../data/data';
 
 class dashboard extends HTMLElement {
 	tarjeta?: CardFollow;
@@ -15,6 +16,7 @@ class dashboard extends HTMLElement {
 	tarjeta3?: wrapperopinion;
 	tarjeta4?: cardInicio;
 	tarjeta5?: cardStories;
+	modal?: HTMLElement;
 
 	constructor() {
 		super();
@@ -30,8 +32,14 @@ class dashboard extends HTMLElement {
 		});
 		const button2 = this.shadowRoot?.querySelector('#asingup');
 
-		button?.addEventListener('click', () => {
+		button2?.addEventListener('click', () => {
 			dispatch(navigate(PANTALLAS.SIGNUP));
+		});
+		const buttonGuardar = this.shadowRoot?.querySelector('#guardar');
+		buttonGuardar?.addEventListener('click', () => {
+			this.modal!.className! = 'contenedorpost ocultarpost';
+			//push array de post
+			//publics.push({})
 		});
 	}
 	attributeChangedCallback(attrName: any, oldVal: any, newVal: any) {
@@ -40,6 +48,20 @@ class dashboard extends HTMLElement {
 
 	render() {
 		if (this.shadowRoot) {
+			this.modal = this.ownerDocument.createElement('div');
+			this.modal.className = 'contenedorpost mostrarpost';
+			const formulario = this.ownerDocument.createElement('div');
+			formulario.className = 'formulario';
+			const titulo = this.ownerDocument.createElement('H1');
+			formulario.appendChild(titulo);
+			titulo.innerHTML = 'Datos dl Post';
+			const guardar = this.ownerDocument.createElement('button');
+			guardar.setAttribute('id', 'guardar');
+			formulario.appendChild(guardar);
+			guardar.innerHTML = 'SAVE';
+
+			this.modal.appendChild(formulario);
+
 			const divtodobotones = this.ownerDocument.createElement('div');
 			divtodobotones.className = 'div-botones';
 
@@ -97,6 +119,7 @@ class dashboard extends HTMLElement {
 
 			divtodobotones.appendChild(divtodo);
 			this.shadowRoot.appendChild(divtodobotones);
+			this.shadowRoot.appendChild(this.modal);
 		}
 	}
 }
