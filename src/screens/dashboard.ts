@@ -23,10 +23,15 @@ class dashboard extends HTMLElement {
 
 	connectedCallback() {
 		this.render();
-		const button = this.shadowRoot?.querySelector('#cambio');
+		const button = this.shadowRoot?.querySelector('#alogin');
 
 		button?.addEventListener('click', () => {
-			dispatch(navigate(PANTALLAS.DASHBOARDPRUEBA));
+			dispatch(navigate(PANTALLAS.LOGIN));
+		});
+		const button2 = this.shadowRoot?.querySelector('#asingup');
+
+		button?.addEventListener('click', () => {
+			dispatch(navigate(PANTALLAS.SIGNUP));
 		});
 	}
 	attributeChangedCallback(attrName: any, oldVal: any, newVal: any) {
@@ -35,8 +40,22 @@ class dashboard extends HTMLElement {
 
 	render() {
 		if (this.shadowRoot) {
+			const divtodobotones = this.ownerDocument.createElement('div');
+			divtodobotones.className = 'div-botones';
+
 			const divtodo = this.ownerDocument.createElement('div');
 			divtodo.className = 'div-todo';
+
+			const divprimero = this.ownerDocument.createElement('div');
+			divprimero.className = 'div-primero';
+
+			const btnlogin = this.ownerDocument.createElement('button');
+			btnlogin.setAttribute('id', 'alogin');
+			btnlogin.innerHTML = 'Log in';
+
+			const btnsignup = this.ownerDocument.createElement('button');
+			btnsignup.setAttribute('id', 'asingup');
+			btnsignup.innerHTML = 'Sign up';
 
 			const divcentro = this.ownerDocument.createElement('div');
 			divcentro.className = 'div-centro';
@@ -62,19 +81,22 @@ class dashboard extends HTMLElement {
 			divderecha.className = 'div-derecha';
 			divderecha.appendChild(this.tarjeta!);
 
-			const btncambio = this.ownerDocument.createElement('button');
-			btncambio.setAttribute('id', 'cambio');
-			btncambio.innerHTML = 'cambio';
-
 			const csscardfollow = this.ownerDocument.createElement('style');
 			csscardfollow.innerHTML = styles;
 			this.shadowRoot?.appendChild(csscardfollow);
 
+			divprimero.appendChild(btnlogin);
+			divprimero.appendChild(btnsignup);
+			divtodobotones.appendChild(divprimero);
+
+			divtodo.appendChild(divcentro);
+
 			divtodo.appendChild(divizquierda);
-			divtodo.appendChild(btncambio);
 			divtodo.appendChild(divcentro);
 			divtodo.appendChild(divderecha);
-			this.shadowRoot.appendChild(divtodo);
+
+			divtodobotones.appendChild(divtodo);
+			this.shadowRoot.appendChild(divtodobotones);
 		}
 	}
 }

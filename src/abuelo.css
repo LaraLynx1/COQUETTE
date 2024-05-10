@@ -7,6 +7,7 @@
 	justify-content: flex-end;
 	width: 25%;
 }
+
 .div-centro {
 	display: flex;
 	flex-direction: column;

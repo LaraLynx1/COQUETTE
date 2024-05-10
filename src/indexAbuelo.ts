@@ -4,9 +4,8 @@ import dashboard from './screens/dashboard';
 import styles from './abuelo.css';
 import { AppState } from './types/store';
 import { addObserver, appState } from './store/index';
-import dashboardprueba from './screens/pantallaprueba';
+
 import { PANTALLAS } from './types/enumeraciones';
-import { dashboardprueba3 } from './screens/exportscreens';
 
 class appContainer extends HTMLElement {
 	constructor() {
@@ -29,28 +28,11 @@ class appContainer extends HTMLElement {
 			csscardfollow.innerHTML = styles;
 			this.shadowRoot?.appendChild(csscardfollow);
 
-			const divbase = this.ownerDocument.createElement('div');
-			divbase.className = 'div-base';
-
 			switch (appState.screen) {
 				case PANTALLAS.DASHBOARD:
 					const pantallaprincipal = this.ownerDocument.createElement('create-dashbard') as dashboard;
-					divbase.appendChild(pantallaprincipal);
-					this.shadowRoot.appendChild(divbase);
-					break;
 
-				case PANTALLAS.DASHBOARDPRUEBA:
-					const pantallaprueba = this.ownerDocument.createElement('create-dashbard2') as dashboardprueba;
-
-					divbase.appendChild(pantallaprueba);
-					this.shadowRoot.appendChild(divbase);
-					break;
-
-				case PANTALLAS.PANTALLA3:
-					const pantallaprueba2 = this.ownerDocument.createElement('create-dashbard3') as dashboardprueba3;
-
-					divbase.appendChild(pantallaprueba2);
-					this.shadowRoot.appendChild(divbase);
+					this.shadowRoot.appendChild(pantallaprincipal);
 					break;
 
 				default:
