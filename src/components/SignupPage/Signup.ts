@@ -1,3 +1,5 @@
+import styles from '.signup.css';
+
 class SignUpComponent extends HTMLElement {
     constructor() {
         super();
@@ -21,6 +23,7 @@ class SignUpComponent extends HTMLElement {
         const phone = (this.shadowRoot?.querySelector('#phone') as HTMLInputElement).value;
         const password = (this.shadowRoot?.querySelector('#password') as HTMLInputElement).value;
         console.log(`Username: ${username}, Email: ${email}, Birthday: ${birthday}, Phone: ${phone}, Password: ${password}`);
+        const buttonSignUp = this.shadowRoot?.querySelector('#signup');
         // Aquí puedes añadir la lógica para procesar el registro.
     }
 
@@ -46,3 +49,4 @@ class SignUpComponent extends HTMLElement {
 }
 
 window.customElements.define('sign-up-component', SignUpComponent);
+export default SignUpComponent;

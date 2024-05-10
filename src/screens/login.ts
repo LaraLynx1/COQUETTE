@@ -14,13 +14,10 @@ class LOGIN extends HTMLElement {
     }
 
     render() {
-        if (!this.shadowRoot) return;
+        if (this.shadowRoot) {
 
-        const buttonLogin = this.shadowRoot?.querySelector('#login');
 
-        buttonLogin?.addEventListener('click', () => {
-			dispatch(navigate(PANTALLAS.DASHBOARD));
-		});
+        
 
         const divFondo = document.createElement('div');
         divFondo.className = 'div-fondo';
@@ -29,7 +26,8 @@ class LOGIN extends HTMLElement {
         divFondo.appendChild(loginComponent);
 
         this.shadowRoot.appendChild(divFondo);
-    }
+   }
+ }
 }
 
 window.customElements.define('login-container', LOGIN);

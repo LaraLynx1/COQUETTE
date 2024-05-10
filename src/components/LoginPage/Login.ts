@@ -1,5 +1,7 @@
 import styles from './login.css';
-
+import { addObserver, dispatch } from '../../store/index';
+import { navigate } from '../../types/store';
+import { PANTALLAS } from '../../types/enumeraciones';
 
 class LoginComponent extends HTMLElement {
     constructor() {
@@ -24,6 +26,10 @@ class LoginComponent extends HTMLElement {
         const username = (this.shadowRoot?.querySelector('#username') as HTMLInputElement)?.value;
         const password = (this.shadowRoot?.querySelector('#password') as HTMLInputElement)?.value;
         console.log(`Username: ${username}, Password: ${password}`);
+        const buttonLogin = this.shadowRoot?.querySelector('#login');
+        buttonLogin?.addEventListener('click', () => {
+			dispatch(navigate(PANTALLAS.DASHBOARD));
+		});
         // Implementar lógica de autenticación aquí
     }
 
