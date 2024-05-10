@@ -1,4 +1,8 @@
 import LoginComponent from "../components/LoginPage/Login";
+import { addObserver, dispatch } from '../store/index';
+import { navigate } from '../types/store';
+import { PANTALLAS } from '../types/enumeraciones';
+
 class LOGIN extends HTMLElement {
     constructor() {
         super();
@@ -11,6 +15,12 @@ class LOGIN extends HTMLElement {
 
     render() {
         if (!this.shadowRoot) return;
+
+        const buttonLogin = this.shadowRoot?.querySelector('#login');
+
+        buttonLogin?.addEventListener('click', () => {
+			dispatch(navigate(PANTALLAS.DASHBOARD));
+		});
 
         const divFondo = document.createElement('div');
         divFondo.className = 'div-fondo';

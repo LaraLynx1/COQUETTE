@@ -5,7 +5,8 @@ import dashboard from './screens/dashboard';
 import styles from './abuelo.css';
 import { AppState } from './types/store';
 import { addObserver, appState } from './store/index';
-
+import LoginComponent from './components/LoginPage/Login';
+import {LOGIN} from './screens/exportscreens';
 import { PANTALLAS } from './types/enumeraciones';
 import { Perfil } from './screens/exportscreens';
 
@@ -37,6 +38,11 @@ class appContainer extends HTMLElement {
 					const pantallaperfil = this.ownerDocument.createElement('create-perfil') as Perfil;
 
 					this.shadowRoot.appendChild(pantallaperfil);
+					break;
+
+				case PANTALLAS.LOGIN:
+					const pantallaLogin = this.ownerDocument.createElement('login-container') as LOGIN;
+					this.shadowRoot.appendChild(pantallaLogin);
 					break;
 
 				default:
