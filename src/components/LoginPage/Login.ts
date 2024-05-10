@@ -1,3 +1,5 @@
+import styles from './login.css';
+
 class LoginComponent extends HTMLElement {
     constructor() {
         super();
