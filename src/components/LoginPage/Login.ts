@@ -15,9 +15,10 @@ export class LoginComponent extends HTMLElement {
         this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.onSubmit);
 
         const buttonLogin = this.shadowRoot?.querySelector('#login');
-        buttonLogin?.addEventListener('click', () => {
-			dispatch(navigate(PANTALLAS.DASHBOARD));
-		});
+      
+        handleLoginButton() {
+            dispatch(navigate(PANTALLAS.DASHBOARD));
+    }
     }
 
     attributeChangedCallback(attrName: any, oldVal: any, newVal: any) {
@@ -42,24 +43,75 @@ export class LoginComponent extends HTMLElement {
     render() {
         if (this.shadowRoot) {
 
-       
-        this.shadowRoot.innerHTML = `
-            <h2>Login Now</h2>
-            <form>
-                <label>Username</label>
-                <input id="username" type="text" placeholder="Enter your username">
-                <label>Password</label>
-                <input id="password" type="password" placeholder="Enter your password">
-                <label>
-                    <input type="checkbox"> Remember me
-                </label>
-                <input type="submit" value="Login">
-                <div class="footer-links">
-                    <a href="#">Don't have an account?</a>
-                    <a href="#">Forgot password?</a>
-                </div>
-            </form>
-        `;
+            this.shadowRoot.innerHTML = ``
+            // Create the container for the login form
+const formContainer = document.createElement('div');
+
+// Create and append the header
+const header = document.createElement('h2');
+header.textContent = 'Login Now';
+formContainer.appendChild(header);
+
+// Create the form
+const form = document.createElement('form');
+
+// Create and append the username label and input
+const usernameLabel = document.createElement('label');
+usernameLabel.textContent = 'Username';
+form.appendChild(usernameLabel);
+const usernameInput = document.createElement('input');
+usernameInput.id = 'username';
+usernameInput.type = 'text';
+usernameInput.placeholder = 'Enter your username';
+form.appendChild(usernameInput);
+
+// Create and append the password label and input
+const passwordLabel = document.createElement('label');
+passwordLabel.textContent = 'Password';
+form.appendChild(passwordLabel);
+const passwordInput = document.createElement('input');
+passwordInput.id = 'password';
+passwordInput.type = 'password';
+passwordInput.placeholder = 'Enter your password';
+form.appendChild(passwordInput);
+
+// Create and append the remember me checkbox
+const rememberMeLabel = document.createElement('label');
+const rememberMeCheckbox = document.createElement('input');
+rememberMeCheckbox.type = 'checkbox';
+rememberMeLabel.appendChild(rememberMeCheckbox);
+rememberMeLabel.append(' Remember me'); // Append text node after the checkbox
+form.appendChild(rememberMeLabel);
+
+// Create and append the login button
+const loginButton = document.createElement('button');
+loginButton.className = 'hola';
+loginButton.textContent = 'login';
+form.appendChild(loginButton);
+
+// Create and append the links container
+const linksContainer = document.createElement('div');
+linksContainer.className = 'footer-links';
+const signUpLink = document.createElement('a');
+signUpLink.href = '#';
+signUpLink.textContent = 'Don’t have an account?';
+linksContainer.appendChild(signUpLink);
+const forgotPasswordLink = document.createElement('a');
+forgotPasswordLink.href = '#';
+forgotPasswordLink.textContent = 'Forgot password?';
+linksContainer.appendChild(forgotPasswordLink);
+
+// Append the links container to the form
+form.appendChild(linksContainer);
+
+// Finally, append the form to the form container
+formContainer.appendChild(form);
+
+
+        loginButton.addEventListener("click", this.handleLoginButton);
+        const cssLogin = this.ownerDocument.createElement('style');
+			cssLogin.innerHTML = styles;
+			this.shadowRoot?.appendChild(cssLogin);
    } 
 }
 }

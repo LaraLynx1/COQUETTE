@@ -1,0 +1,68 @@
+.div-fondo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Ajusta el ancho al 100% del contenedor */
+    max-width: 300px; /* Ajusta el ancho máximo a 300px */
+    margin: 0 auto; /* Centra el formulario en la página */
+    padding: 20px;
+    background-color: #f9f9f9; /* Color de fondo del formulario */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera para el contenedor */
+    font-family: Arial, sans-serif; /* Tipo de letra */
+}
+
+h2 {
+    text-align: center; /* Centra el texto */
+    color: #333; /* Color del texto */
+    margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+input[type="text"], input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #ff85a2;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #e76393;
+}
+
+.login-links {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login-links a {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}

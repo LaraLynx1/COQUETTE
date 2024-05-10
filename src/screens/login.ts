@@ -2,6 +2,7 @@ import {LoginComponent} from "../components/LoginPage/Login";
 import { addObserver, dispatch } from '../store/index';
 import { navigate } from '../types/store';
 import { PANTALLAS } from '../types/enumeraciones';
+import styles from './login.css';
 
 class LOGIN extends HTMLElement {
     constructor() {
@@ -24,6 +25,10 @@ class LOGIN extends HTMLElement {
 
         const LoginCompo = document.createElement('login-component');
         LoginComponent.appendChild(LoginCompo);
+
+        const cssLogin = this.ownerDocument.createElement('style');
+			cssLogin.innerHTML = styles;
+			this.shadowRoot?.appendChild(cssLogin);
 
         this.shadowRoot.appendChild(LoginComponent);
    }
