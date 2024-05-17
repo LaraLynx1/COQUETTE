@@ -29,7 +29,7 @@ input[type="text"], input[type="password"] {
     border-radius: 20px; /* Bordes muy redondeados */
     outline: none;
     box-sizing: border-box;
-    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente divertida */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente divertida */
     background-color: #fff5f7; /* Fondo rosado muy claro */
 }
 
@@ -48,7 +48,7 @@ button[type="submit"], button {
     cursor: pointer;
     margin-top: 10px; /* Espacio superior */
     font-size: 18px; /* Tamaño de fuente mayor */
-    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente divertida */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente divertida */
 }
 
 button[type="submit"]:hover, button:hover {
@@ -65,7 +65,7 @@ button[type="submit"]:hover, button:hover {
 .footer-links a {
     text-decoration: none;
     color: #ff69b4; /* Color de texto rosado */
-    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente divertida */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente divertida */
 }
 
 .footer-links a:hover {

@@ -1,37 +1,72 @@
 :host {
-display: block;
-max-width: 340px;
-font-family: Arial, sans-serif;
+    display: block;
+    max-width: 350px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff0f6; /* Fondo rosado claro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(245, 189, 212, 0.3); /* Sombra sutil */
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif /* Fuente divertida */
 }
+
 h2 {
-text-align: center;
+    text-align: center;
+    color: #ff69b4; /* Color de texto rosado fuerte */
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 form {
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="date"] {
-padding: 8px;
-margin: 8px 0;
-border: 1px solid #ccc;
-border-radius: 4px;
+    width: 100%;
+    padding: 12px 20px; /* Padding amplio */
+    margin-bottom: 15px; /* Espacio entre campos */
+    border: 2px solid #ffb6c1; /* Borde rosado claro */
+    border-radius: 20px; /* Bordes muy redondeados */
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente divertida */
+    background-color: #fff5f7;
 }
+
 input[type="submit"] {
-background-color: pink;
-color: white;
-padding: 10px;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-margin-top: 10px;
+    color: #ff69b4; /* Color del texto de los placeholders */
+    opacity: 0.7;
 }
+
+button[type="submit"], button {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #ff69b4; /* Fondo rosado fuerte */
+    border: none;
+    border-radius: 20px; /* Bordes redondeados */
+    color: white;
+    cursor: pointer;
+    margin-top: 10px; /* Espacio superior */
+    font-size: 18px; /* Tamaño de fuente mayor */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente divertida */
+}
+
 input[type="submit"]:hover {
 background-color: #ff85a2;
 }
+
 .footer-links {
-display: flex;
-justify-content: center;
-font-size: 12px;
-margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #ff69b4; /* Color de texto rosado */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente divertida */
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
 }
            
