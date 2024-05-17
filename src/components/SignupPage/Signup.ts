@@ -1,4 +1,4 @@
-import styles from '.Signup.css';
+import styles from './Signup.css';
 import { addObserver, dispatch } from '../../store/index';
 import { navigate } from '../../types/store';
 import { PANTALLAS } from '../../types/enumeraciones';
@@ -16,12 +16,12 @@ class SignUpComponent extends HTMLElement {
         const button = this.shadowRoot?.querySelector('#botonregreso');
 
         button?.addEventListener('click', () => {
-			dispatch(navigate(PANTALLAS.DASHBOARD));
+			dispatch(navigate(PANTALLAS.LOGIN));
 		});
     }
 
     disconnectedCallback() {
-        this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.onSubmit.bind(this));
+        this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.onSubmit);
     }
 
     onSubmit(event: Event) {
@@ -32,20 +32,12 @@ class SignUpComponent extends HTMLElement {
         const phone = (this.shadowRoot?.querySelector('#phone') as HTMLInputElement).value;
         const password = (this.shadowRoot?.querySelector('#password') as HTMLInputElement).value;
         console.log(`Username: ${username}, Email: ${email}, Birthday: ${birthday}, Phone: ${phone}, Password: ${password}`);
-
-
-        const button = this.shadowRoot?.querySelector('#botonregreso');
-
-
-        button?.addEventListener('click', () => {
-			dispatch(navigate(PANTALLAS.DASHBOARD));
-		});
         
     }
 
     render() {
-        if (!this.shadowRoot) return;
-        this.shadowRoot.innerHTML = ``
+        if (this.shadowRoot) {
+        this.shadowRoot.innerHTML = ``;
 
         const header = document.createElement('h2');
     header.textContent = 'Sign up Now';
@@ -103,6 +95,7 @@ class SignUpComponent extends HTMLElement {
     const submitButton = document.createElement('button');
     submitButton.setAttribute('id', 'botonregreso')
     submitButton.textContent = 'Sign up';
+    form.appendChild(submitButton);
 
     // Create footer links div
     const footerLinks = document.createElement('div');
@@ -122,8 +115,9 @@ class SignUpComponent extends HTMLElement {
     const cssSignup = document.createElement('style');
     cssSignup.textContent = styles;
             this.shadowRoot.appendChild(cssSignup);
+        }
     }
 }
 
-customElements.define('sign-up-component', SignUpComponent);
+window.customElements.define('sign-up-component', SignUpComponent);
 export default SignUpComponent;
