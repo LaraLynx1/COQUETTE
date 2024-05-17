@@ -1,19 +1,81 @@
-
 .div-fondo {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background-color: #fff; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-    border-radius: 10px; 
-    width: 100%; 
-    max-width: 400px; 
-    margin: auto; 
-    font-family: Arial, sans-serif; 
+    background-color: #fff0f6; /* Fondo rosado claro */
+    box-shadow: 0 4px 10px rgba(245, 189, 212, 0.3); /* Sombra rosada */
+    border-radius: 10px; /* Bordes redondeados */
+    width: 100%; /* Ancho completo */
+    max-width: 400px; /* Ancho máximo */
+    margin: 20px auto; /* Centrado */
+   
 }
 
-.sign-up-component {
-    background-color: black;
+h2 {
+    text-align: center;
+    color: #ff69b4; /* Color de texto rosado fuerte */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="date"] {
+    width: 100%;
+    padding: 12px 20px; /* Padding amplio */
+    margin-bottom: 15px; /* Espacio entre campos */
+    border: 2px solid #ffb6c1; /* Borde rosado claro */
+    border-radius: 20px; /* Bordes muy redondeados */
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente divertida */
+    background-color: #fff5f7; /* Fondo rosado muy claro */
+}
+
+input[type="text"]::placeholder, input[type="email"]::placeholder, input[type="password"]::placeholder, input[type="tel"]::placeholder, input[type="date"]::placeholder {
+    color: #ff69b4; /* Color del texto de los placeholders */
+    opacity: 0.7;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #ff69b4; /* Fondo rosado fuerte */
+    border: none;
+    border-radius: 20px; /* Bordes redondeados */
+    color: white;
+    cursor: pointer;
+    margin-top: 20px; /* Espacio superior */
+    font-size: 18px; /* Tamaño de fuente mayor */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente divertida */
+}
+
+button[type="submit"]:hover {
+    background-color: #ff85a2; /* Color rosado un poco más claro al hacer hover */
+}
+
+.footer-links {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #ff69b4; /* Color de texto rosado */
+    font-size: 14px;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente divertida */
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.flex-container input {
+    width: 48%; /* Ancho de cada input dentro del contenedor flex */
 }
