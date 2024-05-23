@@ -1,8 +1,9 @@
-// Importa las funciones necesarias de Firebase
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+const firebase = require('firebase/app');
+import 'firebase/firestore';
+const { initializeApp } = require('firebase/app');
+const { getFirestore } = require('firebase/firestore');
+const { collection, addDoc, getDocs } = require('firebase/firestore');
 
-// Configuración de Firebase de tu proyecto
 const firebaseConfig = {
     apiKey: "AIzaSyANsoNo49zqX0WQ9mlb3yOFNAc31Lt-dKU",
     authDomain: "coquette-dcc06.firebaseapp.com",
@@ -13,34 +14,53 @@ const firebaseConfig = {
     measurementId: "G-LZBKJP8VGN"
 };
 
-// Inicializa la aplicación de Firebase
+
 const app = initializeApp(firebaseConfig);
-
-// Inicializa Firestore
 const db = getFirestore(app);
+export {db};
 
-// Ejemplo de cómo añadir un documento a una colección
-const addData = async () => {
+interface User {
+    uid: string;
+    username: string;
+    email: string;
+    birthday: string;
+    phone: string;
+}
+
+export const addUser = async (userData: Omit<User, 'uid'>) => {
+    console.log('form', userData);
     try {
-        const docRef = await addDoc(collection(db, "your-collection-name"), {
-            field1: "value1",
-            field2: "value2"
-        });
-        console.log("Document written with ID: ", docRef.id);
+        const docRef = await addDoc(collection(db, 'users'), userData);
+        console.log('Document written with ID: ', docRef.id);
+        return docRef.id;
     } catch (e) {
-        console.error("Error adding document: ", e);
+        console.error('Error adding document: ', e);
     }
 };
 
-// Ejemplo de cómo obtener documentos de una colección
-const getData = async () => {
-    const querySnapshot = await getDocs(collection(db, "your-collection-name"));
+export const getUsers = async () => {
+    const querySnapshot = await getDocs(collection(db, 'users'));
+    const usersArray: Array<User> = [];
+
     querySnapshot.forEach((doc: any) => {
-        console.log(`${doc.id} => ${doc.data()}`);
+        const data = doc.data() as User;
+        usersArray.push({ uid: doc.id, ...data });
     });
+    console.log('get', usersArray);
+    return usersArray;
 };
 
-// Llama a las funciones para agregar y obtener datos
-addData();
-getData();
+
+
+
+// const getData = async () => {
+//     const querySnapshot = await getDocs(collection(db, "your-collection-name"));
+//     querySnapshot.forEach((doc: any) => {
+//         console.log(`${doc.id} => ${doc.data()}`);
+//     });
+// };
+
+
+
+// getData();
 
