@@ -22,3 +22,10 @@ export const navigate = (screen: string) => {
 		payload: screen,
 	};
 };
+
+export const setUserCredentials = (user: string) => {
+	return {
+		action: 'SETUSER',
+		payload: user,
+	};
+};
