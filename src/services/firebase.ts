@@ -60,8 +60,8 @@ export const getUsers = async () => {
 
 // getData();
 
-export const registrarUsuario = async (user: string, age: number, emailaddress: string, password: string) => {
-	await createUserWithEmailAndPassword(auth, emailaddress, password)
+export const registrarUsuario = async (user: string, email: string, password: string) => {
+	await createUserWithEmailAndPassword(auth, email, password)
 		.then(async (userCredential) => {
 			// Signed up
 			const userCredentials = userCredential.user.uid;
@@ -70,8 +70,7 @@ export const registrarUsuario = async (user: string, age: number, emailaddress: 
 
 			const docRef = await addDoc(collection(db, 'usuarios'), {
 				user: user,
-				age: age,
-				emailaddress: emailaddress,
+				emailaddress: email,
 				authCredentials: userCredentials,
 				profile:
 					'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg',

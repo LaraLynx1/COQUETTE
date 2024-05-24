@@ -119,12 +119,7 @@ class SignUpComponent extends HTMLElement {
 			// Agregar evento de clic al botón de "crear cuenta"
 			// Agregar evento de clic al botón de "crear cuenta"
 			submitButton.addEventListener('click', async () => {
-				const userId = await registrarUsuario(
-					usernameInput.value,
-					parseInt(emailInput.value),
-					passwordInput.value,
-					passwordInput.value
-				);
+				const userId = await registrarUsuario(usernameInput.value, emailInput.value, passwordInput.value);
 				alert(`Usuario registrado con id: ${userId}`);
 				dispatch(navigate(PANTALLAS.DASHBOARD));
 			});
