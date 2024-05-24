@@ -34,26 +34,6 @@ class SignUpComponent extends HTMLElement {
 
         console.log(`Username: ${username}, Email: ${email}, Birthday: ${birthday}, Phone: ${phone}, Password: ${password}`);
 
-        try {
-            // Registrar al usuario con Firebase Authentication
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
-
-            // Guardar datos adicionales en Firestore
-            const userData = {
-                uid: user.uid,
-                username,
-                email,
-                birthday,
-                phone
-            };
-            await addUser(userData);
-
-            console.log("User registered with ID: ", user.uid);
-            // Aquí puedes navegar a otra pantalla si es necesario
-        } catch (e) {
-            console.error("Error registering user: ", e);
-        }
     }
 
     render() {
