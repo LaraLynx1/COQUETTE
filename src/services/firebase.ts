@@ -4,6 +4,7 @@ const { initializeApp } = require('firebase/app');
 const { getFirestore } = require('firebase/firestore');
 const { collection, addDoc, getDocs } = require('firebase/firestore');
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { connecteduser } from '../types/store';
 
 const firebaseConfig = {
     apiKey: "AIzaSyANsoNo49zqX0WQ9mlb3yOFNAc31Lt-dKU",
@@ -23,7 +24,6 @@ export const db = getFirestore(app);
 export const registrarUsuario = async (username: string, birthday: number, emailaddress: string, password: string) => {
     await createUserWithEmailAndPassword(auth, emailaddress, password)
       .then(async (userCredential:any) => {
-        // Signed up
         const userCredentials = userCredential.user.uid;
   
         console.log(userCredentials)
@@ -42,10 +42,33 @@ export const registrarUsuario = async (username: string, birthday: number, email
     
           return docRef.id
         })
-        .catch((error) => {
+        .catch((error:any) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           alert(errorMessage)
           // ..
         });
     }
+
+    export const iniciarSesion = async (email: string, password: string) => {
+        let authUser: any = ""
+      
+      
+        await signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential: any) => {
+            // Signed in
+            authUser = userCredential.user;
+            console.log(authUser)
+            dispatch(
+              connecteduser(authUser)
+            )
+            appState.user = authUser
+            console.log(appState)
+          })
+          .catch((error:any) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+      
+      
+      }

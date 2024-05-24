@@ -29,3 +29,10 @@ export const setUserCredentials = (user: string) => {
 		payload: user,
 	};
 };
+
+export const connecteduser= (user: string) => {
+	return {
+		action: 'CONNECTUSER',
+		payload: user,
+	};
+};
