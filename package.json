@@ -20,6 +20,7 @@
 	"dependencies": {
 		"boxicons": "^2.1.4",
 		"css-loader": "^6.10.0",
-		"firebase": "^10.9.0"
+		"firebase": "^10.9.0",
+		"firebaseui": "^6.1.0"
 	}
 }
