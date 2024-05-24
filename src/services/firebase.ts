@@ -3,6 +3,7 @@ import 'firebase/firestore';
 const { initializeApp } = require('firebase/app');
 const { getFirestore } = require('firebase/firestore');
 const { collection, addDoc, getDocs } = require('firebase/firestore');
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyANsoNo49zqX0WQ9mlb3yOFNAc31Lt-dKU",
@@ -16,51 +17,35 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-export {db};
+export const auth = getAuth(app);
+export const db = getFirestore(app);
 
-interface User {
-    uid: string;
-    username: string;
-    email: string;
-    birthday: string;
-    phone: string;
-}
-
-export const addUser = async (userData: Omit<User, 'uid'>) => {
-    console.log('form', userData);
-    try {
-        const docRef = await addDoc(collection(db, 'users'), userData);
-        console.log('Document written with ID: ', docRef.id);
-        return docRef.id;
-    } catch (e) {
-        console.error('Error adding document: ', e);
+export const registrarUsuario = async (username: string, birthday: number, emailaddress: string, password: string) => {
+    await createUserWithEmailAndPassword(auth, emailaddress, password)
+      .then(async (userCredential:any) => {
+        // Signed up
+        const userCredentials = userCredential.user.uid;
+  
+        console.log(userCredentials)
+        const docRef = await addDoc(collection(db, "users"), {
+            username: username,
+            birthday: birthday,
+            emailaddress: emailaddress,
+            phone: PaymentMethodChangeEvent,
+            authCredentials: userCredentials,
+            profile: "https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg"
+          });
+          //console.log("Document written with ID: ", docRef.id);
+          await updateDoc(docRef, {
+            firebaseID: docRef.id
+          });
+    
+          return docRef.id
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(errorMessage)
+          // ..
+        });
     }
-};
-
-export const getUsers = async () => {
-    const querySnapshot = await getDocs(collection(db, 'users'));
-    const usersArray: Array<User> = [];
-
-    querySnapshot.forEach((doc: any) => {
-        const data = doc.data() as User;
-        usersArray.push({ uid: doc.id, ...data });
-    });
-    console.log('get', usersArray);
-    return usersArray;
-};
-
-
-
-
-// const getData = async () => {
-//     const querySnapshot = await getDocs(collection(db, "your-collection-name"));
-//     querySnapshot.forEach((doc: any) => {
-//         console.log(`${doc.id} => ${doc.data()}`);
-//     });
-// };
-
-
-
-// getData();
-
