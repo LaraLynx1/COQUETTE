@@ -1,6 +1,6 @@
 .div-fondo {
+	height: 100vh;
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	background-color: bisque;
 	flex-direction: column;
@@ -11,6 +11,7 @@
 	width: 80%;
 }
 .div-fotos {
+	background-color: white;
 	display: flex;
 	width: 80%;
 	justify-content: center;

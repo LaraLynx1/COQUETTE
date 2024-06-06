@@ -30,7 +30,6 @@ class publicwrapper extends HTMLElement {
 	render() {
 		if (this.shadowRoot) {
 			const tarjeta2 = this.ownerDocument.createElement('div');
-			tarjeta2.innerHTML = 'Publicaciones';
 			tarjeta2.className = 'wrapper-publicacion';
 
 			this.profiles.forEach((profile) => {
