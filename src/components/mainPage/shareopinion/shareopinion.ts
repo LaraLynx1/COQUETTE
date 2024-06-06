@@ -54,7 +54,7 @@ class Crearopinion extends HTMLElement {
 				image: valorInputimagenpost!.value,
 				likes: '0',
 			};
-			publics.push(postData); // adiciona a fiebase
+			publics.push(postData); // adiciona a firebase
 			addpublicacion(postData);
 			dispatch(navigate(PANTALLAS.DASHBOARD));
 		});
@@ -63,6 +63,12 @@ class Crearopinion extends HTMLElement {
 
 		buttonpostear?.addEventListener('click', () => {
 			this.modal!.className! = 'contenedorpost mostrarpost';
+		});
+
+		const buttoncancelar = this.shadowRoot?.querySelector('#cancelar');
+
+		buttoncancelar?.addEventListener('click', () => {
+			this.modal!.className! = 'contenedorpost ocultarpost';
 		});
 		//push array de post
 		//publics.push({})
@@ -88,7 +94,6 @@ class Crearopinion extends HTMLElement {
         </div>
 
         <div class="textopinion">
-        <input id="write" type="text" placeholder="write" />
         <button id="post">POST</button>
 
         </div>
@@ -100,17 +105,7 @@ class Crearopinion extends HTMLElement {
 			formulario.className = 'formulario';
 			const titulo = this.ownerDocument.createElement('H1');
 			formulario.appendChild(titulo);
-			titulo.innerHTML = 'Datos del Post';
-
-			/* const usuario = this.ownerDocument.createElement('input');
-			usuario.placeholder = 'usuario';
-			usuario.setAttribute('id', 'usuario');
-			formulario.appendChild(usuario);
-
-			const usuariopfp = this.ownerDocument.createElement('input');
-			usuariopfp.placeholder = 'pfp';
-			usuariopfp.setAttribute('id', 'usuariopfp');
-			formulario.appendChild(usuariopfp); */
+			titulo.innerHTML = 'Crea tu post';
 
 			const imagenpost = this.ownerDocument.createElement('input');
 			imagenpost.placeholder = 'imagen';
@@ -121,11 +116,15 @@ class Crearopinion extends HTMLElement {
 			megusta.placeholder = 'me gustan';
 			megusta.setAttribute('id', 'megusta');
 			formulario.appendChild(megusta); */
+			const regresar = this.ownerDocument.createElement('button');
+			regresar.setAttribute('id', 'cancelar');
+			formulario.appendChild(regresar);
+			regresar.innerHTML = 'cancelar';
 
 			const guardar = this.ownerDocument.createElement('button');
 			guardar.setAttribute('id', 'guardar');
 			formulario.appendChild(guardar);
-			guardar.innerHTML = 'SAVE';
+			guardar.innerHTML = 'guardar';
 
 			this.modal.appendChild(formulario);
 			this.shadowRoot.appendChild(this.modal);

@@ -55,7 +55,7 @@ class Perfil extends HTMLElement {
 
 			const btncerrar = this.ownerDocument.createElement('button');
 			btncerrar.setAttribute('id', 'cerrarperfil');
-			btncerrar.innerHTML = 'Salir';
+			btncerrar.innerHTML = 'regresar';
 
 			divarribatextonombre.appendChild(usrname);
 			divarribatextonombre.appendChild(btncerrar);
