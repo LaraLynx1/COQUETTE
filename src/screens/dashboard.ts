@@ -89,8 +89,8 @@ class dashboard extends HTMLElement {
 			this.tarjeta4 = this.ownerDocument.createElement('card-inicio') as cardInicio;
 			this.tarjeta5 = this.ownerDocument.createElement('card-stories') as cardStories;
 
-			divcentro.appendChild(this.tarjeta5!);
-			divcentro.appendChild(this.tarjeta3!);
+			//divcentro.appendChild(this.tarjeta5!);
+			//divcentro.appendChild(this.tarjeta3!);
 			divcentro.appendChild(this.tarjeta2!);
 
 			const divizquierda = this.ownerDocument.createElement('div');
@@ -110,7 +110,7 @@ class dashboard extends HTMLElement {
 			divprimero.appendChild(btnsignup);
 			divtodobotones.appendChild(divprimero);
 
-			divtodo.appendChild(divcentro);
+			//divtodo.appendChild(divcentro);
 
 			divtodo.appendChild(divizquierda);
 			divtodo.appendChild(divcentro);

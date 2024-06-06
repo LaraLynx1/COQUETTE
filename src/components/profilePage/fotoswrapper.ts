@@ -1,4 +1,5 @@
 import { fotosperfil } from '../../data/data';
+import { getpublicacionByUser } from '../../services/firebase';
 import Crearfoto, { datacosasfotos } from './fotosmias';
 import styles from './fotoswrapper.css';
 
@@ -10,10 +11,12 @@ class fotowrapper extends HTMLElement {
 		this.attachShadow({ mode: 'open' });
 	}
 
-	connectedCallback() {
-		fotosperfil.forEach((foto) => {
+	async connectedCallback() {
+		const publicacionesByUser = await getpublicacionByUser('pepito1');
+
+		publicacionesByUser.forEach((publicacion) => {
 			const publicate = this.ownerDocument.createElement('crear-foto') as Crearfoto;
-			publicate.setAttribute(datacosasfotos.image, foto.image);
+			publicate.setAttribute(datacosasfotos.image, publicacion.image);
 
 			this.shadowRoot?.appendChild(publicate);
 			this.profiles.push(publicate);
