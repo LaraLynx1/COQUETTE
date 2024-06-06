@@ -4,6 +4,8 @@ const { initializeApp } = require('firebase/app');
 const { getFirestore } = require('firebase/firestore');
 const { collection, addDoc, getDocs, updateDoc } = require('firebase/firestore');
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { publicacionform, publicacion, Coleccion } from '../types/publicacion';
+import { doc, query, where } from 'firebase/firestore';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyANsoNo49zqX0WQ9mlb3yOFNAc31Lt-dKU',
@@ -88,4 +90,64 @@ export const registrarUsuario = async (user: string, email: string, password: st
 			alert(errorMessage);
 			// ..
 		});
+};
+
+export const addpublicacion = async (publicacion: publicacionform) => {
+	try {
+		const coleccion = collection(db, Coleccion.publicaciones);
+		await addDoc(coleccion, publicacion);
+		console.log('se añadió con éxito', publicacion);
+	} catch (error) {
+		console.error(error);
+	}
+};
+export const getpublicaciones = async (): Promise<publicacion[]> => {
+	const coleccion = collection(db, Coleccion.publicaciones);
+	const querySnapshot = await getDocs(coleccion);
+	//const querySnapshot = await getDocs(collection(db, Coleccion.PLAYLIST));
+	const publicacionArray: Array<publicacion> = [];
+
+	querySnapshot.forEach((doc: any) => {
+		const payload: publicacionform = doc.data() as publicacionform;
+		publicacionArray.push({ id: doc.id, ...payload });
+	});
+
+	return publicacionArray;
+};
+
+export const getpublicacionByUser = async (user: string): Promise<publicacion[]> => {
+	let coleccion;
+	try {
+		coleccion = collection(db, Coleccion.publicaciones);
+	} catch (error) {
+		console.log('Datos error', error);
+	}
+
+	const condicion = query(coleccion, where('user', '==', user));
+
+	const publicacionesByUser = await getDocs(condicion);
+
+	if (publicacionesByUser.empty) {
+		console.log('No existe ninguna publicación para este usuario');
+		return [];
+	}
+	const publicacionArray: Array<publicacion> = [];
+
+	publicacionesByUser.forEach((doc: any) => {
+		const payload: publicacionform = doc.data() as publicacionform;
+		publicacionArray.push({ id: doc.id, ...payload });
+	});
+
+	return publicacionArray;
+};
+
+export const sumarMegusta = async (publicacion: publicacion): Promise<void> => {
+	try {
+		const coleccion = collection(db, Coleccion.publicaciones);
+		const documento = doc(coleccion, publicacion.id);
+		await updateDoc(documento, publicacion);
+		console.log('se actualizó con éxito', publicacion);
+	} catch (error) {
+		console.error(error);
+	}
 };

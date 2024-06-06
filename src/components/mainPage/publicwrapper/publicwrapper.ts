@@ -1,4 +1,4 @@
-import { publics } from '../../../data/data';
+import { getpublicaciones } from '../../../services/firebase';
 import Crearpublicacion, { datacosas2 } from '../publication/publicacion';
 import styles from './publicwrapper.css';
 
@@ -10,14 +10,15 @@ class publicwrapper extends HTMLElement {
 		this.attachShadow({ mode: 'open' });
 	}
 
-	connectedCallback() {
-		publics.forEach((publication) => {
+	async connectedCallback() {
+		const publicaciones = await getpublicaciones();
+		publicaciones.forEach((publication) => {
 			const publicate = this.ownerDocument.createElement('crear-publicacion') as Crearpublicacion;
+			publicate.setAttribute('idpost', publication.id);
 			publicate.setAttribute(datacosas2.user, publication.user);
 			publicate.setAttribute(datacosas2.userpfp, publication.userpfp);
 			publicate.setAttribute(datacosas2.image, publication.image);
 			publicate.setAttribute(datacosas2.likes, publication.likes);
-			this.shadowRoot?.appendChild(publicate);
 			this.profiles.push(publicate);
 		});
 		this.render();
@@ -29,6 +30,7 @@ class publicwrapper extends HTMLElement {
 	render() {
 		if (this.shadowRoot) {
 			const tarjeta2 = this.ownerDocument.createElement('div');
+			tarjeta2.innerHTML = 'Publicaciones';
 			tarjeta2.className = 'wrapper-publicacion';
 
 			this.profiles.forEach((profile) => {

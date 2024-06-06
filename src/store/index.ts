@@ -5,6 +5,7 @@ import { PANTALLAS } from '../types/enumeraciones';
 
 const emptyState: AppState = {
 	screen: PANTALLAS.DASHBOARD,
+	user: '',
 };
 
 export let appState = Storage.get<AppState>({

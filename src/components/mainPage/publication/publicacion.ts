@@ -1,7 +1,10 @@
+import { sumarMegusta } from '../../../services/firebase';
+import { publicacion } from '../../../types/publicacion';
 import styles from './publicacion.css';
 import 'boxicons';
 
 export enum datacosas2 {
+	'idpost' = 'idpost',
 	'user' = 'user',
 	'userpfp' = 'userpfp',
 	'image' = 'image',
@@ -9,6 +12,7 @@ export enum datacosas2 {
 }
 
 class Crearpublicacion extends HTMLElement {
+	idpost?: string;
 	user?: string;
 	userpfp?: string;
 	image?: string;
@@ -23,6 +27,7 @@ class Crearpublicacion extends HTMLElement {
 
 	static get observedAttributes() {
 		const fijateEn: Record<datacosas2, null> = {
+			idpost: null,
 			user: null,
 			userpfp: null,
 			image: null,
@@ -48,24 +53,23 @@ class Crearpublicacion extends HTMLElement {
 			corazon?.setAttribute('type', 'solid');
 		}
 		this.megusta = !this.megusta;
+		console.log('Me gusta cambiado');
 	}
 	favoritotoggle() {
-		const corazon = this.shadowRoot?.querySelector('#favorito');
+		const favorito = this.shadowRoot?.querySelector('#favorito');
 		if (this.megusta) {
-			corazon?.setAttribute('type', 'regular');
+			favorito?.setAttribute('type', 'regular');
 		} else {
-			corazon?.setAttribute('type', 'solid');
+			favorito?.setAttribute('type', 'solid');
 		}
 		this.megusta = !this.megusta;
 	}
 
 	connectedCallback() {
-		this.render();
+		//this.render();
+
 		this.shadowRoot?.querySelector('#seguir2')?.addEventListener('click', this.followprofile);
 
-		this.shadowRoot?.querySelector('#corazon')?.addEventListener('click', () => {
-			this.corazontoggle();
-		});
 		this.shadowRoot?.querySelector('#favorito')?.addEventListener('click', () => {
 			this.favoritotoggle();
 		});
@@ -83,8 +87,7 @@ class Crearpublicacion extends HTMLElement {
 
 	render() {
 		if (this.shadowRoot) {
-			this.shadowRoot.innerHTML = `
-			<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>`;
+			this.shadowRoot.innerHTML = `<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>`;
 
 			const contenedor = this.ownerDocument.createElement('div');
 			contenedor.setAttribute('id', 'publicacion');
@@ -92,9 +95,15 @@ class Crearpublicacion extends HTMLElement {
 			const cabecera = this.ownerDocument.createElement('div');
 			cabecera.className = 'header';
 
-			const imagenpfp = this.ownerDocument.createElement('img');
-			imagenpfp.className = 'fotopfp';
-			imagenpfp.setAttribute('src', this.userpfp!);
+			let imagenpfp!: HTMLImageElement;
+			if (this.userpfp) {
+				imagenpfp = this.ownerDocument.createElement('img');
+				imagenpfp.className = 'fotopfp';
+				imagenpfp.setAttribute('src', this.userpfp!);
+			} else {
+				imagenpfp = this.ownerDocument.createElement('img');
+				imagenpfp.className = 'fotopfp';
+			}
 
 			const usrname = this.ownerDocument.createElement('h3');
 			usrname.innerHTML = this.user!;
@@ -107,9 +116,15 @@ class Crearpublicacion extends HTMLElement {
 			cabecera.appendChild(usrname);
 			cabecera.appendChild(btnfollow);
 
-			const imagenpublic = this.ownerDocument.createElement('img');
-			imagenpublic.className = 'fotopublic';
-			imagenpublic.setAttribute('src', this.image!);
+			let imagenpublic!: HTMLImageElement;
+			if (this.image) {
+				imagenpublic = this.ownerDocument.createElement('img');
+				imagenpublic.className = 'fotopublic';
+				imagenpublic.setAttribute('src', this.image!);
+			} else {
+				imagenpublic = this.ownerDocument.createElement('img');
+				imagenpublic.className = 'fotopublic';
+			}
 
 			const pie = this.ownerDocument.createElement('div');
 			pie.className = 'footer';
@@ -119,6 +134,12 @@ class Crearpublicacion extends HTMLElement {
 			corazon.setAttribute('name', 'heart');
 			corazon.setAttribute('size', 'md');
 			corazon.setAttribute('color', 'red');
+			corazon.addEventListener('click', this.toggleCorazon.bind(this));
+			if (this.megusta) {
+				corazon?.setAttribute('type', 'solid');
+			} else {
+				corazon?.setAttribute('type', 'regular');
+			}
 
 			const favorito = this.ownerDocument.createElement('box-icon');
 			favorito.setAttribute('id', 'favorito');
@@ -135,14 +156,43 @@ class Crearpublicacion extends HTMLElement {
 
 			contenedor.appendChild(cabecera);
 			contenedor.appendChild(imagenpublic);
+
 			contenedor.appendChild(pie);
 			contenedor.appendChild(likes);
-
 			this.shadowRoot?.appendChild(contenedor);
 		}
 		const cssprofile = this.ownerDocument.createElement('style');
 		cssprofile.innerHTML = styles;
 		this.shadowRoot?.appendChild(cssprofile);
+	}
+
+	toggleCorazon() {
+		if (this.megusta) {
+			//Restar el contado
+			const post: publicacion = {
+				id: this.idpost!,
+				user: this.user!,
+				userpfp: this.userpfp!,
+				image: this.image!,
+				likes: (parseInt(this.likes!) - 1).toString(),
+			};
+			this.likes = (parseInt(this.likes!) - 1).toString();
+			sumarMegusta(post);
+		} else {
+			//Sumar contador
+			const post: publicacion = {
+				id: this.idpost!,
+				user: this.user!,
+				userpfp: this.userpfp!,
+				image: this.image!,
+				likes: (parseInt(this.likes!) + 1).toString(),
+			};
+			this.likes = (parseInt(this.likes!) + 1).toString();
+			sumarMegusta(post);
+		}
+
+		this.corazontoggle();
+		this.render();
 	}
 }
 

@@ -3,6 +3,8 @@ import { publics } from '../../../data/data';
 import { PANTALLAS } from '../../../types/enumeraciones';
 import { navigate } from '../../../types/store';
 import { dispatch } from '../../../store/index';
+import { addpublicacion } from '../../../services/firebase';
+import { publicacionform } from '../../../types/publicacion';
 
 export enum datacosas3 {
 	'userpfp' = 'userpfp',
@@ -39,24 +41,21 @@ class Crearopinion extends HTMLElement {
 		//this.shadowRoot?.querySelector('#post')?.addEventListener('click', this.onClickPost);
 
 		const valorInputimagenpost = this.shadowRoot?.querySelector('#imagenpost') as HTMLInputElement;
-		const valorInputusuario = this.shadowRoot?.querySelector('#usuario') as HTMLInputElement;
-		const valorInputusuariopfp = this.shadowRoot?.querySelector('#usuariopfp') as HTMLInputElement;
-		const valorInputmegusta = this.shadowRoot?.querySelector('#megusta') as HTMLInputElement;
+		//const valorInputusuario = this.shadowRoot?.querySelector('#usuario') as HTMLInputElement;
+		//const valorInputusuariopfp = this.shadowRoot?.querySelector('#usuariopfp') as HTMLInputElement;
+		//const valorInputmegusta = this.shadowRoot?.querySelector('#megusta') as HTMLInputElement;
 
 		const buttonGuardar = this.shadowRoot?.querySelector('#guardar');
 		buttonGuardar?.addEventListener('click', () => {
 			this.modal!.className! = 'contenedorpost ocultarpost';
-			/* 			console.log('valor del campo', valorInputusuario!.value);
-			console.log('valor del campo', valorInputusuariopfp!.value);
-			console.log('valor del campo', valorInputimagenpost!.value);
-			console.log('valor del campo', valorInputmegusta!.value); */
-			const postData = {
-				user: valorInputusuario!.value,
-				userpfp: valorInputusuariopfp!.value,
+			const postData: publicacionform = {
+				user: 'pepito',
+				userpfp: '',
 				image: valorInputimagenpost!.value,
-				likes: valorInputmegusta!.value,
+				likes: '0',
 			};
-			publics.push(postData);
+			publics.push(postData); // adiciona a fiebase
+			addpublicacion(postData);
 			dispatch(navigate(PANTALLAS.DASHBOARD));
 		});
 
@@ -103,7 +102,7 @@ class Crearopinion extends HTMLElement {
 			formulario.appendChild(titulo);
 			titulo.innerHTML = 'Datos del Post';
 
-			const usuario = this.ownerDocument.createElement('input');
+			/* const usuario = this.ownerDocument.createElement('input');
 			usuario.placeholder = 'usuario';
 			usuario.setAttribute('id', 'usuario');
 			formulario.appendChild(usuario);
@@ -111,17 +110,17 @@ class Crearopinion extends HTMLElement {
 			const usuariopfp = this.ownerDocument.createElement('input');
 			usuariopfp.placeholder = 'pfp';
 			usuariopfp.setAttribute('id', 'usuariopfp');
-			formulario.appendChild(usuariopfp);
+			formulario.appendChild(usuariopfp); */
 
 			const imagenpost = this.ownerDocument.createElement('input');
 			imagenpost.placeholder = 'imagen';
 			imagenpost.setAttribute('id', 'imagenpost');
 			formulario.appendChild(imagenpost);
 
-			const megusta = this.ownerDocument.createElement('input');
+			/* const megusta = this.ownerDocument.createElement('input');
 			megusta.placeholder = 'me gustan';
 			megusta.setAttribute('id', 'megusta');
-			formulario.appendChild(megusta);
+			formulario.appendChild(megusta); */
 
 			const guardar = this.ownerDocument.createElement('button');
 			guardar.setAttribute('id', 'guardar');

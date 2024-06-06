@@ -2,6 +2,7 @@ export type Observer = { render: () => void } & HTMLElement;
 
 export type AppState = {
 	screen: string;
+	user: string;
 };
 
 export enum SomeActions {
