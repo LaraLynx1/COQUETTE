@@ -200,3 +200,13 @@ export const sumarMegusta = async (publicacion: publicacion): Promise<void> => {
 		console.error(error);
 	}
 };
+export const updatevinilo = async (publicacion: publicacion) => {
+	try {
+		const coleccion = collection(db, Coleccion.publicaciones);
+		const documento = doc(coleccion, publicacion.id);
+		await updateDoc(documento, publicacion);
+		console.log('se actualizó con éxito', publicacion);
+	} catch (error) {
+		console.error(error);
+	}
+};
