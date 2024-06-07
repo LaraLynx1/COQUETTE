@@ -44,6 +44,15 @@
 	height: 30px;
 	border-radius: 30px;
 }
+#cerrarsesion {
+	background-color: rgb(255, 187, 224);
+	margin-right: 15px;
+	border-color: transparent;
+	width: 85px;
+	height: 30px;
+	border-radius: 30px;
+	margin-bottom: 7px;
+}
 #editarperfil {
 	background-color: rgb(255, 187, 224);
 	margin-right: 15px;

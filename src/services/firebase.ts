@@ -200,7 +200,7 @@ export const sumarMegusta = async (publicacion: publicacion): Promise<void> => {
 		console.error(error);
 	}
 };
-export const updatepublicacion = async (publicacion: publicacion) => {
+export const updateperfil = async (publicacion: publicacion) => {
 	try {
 		const coleccion = collection(db, Coleccion.publicaciones);
 		const documento = doc(coleccion, publicacion.id);
