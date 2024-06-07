@@ -3,4 +3,5 @@ export enum PANTALLAS {
 	'LOGIN' = 'LOGIN',
 	'SIGNUP' = 'SIGNUP',
 	'PERFIL' = 'PERFIL',
+	'EDITARPERFIL' = 'EDITARPERFIL',
 }

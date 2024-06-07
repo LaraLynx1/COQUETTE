@@ -55,7 +55,7 @@ export class LoginComponent extends HTMLElement {
 
 	render() {
 		if (this.shadowRoot) {
-			this.shadowRoot.innerHTML = ''; // Asegúrate de limpiar cualquier contenido anterior
+			this.shadowRoot.innerHTML = ''; 
 
 			const formContainer = document.createElement('div');
 			const header = document.createElement('h2');

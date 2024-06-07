@@ -1,12 +1,13 @@
 const firebase = require('firebase/app');
 import 'firebase/firestore';
 const { initializeApp } = require('firebase/app');
-const { getFirestore } = require('firebase/firestore');
+const { getFirestore, getDownloadURL, uploadBytes, getStorage , ref} = require('firebase/firestore');
 const { collection, addDoc, getDocs, updateDoc } = require('firebase/firestore');
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { publicacionform, publicacion, Coleccion } from '../types/publicacion';
-import { deleteDoc, doc, query, where } from 'firebase/firestore';
+import { deleteDoc, doc, query, where} from 'firebase/firestore';
 import { Megusta, Megustaform } from '../types/megusta';
+import { appState } from '../store';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyANsoNo49zqX0WQ9mlb3yOFNAc31Lt-dKU',
@@ -21,6 +22,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+const storage = getStorage(app);
 
 interface User {
 	uid: string;
@@ -267,4 +269,36 @@ export const getMegustaById = async (postId: string): Promise<Megusta[]> => {
 	});
 
 	return megustaArray;
+};
+
+
+export const subirImagen = async (imagen: File) => {
+	const storageRef = ref(storage, `imagesPosts/${imagen.name}`);
+	const snapshot = await uploadBytes(storageRef, imagen);
+	console.log(`Uploaded a blob or file! Size: ${snapshot.totalBytes} bytes`);
+	return getDownloadURL(snapshot.ref);
+};
+
+
+export const actualizarDatosUsuario = async (
+	userParam: string,
+	profileParam: string,
+) => {
+	const userRef = doc(db, "users", appState.user);2
+	await updateDoc(userRef, {
+		user: userParam,
+		profile: profileParam,
+	});
+};
+
+export const actualizarDatosConImagen = async (
+	user: string,
+	profile: File,
+
+) => {
+	const userRef = doc(db, "usuarios", appState.user );
+	const imageURL = await subirImagen(profile);
+	await updateDoc(userRef, {
+		
+	});
 };

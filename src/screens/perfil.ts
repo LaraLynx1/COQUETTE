@@ -23,9 +23,20 @@ class Perfil extends HTMLElement {
 
 		const button2 = this.shadowRoot?.querySelector('#cerrarsesion');
 		button2?.addEventListener('click', () => {
-			this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.submitLogout.bind(this));
+			// this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.submitLogout.bind(this));
+			button2.addEventListener('click', this.logout);
+		});
+
+		const editbutton = this.shadowRoot?.querySelector('#editarperfil');
+		editbutton?.addEventListener('click', () => {
+			dispatch(navigate(PANTALLAS.EDITARPERFIL));
 		});
 	}
+	logout() {
+		indexedDB.deleteDatabase("firebase-heartbeat-database");
+		indexedDB.deleteDatabase("firebaseLocalStorageDb");
+		window.location.reload();
+	  }
 
 	disconnectedCallback() {
 		this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.submitLogout.bind(this));
