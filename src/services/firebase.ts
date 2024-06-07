@@ -54,16 +54,17 @@ export const getUsers = async () => {
 	return usersArray;
 };
 
-// const getData = async () => {
-//     const querySnapshot = await getDocs(collection(db, "your-collection-name"));
-//     querySnapshot.forEach((doc: any) => {
-//         console.log(`${doc.id} => ${doc.data()}`);
-//     });
-// };
-
-// getData();
+// REGISTRAR USUARIO
 
 export const registrarUsuario = async (user: string, email: string, password: string, birthday: string, phone: string) => {	
+	const allUsers = await getUsers();
+	for (let index = 0; index < allUsers.length; index++) {
+		if (email == allUsers[index].email) {
+			alert("El email ya esta registrado");
+			return;
+		}
+		
+	}
 	const credentials = await createUserWithEmailAndPassword(auth, email, password)
 	const userCredentials = credentials.user.uid;
 	try {
@@ -83,35 +84,33 @@ export const registrarUsuario = async (user: string, email: string, password: st
 	} catch (error) {
 			const errorMessage = error;
 			alert(errorMessage);
-		
+		return '';
 	}
-		/*.then(async (userCredential) => {
-			// Signed up
-			const userCredentials = userCredential.user.uid;
-
-			console.log(userCredentials);
-
-			const docRef = await addDoc(collection(db, 'usuarios'), {
-				user: user,
-				emailaddress: email,
-				authCredentials: userCredentials,
-				profile:
-					'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg',
-			});
-			//console.log("Document written with ID: ", docRef.id);
-			await updateDoc(docRef, {
-				firebaseID: docRef.id,
-			});
-
-			return docRef.id;
-		})
-		.catch((error) => {
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			alert(errorMessage);
-			// ..
-		});*/
 };
+
+// LOGEAR USUARIO
+
+export const login = async (username: string, password: string) => {
+	const allUsers = await getUsers();
+	for (let index = 0; index < allUsers.length; index++) {
+		if (username == allUsers[index].username) {
+			alert("El usuario ya esta registrado");
+			return;
+		}
+
+	}
+	try {
+		const credentials = await signInWithEmailAndPassword(auth, username, password);
+		const userCredentials = credentials.user.uid;
+		
+		return userCredentials;
+	} catch (error) {
+		const errorMessage = error;
+			alert(errorMessage);
+		return '';
+	}
+	
+}
 
 export const addpublicacion = async (publicacion: publicacionform) => {
 	try {

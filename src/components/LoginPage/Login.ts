@@ -2,6 +2,7 @@ import styles from './Login.css';
 import { addObserver, dispatch } from '../../store/index';
 import { navigate } from '../../types/store';
 import { PANTALLAS } from '../../types/enumeraciones';
+import { login } from '../../services/firebase';
 
 export class LoginComponent extends HTMLElement {
     constructor() {
@@ -13,17 +14,17 @@ export class LoginComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.onSubmit);
+        
 
         const button = this.shadowRoot?.querySelector('#botonregreso');
 
         button?.addEventListener('click', () => {
-			dispatch(navigate(PANTALLAS.DASHBOARD));
+			this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.submitLogin.bind(this));
 		});
     }
     
     disconnectedCallback() {
-        this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.onSubmit);
+        this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.submitLogin.bind(this));
     }
 /* 
     handleLoginButton(event:any) {
@@ -31,11 +32,22 @@ export class LoginComponent extends HTMLElement {
         dispatch(navigate(PANTALLAS.DASHBOARD));
     }
  */
-    onSubmit(event: any) {
-        const username = (this.shadowRoot!.querySelector('#username') as HTMLInputElement).value;
-const password = (this.shadowRoot!.querySelector('#password') as HTMLInputElement).value;
-console.log(`Username: ${username}, Password: ${password}`);
+    async submitLogin(event: Event) {
+        event.preventDefault();
+        const email = (this.shadowRoot?.querySelector('#username') as HTMLInputElement).value;
+        const password = (this.shadowRoot?.querySelector('#password') as HTMLInputElement).value;
 
+        try {
+            const userId = await login (email, password);
+            if (userId!= '') {
+                dispatch(navigate(PANTALLAS.DASHBOARD));  
+            } else {
+                alert('Error al iniciar sesión');
+            }
+        } catch (error) {
+            alert(error);
+            
+        }
     }
 
     render() {
@@ -49,14 +61,15 @@ console.log(`Username: ${username}, Password: ${password}`);
 
             formContainer.appendChild(header);
             const form = document.createElement('form');
+            form.onsubmit = this.submitLogin.bind(this);
             const usernameLabel = document.createElement('label');
-            usernameLabel.textContent = 'Username';
+            usernameLabel.textContent = 'Email';
 
             form.appendChild(usernameLabel);
             const usernameInput = document.createElement('input');
             usernameInput.id = 'username';
             usernameInput.type = 'text';
-            usernameInput.placeholder = 'Enter your username';
+            usernameInput.placeholder = 'Enter your email';
 
             form.appendChild(usernameInput);
             const passwordLabel = document.createElement('label');
@@ -78,8 +91,10 @@ console.log(`Username: ${username}, Password: ${password}`);
             form.appendChild(rememberMeLabel);
 
             const loginButton = document.createElement('button');
+            loginButton.type = 'submit';
+            loginButton.onclick = this.submitLogin.bind(this);
             loginButton.setAttribute('id', 'botonregreso')
-            loginButton.textContent = 'login';
+            loginButton.textContent = 'Login';
 
             form.appendChild(loginButton);
             const linksContainer = document.createElement('div');

@@ -13,11 +13,12 @@ class SignUpComponent extends HTMLElement {
 	}
 
 	connectedCallback() {
-		this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.submitSignup.bind(this));
-
+		
 		const button = this.shadowRoot?.querySelector('#botonregreso');
+
 		button?.addEventListener('click', () => {
-			dispatch(navigate(PANTALLAS.LOGIN));
+			this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.submitSignup.bind(this));
+			
 		});
 	}
 
@@ -51,9 +52,13 @@ class SignUpComponent extends HTMLElement {
         phone
       );
       alert(`Usuario registrado con id: ${userId}`);
-      dispatch(navigate(PANTALLAS.DASHBOARD));
-    } catch (error: any) {
-      alert("Error registrando usuario: " + error.message);
+      if (userId!= '') {
+		dispatch(navigate(PANTALLAS.LOGIN));
+	  } else {
+		alert("Error registrando usuario");
+	  }
+    } catch (error) {
+      alert(error);
     }
   }
 
