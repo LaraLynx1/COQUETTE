@@ -1,4 +1,6 @@
 import { db } from '../../services/firebase';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import auth from '../../services/firebase';
 import styles from './Signup.css';
 import { addObserver, dispatch } from '../../store/index';
 import { navigate } from '../../types/store';
