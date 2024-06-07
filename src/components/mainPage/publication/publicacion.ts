@@ -1,4 +1,5 @@
-import { sumarMegusta } from '../../../services/firebase';
+import { addMegusta, deleteMegusta, getMegustaById, sumarMegusta } from '../../../services/firebase';
+import { appState } from '../../../store';
 import { publicacion } from '../../../types/publicacion';
 import styles from './publicacion.css';
 import 'boxicons';
@@ -55,6 +56,7 @@ class Crearpublicacion extends HTMLElement {
 		this.megusta = !this.megusta;
 		console.log('Me gusta cambiado');
 	}
+
 	favoritotoggle() {
 		const favorito = this.shadowRoot?.querySelector('#favorito');
 		if (this.megusta) {
@@ -65,8 +67,13 @@ class Crearpublicacion extends HTMLElement {
 		this.megusta = !this.megusta;
 	}
 
-	connectedCallback() {
+	async connectedCallback() {
 		//this.render();
+
+		const megusta1 = await getMegustaById(this.idpost!);
+		if (megusta1.length > 0) {
+			this.megusta = true;
+		}
 
 		this.shadowRoot?.querySelector('#seguir2')?.addEventListener('click', this.followprofile);
 
@@ -85,8 +92,11 @@ class Crearpublicacion extends HTMLElement {
 		this.render();
 	}
 
-	render() {
+	async render() {
 		if (this.shadowRoot) {
+			console.log('ENTRANDO A RENDER');
+
+			this.shadowRoot.innerHTML = '';
 			this.shadowRoot.innerHTML = `<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>`;
 
 			const contenedor = this.ownerDocument.createElement('div');
@@ -134,6 +144,12 @@ class Crearpublicacion extends HTMLElement {
 			corazon.setAttribute('name', 'heart');
 			corazon.setAttribute('size', 'md');
 			corazon.setAttribute('color', 'red');
+
+			if (this.megusta) {
+				corazon?.setAttribute('type', 'solid');
+			} else {
+				corazon?.setAttribute('type', 'regular');
+			}
 			corazon.addEventListener('click', this.toggleCorazon.bind(this));
 			if (this.megusta) {
 				corazon?.setAttribute('type', 'solid');
@@ -166,7 +182,8 @@ class Crearpublicacion extends HTMLElement {
 		this.shadowRoot?.appendChild(cssprofile);
 	}
 
-	toggleCorazon() {
+	async toggleCorazon() {
+		const usuario = appState.user;
 		if (this.megusta) {
 			//Restar el contado
 			const post: publicacion = {
@@ -176,6 +193,18 @@ class Crearpublicacion extends HTMLElement {
 				image: this.image!,
 				likes: (parseInt(this.likes!) - 1).toString(),
 			};
+
+			//quitar de la lista me gusta
+			const postIdtodelete = post.id;
+			console.log('postIdtodelete', postIdtodelete);
+
+			const megusta = await getMegustaById(postIdtodelete);
+			console.log('megusta', megusta);
+
+			if (megusta.length > 0) {
+				deleteMegusta(megusta[0].id);
+			}
+
 			this.likes = (parseInt(this.likes!) - 1).toString();
 			sumarMegusta(post);
 		} else {
@@ -188,6 +217,7 @@ class Crearpublicacion extends HTMLElement {
 				likes: (parseInt(this.likes!) + 1).toString(),
 			};
 			this.likes = (parseInt(this.likes!) + 1).toString();
+			addMegusta(usuario!, post);
 			sumarMegusta(post);
 		}
 

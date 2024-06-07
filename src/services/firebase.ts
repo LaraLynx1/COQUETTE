@@ -5,7 +5,8 @@ const { getFirestore } = require('firebase/firestore');
 const { collection, addDoc, getDocs, updateDoc } = require('firebase/firestore');
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { publicacionform, publicacion, Coleccion } from '../types/publicacion';
-import { doc, query, where } from 'firebase/firestore';
+import { deleteDoc, doc, query, where } from 'firebase/firestore';
+import { Megusta, Megustaform } from '../types/megusta';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyANsoNo49zqX0WQ9mlb3yOFNAc31Lt-dKU',
@@ -151,6 +152,7 @@ export const addpublicacion = async (publicacion: publicacionform) => {
 		console.error(error);
 	}
 };
+
 export const getpublicaciones = async (): Promise<publicacion[]> => {
 	const coleccion = collection(db, Coleccion.publicaciones);
 	const querySnapshot = await getDocs(coleccion);
@@ -210,4 +212,59 @@ export const updateperfil = async (publicacion: publicacion) => {
 	} catch (error) {
 		console.error(error);
 	}
+};
+
+export const addMegusta = async (usuario: string, publicacion: publicacion) => {
+	try {
+		console.log('addMegusta', usuario, publicacion);
+
+		const coleccion = collection(db, Coleccion.megustan);
+		const megusta = {
+			user: usuario,
+			postId: publicacion.id,
+		};
+		await addDoc(coleccion, megusta);
+		console.log('se añadió Megusta con éxito', publicacion);
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const deleteMegusta = async (id: string) => {
+	try {
+		const coleccion = collection(db, Coleccion.megustan);
+		const documento = doc(coleccion, id);
+		await deleteDoc(documento);
+		console.log('se eliminó Megusta con éxito', id);
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const getMegustaById = async (postId: string): Promise<Megusta[]> => {
+	let coleccion;
+	const megustaArray: Array<Megusta> = [];
+	try {
+		coleccion = collection(db, Coleccion.megustan);
+	} catch (error) {
+		console.log('Datos error', error);
+	}
+
+	const condicion = query(coleccion, where('postId', '==', postId));
+
+	const megusta = await getDocs(condicion);
+	console.log('postid,megusta', postId, megusta);
+
+	if (megusta.empty) {
+		console.log('No existe ninguna me gusta para este usuario');
+		return megustaArray;
+	}
+
+	megusta.forEach((doc: any) => {
+		const payload: Megustaform = doc.data() as Megustaform;
+		megustaArray.push({ id: doc.id, ...payload });
+		console.log('me gusta array', megustaArray);
+	});
+
+	return megustaArray;
 };

@@ -1,5 +1,6 @@
 import { fotosperfil } from '../../data/data';
 import { getpublicacionByUser } from '../../services/firebase';
+import { appState } from '../../store';
 import Crearfoto, { datacosasfotos } from './fotosmias';
 import styles from './fotoswrapper.css';
 
@@ -12,7 +13,8 @@ class fotowrapper extends HTMLElement {
 	}
 
 	async connectedCallback() {
-		const publicacionesByUser = await getpublicacionByUser('pepito1');
+		const usuario = appState.user;
+		const publicacionesByUser = await getpublicacionByUser(usuario!);
 
 		publicacionesByUser.forEach((publicacion) => {
 			const publicate = this.ownerDocument.createElement('crear-foto') as Crearfoto;

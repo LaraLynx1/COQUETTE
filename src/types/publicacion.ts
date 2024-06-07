@@ -10,4 +10,5 @@ export type publicacionform = Omit<publicacion, 'id'>;
 
 export enum Coleccion {
 	'publicaciones' = 'publicaciones',
+	'megustan' = 'megustan',
 }

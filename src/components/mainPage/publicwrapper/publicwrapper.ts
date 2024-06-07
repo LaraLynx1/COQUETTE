@@ -12,6 +12,9 @@ class publicwrapper extends HTMLElement {
 
 	async connectedCallback() {
 		const publicaciones = await getpublicaciones();
+		console.log('Cantidad post', publicaciones.length);
+
+		this.profiles = [];
 		publicaciones.forEach((publication) => {
 			const publicate = this.ownerDocument.createElement('crear-publicacion') as Crearpublicacion;
 			publicate.setAttribute('idpost', publication.id);
@@ -29,8 +32,11 @@ class publicwrapper extends HTMLElement {
 
 	render() {
 		if (this.shadowRoot) {
+			this.shadowRoot.innerHTML = '';
 			const tarjeta2 = this.ownerDocument.createElement('div');
 			tarjeta2.className = 'wrapper-publicacion';
+
+			console.log('lenn de profiles', this.profiles.length);
 
 			this.profiles.forEach((profile) => {
 				tarjeta2.appendChild(profile);
