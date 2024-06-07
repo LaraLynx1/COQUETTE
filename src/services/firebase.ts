@@ -29,6 +29,16 @@ interface User {
 	phone: string;
 }
 
+interface UserLogin {
+	id: string;
+	user: string;
+	emailaddress: string;
+	profile: string;
+	authCredentials: string;
+	firebaseID: string;
+	uid: string;
+}
+
 export const addUser = async (userData: Omit<User, 'uid'>) => {
 	console.log('form', userData);
 	try {
@@ -42,10 +52,10 @@ export const addUser = async (userData: Omit<User, 'uid'>) => {
 
 export const getUsers = async () => {
 	const querySnapshot = await getDocs(collection(db, 'usuarios'));
-	const usersArray: Array<User> = [];
+	const usersArray: Array<UserLogin> = [];
 
 	querySnapshot.forEach((doc: any) => {
-		const data = doc.data() as User;
+		const data = doc.data() as UserLogin;
 		usersArray.push({ ...data, uid: doc.id });
 	});
 
@@ -67,7 +77,7 @@ export const logOut = async () => {
 
 // REGISTRAR USUARIO
 
-export const registrarUsuario1 = async (
+export const registrarUsuario = async (
 	user: string,
 	email: string,
 	password: string,
@@ -76,7 +86,7 @@ export const registrarUsuario1 = async (
 ) => {
 	const allUsers = await getUsers();
 	for (let index = 0; index < allUsers.length; index++) {
-		if (email == allUsers[index].email) {
+		if (email == allUsers[index].emailaddress) {
 			alert('El email ya esta registrado');
 			return;
 		}
@@ -108,20 +118,25 @@ export const registrarUsuario1 = async (
 
 export const login = async (username: string, password: string) => {
 	const allUsers = await getUsers();
-	for (let index = 0; index < allUsers.length; index++) {
-		if (username == allUsers[index].username) {
+	/* for (let index = 0; index < allUsers.length; index++) {
+		console.log('Datos', allUsers[index].emailaddress);
+
+		if (username == allUsers[index].emailaddress) {
 			alert('El usuario ya esta registrado');
-			return;
+			//return;
 		}
-	}
+	} */
 	try {
 		const credentials = await signInWithEmailAndPassword(auth, username, password);
 		const userCredentials = credentials.user.uid;
 
+		console.log('userCredentials', userCredentials);
+
 		return userCredentials;
 	} catch (error) {
 		const errorMessage = error;
-		alert(errorMessage);
+		console.log('Error', errorMessage);
+
 		return '';
 	}
 };
