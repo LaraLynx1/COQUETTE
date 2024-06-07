@@ -14,10 +14,11 @@ class fotoslike extends HTMLElement {
 
 	async connectedCallback() {
 		const usuario = appState.user;
-		const publicacionesBylike = await getpublicacionBylike(usuario!);
+		const publicacionesByLike = await getpublicacionBylike(usuario!);
 
-		publicacionesBylike.forEach((publicacion) => {
+		publicacionesByLike.forEach((publicacion) => {
 			const publicate = this.ownerDocument.createElement('crear-foto') as Crearfoto;
+			console.log(publicate);
 			publicate.setAttribute(datacosasfotos.image, publicacion.image);
 
 			this.shadowRoot?.appendChild(publicate);
