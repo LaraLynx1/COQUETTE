@@ -53,15 +53,6 @@ export const getUsers = async () => {
 	return usersArray;
 };
 
-// const getData = async () => {
-//     const querySnapshot = await getDocs(collection(db, "your-collection-name"));
-//     querySnapshot.forEach((doc: any) => {
-//         console.log(`${doc.id} => ${doc.data()}`);
-//     });
-// };
-
-// getData();
-
 export const registrarUsuario = async (user: string, email: string, password: string) => {
 	await createUserWithEmailAndPassword(auth, email, password)
 		.then(async (userCredential) => {
