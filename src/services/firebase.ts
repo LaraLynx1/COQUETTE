@@ -117,27 +117,28 @@ export const registrarUsuario = async (
 // LOGEAR USUARIO
 
 export const login = async (username: string, password: string) => {
+	let usuario: UserLogin | undefined;
 	const allUsers = await getUsers();
-	/* for (let index = 0; index < allUsers.length; index++) {
+	for (let index = 0; index < allUsers.length; index++) {
 		console.log('Datos', allUsers[index].emailaddress);
 
 		if (username == allUsers[index].emailaddress) {
-			alert('El usuario ya esta registrado');
+			usuario = allUsers[index];
 			//return;
 		}
-	} */
+	}
 	try {
 		const credentials = await signInWithEmailAndPassword(auth, username, password);
 		const userCredentials = credentials.user.uid;
 
 		console.log('userCredentials', userCredentials);
 
-		return userCredentials;
+		return usuario;
 	} catch (error) {
 		const errorMessage = error;
 		console.log('Error', errorMessage);
 
-		return '';
+		return;
 	}
 };
 

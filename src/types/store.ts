@@ -2,12 +2,16 @@ export type Observer = { render: () => void } & HTMLElement;
 
 export type AppState = {
 	screen: string;
-	user: string;
+	user: string | undefined;
+	userpfp: string | undefined;
 };
 
 export enum SomeActions {
 	'X' = 'X',
 	'changescreen' = 'changescreen',
+	'setuser' = 'SETUSER',
+	'unsetuser' = 'UNSETUSER',
+	'setUserPfp' = 'SETUSERPFP',
 }
 
 export interface XAction {
@@ -24,16 +28,23 @@ export const navigate = (screen: string) => {
 	};
 };
 
-export const setUserCredentials = (user: string) => {
+export const loginUser = (user: string) => {
 	return {
-		action: 'SETUSER',
+		action: SomeActions.setuser,
 		payload: user,
 	};
 };
 
-export const connecteduser= (user: string) => {
+export const logoutUser = (user: string) => {
 	return {
-		action: 'CONNECTUSER',
+		action: SomeActions.unsetuser,
 		payload: user,
+	};
+};
+
+export const setUserPfp = (userpfp: string) => {
+	return {
+		action: SomeActions.setUserPfp,
+		payload: userpfp,
 	};
 };

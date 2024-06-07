@@ -10,7 +10,18 @@ export const reducer = (currentAction: any, currentState: any) => {
 	switch (action) {
 		case SomeActions.changescreen:
 			currentState.screen = payload;
+			break;
 
+		case SomeActions.setuser:
+			currentState.user = payload;
+			break;
+
+		case SomeActions.unsetuser:
+			currentState.user = undefined;
+			break;
+
+		case SomeActions.setUserPfp:
+			currentState.userpfp = payload;
 			break;
 	}
 

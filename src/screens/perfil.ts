@@ -2,7 +2,7 @@ import '../components/mainPage/mainPagePadre';
 import styles from './profile.css';
 import { fotosperfil } from '../data/data';
 import fotowrapper from '../components/profilePage/fotoswrapper';
-import { addObserver, dispatch } from '../store/index';
+import { addObserver, appState, dispatch } from '../store/index';
 import { navigate } from '../types/store';
 import { PANTALLAS } from '../types/enumeraciones';
 import { logOut } from '../services/firebase';
@@ -28,33 +28,32 @@ class Perfil extends HTMLElement {
 	}
 
 	disconnectedCallback() {
-        this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.submitLogout.bind(this));
-    }
+		this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.submitLogout.bind(this));
+	}
 
 	attributeChangedCallback(attrName: any, oldVal: any, newVal: any) {
 		this.render();
 	}
 
-	async submitLogout (event: Event) {
+	async submitLogout(event: Event) {
 		event.preventDefault();
 		try {
 			const verify = await logOut();
 			if (verify) {
 				dispatch(navigate(PANTALLAS.LOGIN));
-			}
-			else {
+			} else {
 				alert('Error al cerrar sesión');
 			}
 		} catch (error) {
 			console.log(error);
 			alert(error);
 		}
-
 	}
 
 	render() {
+		const ususriopfp = appState.userpfp;
+		const usuario = appState.user;
 		if (this.shadowRoot) {
-
 			const form = document.createElement('form');
 			form.onsubmit = this.submitLogout.bind(this);
 
@@ -69,10 +68,7 @@ class Perfil extends HTMLElement {
 
 			const fotodeperfil = this.ownerDocument.createElement('img');
 			fotodeperfil.className = 'fotopfp';
-			fotodeperfil.setAttribute(
-				'src',
-				'https://www.semana.com/resizer/r0OI-UL1npAMnFaFqySPh7RqzLU=/arc-anglerfish-arc2-prod-semana/public/MDNDZ5QVPFDUFMXQFO54CL7PVA.jpg'
-			);
+			fotodeperfil.setAttribute('src', ususriopfp!);
 
 			divarribafoto.appendChild(fotodeperfil);
 
@@ -82,8 +78,8 @@ class Perfil extends HTMLElement {
 			const divarribatextonombre = this.ownerDocument.createElement('div');
 			divarribatextonombre.className = 'div-arribatextoboton';
 
-			const usrname = this.ownerDocument.createElement('input');
-			// usrname.innerHTML = ${user.name};
+			const usrname = this.ownerDocument.createElement('h3');
+			usrname.innerHTML = usuario!;
 
 			const btncerrar = this.ownerDocument.createElement('button');
 			btncerrar.setAttribute('id', 'cerrarperfil');
@@ -97,9 +93,9 @@ class Perfil extends HTMLElement {
 			btneditar.innerHTML = 'Editar Perfil';
 
 			const btSalida = this.ownerDocument.createElement('button');
-			btSalida.setAttribute('id','cerrarsesion');
+			btSalida.setAttribute('id', 'cerrarsesion');
 			btSalida.textContent = 'Salir';
-			btSalida.type = 'submit'
+			btSalida.type = 'submit';
 			btSalida.onclick = this.submitLogout.bind(this);
 			btSalida.innerHTML = 'Salir';
 			form.appendChild(btSalida);
@@ -108,7 +104,7 @@ class Perfil extends HTMLElement {
 			seguidores.innerHTML = '300 seguidores';
 
 			divarribatexto.appendChild(divarribatextonombre);
-			divarribatexto.appendChild(form)
+			divarribatexto.appendChild(form);
 			divarribatexto.appendChild(btneditar);
 			divarribatexto.appendChild(seguidores);
 

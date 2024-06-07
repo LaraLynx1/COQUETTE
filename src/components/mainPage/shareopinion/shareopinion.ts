@@ -2,7 +2,7 @@ import styles from './shareopinion.css';
 import { publics } from '../../../data/data';
 import { PANTALLAS } from '../../../types/enumeraciones';
 import { navigate } from '../../../types/store';
-import { dispatch } from '../../../store/index';
+import { appState, dispatch } from '../../../store/index';
 import { addpublicacion } from '../../../services/firebase';
 import { publicacionform } from '../../../types/publicacion';
 
@@ -45,12 +45,14 @@ class Crearopinion extends HTMLElement {
 		//const valorInputusuariopfp = this.shadowRoot?.querySelector('#usuariopfp') as HTMLInputElement;
 		//const valorInputmegusta = this.shadowRoot?.querySelector('#megusta') as HTMLInputElement;
 
+		const usuario = appState.user;
+		const usuariopfp = appState.userpfp;
 		const buttonGuardar = this.shadowRoot?.querySelector('#guardar');
 		buttonGuardar?.addEventListener('click', () => {
 			this.modal!.className! = 'contenedorpost ocultarpost';
 			const postData: publicacionform = {
-				user: 'pepito',
-				userpfp: '',
+				user: usuario!,
+				userpfp: usuariopfp!,
 				image: valorInputimagenpost!.value,
 				likes: '0',
 			};
