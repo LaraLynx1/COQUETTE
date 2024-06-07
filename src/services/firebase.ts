@@ -63,7 +63,7 @@ export const getUsers = async () => {
 
 // getData();
 
-export const registrarUsuario = async (user: string, email: string, password: string) => {
+export const registrarUsuario = async (user: string, email: string, password: string, birthday: string, phone: string) => {	
 	await createUserWithEmailAndPassword(auth, email, password)
 		.then(async (userCredential) => {
 			// Signed up

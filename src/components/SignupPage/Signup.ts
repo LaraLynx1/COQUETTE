@@ -24,22 +24,36 @@ class SignUpComponent extends HTMLElement {
 		this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.onSubmit.bind(this));
 	}
 
-	async onSubmit(event: Event) {
-		event.preventDefault();
-		const username = (this.shadowRoot?.querySelector('#username') as HTMLInputElement).value;
-		const email = (this.shadowRoot?.querySelector('#email') as HTMLInputElement).value;
-		const birthday = (this.shadowRoot?.querySelector('#birthday') as HTMLInputElement).value;
-		const phone = (this.shadowRoot?.querySelector('#phone') as HTMLInputElement).value;
-		const password = (this.shadowRoot?.querySelector('#password') as HTMLInputElement).value;
+  async onSubmit(event: Event) {
+    event.preventDefault();
+    const username = (
+      this.shadowRoot?.querySelector("#username") as HTMLInputElement
+    ).value;
+    const email = (this.shadowRoot?.querySelector("#email") as HTMLInputElement)
+      .value;
+    const birthday = (
+      this.shadowRoot?.querySelector("#birthday") as HTMLInputElement
+    ).value;
+    const phone = (this.shadowRoot?.querySelector("#phone") as HTMLInputElement)
+      .value;
+    const password = (
+      this.shadowRoot?.querySelector("#password") as HTMLInputElement
+    ).value;
 
-		try {
-			const userId = await registrarUsuario(username, email, password, birthday, phone);
-			alert(`Usuario registrado con id: ${userId}`);
-			dispatch(navigate(PANTALLAS.DASHBOARD));
-		} catch (error) {
-			alert('Error registrando usuario: ' + error.message);
-		}
-	}
+    try {
+      const userId = await registrarUsuario(
+        username,
+        email,
+        password,
+        birthday,
+        phone
+      );
+      alert(`Usuario registrado con id: ${userId}`);
+      dispatch(navigate(PANTALLAS.DASHBOARD));
+    } catch (error: any) {
+      alert("Error registrando usuario: " + error.message);
+    }
+  }
 
 	render() {
 		if (this.shadowRoot) {
