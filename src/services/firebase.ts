@@ -193,7 +193,7 @@ export const getpublicacionByUser = async (user: string): Promise<publicacion[]>
 	return publicacionArray;
 };
 
-export const getpublicacionBylike = async (user: string): Promise<publicacion[]> => {
+export const getpublicacionBylike = async (user: string): Promise<Megusta[]> => {
 	let coleccion;
 	try {
 		coleccion = collection(db, Coleccion.megustan);
@@ -209,10 +209,10 @@ export const getpublicacionBylike = async (user: string): Promise<publicacion[]>
 		console.log('No existe ninguna publicación para este usuario');
 		return [];
 	}
-	const publicacionArray: Array<publicacion> = [];
+	const publicacionArray: Array<Megusta> = [];
 
 	publicacionesByUser.forEach((doc: any) => {
-		const payload: publicacionform = doc.data() as publicacionform;
+		const payload: Megustaform = doc.data() as Megustaform;
 		publicacionArray.push({ id: doc.id, ...payload });
 	});
 
@@ -293,4 +293,32 @@ export const getMegustaById = async (postId: string): Promise<Megusta[]> => {
 	});
 
 	return megustaArray;
+};
+
+export const getPosById = async (postId: string): Promise<publicacion[]> => {
+	let coleccion;
+	const publicacionArray: Array<publicacion> = [];
+	try {
+		coleccion = collection(db, Coleccion.publicaciones);
+	} catch (error) {
+		console.log('Datos error', error);
+	}
+
+	const condicion = query(coleccion, where('id', '==', postId));
+
+	const publicaciones = await getDocs(condicion);
+	console.log('postid,megusta', postId, publicaciones);
+
+	if (publicaciones.empty) {
+		console.log('No existe ninguna me gusta para este usuario');
+		return publicacionArray;
+	}
+
+	publicaciones.forEach((doc: any) => {
+		const payload: publicacionform = doc.data() as publicacionform;
+		publicacionArray.push({ id: doc.id, ...payload });
+		console.log('me gusta array', publicacionArray);
+	});
+
+	return publicacionArray;
 };

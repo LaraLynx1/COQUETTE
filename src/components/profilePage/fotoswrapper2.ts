@@ -1,5 +1,5 @@
 import { fotosperfil } from '../../data/data';
-import { getpublicacionByUser, getpublicacionBylike } from '../../services/firebase';
+import { getPosById, getpublicacionByUser, getpublicacionBylike } from '../../services/firebase';
 import { appState } from '../../store';
 import Crearfoto, { datacosasfotos } from './fotosmias';
 import styles from './fotoswrapper.css';
@@ -16,10 +16,14 @@ class fotoslike extends HTMLElement {
 		const usuario = appState.user;
 		const publicacionesByLike = await getpublicacionBylike(usuario!);
 
-		publicacionesByLike.forEach((publicacion) => {
+		console.log('cantidad de me gustan', publicacionesByLike.length);
+
+		publicacionesByLike.forEach(async (meGusta) => {
+			//traer el post basados en el posId
+			const publicaciones = await getPosById(meGusta.postId);
 			const publicate = this.ownerDocument.createElement('crear-foto') as Crearfoto;
 			console.log(publicate);
-			publicate.setAttribute(datacosasfotos.image, publicacion.image);
+			publicate.setAttribute(datacosasfotos.image, publicaciones[0].image);
 
 			this.shadowRoot?.appendChild(publicate);
 			this.profiles.push(publicate);

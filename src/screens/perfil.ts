@@ -124,6 +124,7 @@ class Perfil extends HTMLElement {
 
 			const misfotos = this.ownerDocument.createElement('h3');
 			misfotos.innerHTML = 'Mis fotos:';
+			divfotos.appendChild(misfotos);
 
 			const fotos = this.ownerDocument.createElement('foto-wrapper') as fotowrapper;
 			divfotos.appendChild(fotos);
@@ -138,6 +139,7 @@ class Perfil extends HTMLElement {
 
 			const misfotoslikes = this.ownerDocument.createElement('h3');
 			misfotoslikes.innerHTML = 'Mis likes:';
+			divlikes.appendChild(misfotoslikes);
 
 			const fotoslikes = this.ownerDocument.createElement('foto-likes') as fotoslike;
 			divlikes.appendChild(fotoslikes);
