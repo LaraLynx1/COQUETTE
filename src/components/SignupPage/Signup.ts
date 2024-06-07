@@ -25,7 +25,6 @@ class SignUpComponent extends HTMLElement {
 	}
 
 	async submitSignup(event: Event) {
-		console.log('submitSignup');
 		event.preventDefault();
 		const username = (this.shadowRoot?.querySelector('#username') as HTMLInputElement).value;
 		const email = (this.shadowRoot?.querySelector('#email') as HTMLInputElement).value;

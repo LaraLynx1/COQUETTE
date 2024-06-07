@@ -41,14 +41,11 @@ interface UserLogin {
 }
 
 export const addUser = async (userData: Omit<User, 'uid'>) => {
-	console.log('form', userData);
 	try {
 		const docRef = await addDoc(collection(db, 'usuarios'), userData);
-		console.log('Document written with ID: ', docRef.id);
+
 		return docRef.id;
-	} catch (e) {
-		console.error('Error adding document: ', e);
-	}
+	} catch (e) {}
 };
 
 export const getUsers = async () => {
@@ -60,17 +57,14 @@ export const getUsers = async () => {
 		usersArray.push({ ...data, uid: doc.id });
 	});
 
-	console.log('get', usersArray);
 	return usersArray;
 };
 
 export const logOut = async () => {
 	try {
-		console.log('logOut');
 		const verify = await signOut(auth);
 		return true;
 	} catch (error) {
-		console.log('Error logOut', error);
 		alert(error);
 		return '';
 	}
@@ -102,7 +96,7 @@ export const registrarUsuario = async (
 			profile:
 				'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg',
 		});
-		//console.log("Document written with ID: ", docRef.id);
+
 		await updateDoc(docRef, {
 			firebaseID: docRef.id,
 		});
@@ -121,8 +115,6 @@ export const login = async (username: string, password: string) => {
 	let usuario: UserLogin | undefined;
 	const allUsers = await getUsers();
 	for (let index = 0; index < allUsers.length; index++) {
-		console.log('Datos', allUsers[index].emailaddress);
-
 		if (username == allUsers[index].emailaddress) {
 			usuario = allUsers[index];
 			//return;
@@ -131,8 +123,6 @@ export const login = async (username: string, password: string) => {
 	try {
 		const credentials = await signInWithEmailAndPassword(auth, username, password);
 		const userCredentials = credentials.user.uid;
-
-		console.log('userCredentials', userCredentials);
 
 		return usuario;
 	} catch (error) {
@@ -147,7 +137,6 @@ export const addpublicacion = async (publicacion: publicacionform) => {
 	try {
 		const coleccion = collection(db, Coleccion.publicaciones);
 		await addDoc(coleccion, publicacion);
-		console.log('se añadió con éxito', publicacion);
 	} catch (error) {
 		console.error(error);
 	}
@@ -180,7 +169,6 @@ export const getpublicacionByUser = async (user: string): Promise<publicacion[]>
 	const publicacionesByUser = await getDocs(condicion);
 
 	if (publicacionesByUser.empty) {
-		console.log('No existe ninguna publicación para este usuario');
 		return [];
 	}
 	const publicacionArray: Array<publicacion> = [];
@@ -206,7 +194,6 @@ export const getpublicacionBylike = async (user: string): Promise<Megusta[]> => 
 	const publicacionesByUser = await getDocs(condicion);
 
 	if (publicacionesByUser.empty) {
-		console.log('No existe ninguna publicación para este usuario');
 		return [];
 	}
 	const publicacionArray: Array<Megusta> = [];
@@ -224,7 +211,6 @@ export const sumarMegusta = async (publicacion: publicacion): Promise<void> => {
 		const coleccion = collection(db, Coleccion.publicaciones);
 		const documento = doc(coleccion, publicacion.id);
 		await updateDoc(documento, publicacion);
-		console.log('se actualizó con éxito', publicacion);
 	} catch (error) {
 		console.error(error);
 	}
@@ -234,7 +220,6 @@ export const updateperfil = async (publicacion: publicacion) => {
 		const coleccion = collection(db, Coleccion.publicaciones);
 		const documento = doc(coleccion, publicacion.id);
 		await updateDoc(documento, publicacion);
-		console.log('se actualizó con éxito', publicacion);
 	} catch (error) {
 		console.error(error);
 	}
@@ -242,15 +227,12 @@ export const updateperfil = async (publicacion: publicacion) => {
 
 export const addMegusta = async (usuario: string, publicacion: publicacion) => {
 	try {
-		console.log('addMegusta', usuario, publicacion);
-
 		const coleccion = collection(db, Coleccion.megustan);
 		const megusta = {
 			user: usuario,
 			postId: publicacion.id,
 		};
 		await addDoc(coleccion, megusta);
-		console.log('se añadió Megusta con éxito', publicacion);
 	} catch (error) {
 		console.error(error);
 	}
@@ -261,7 +243,6 @@ export const deleteMegusta = async (id: string) => {
 		const coleccion = collection(db, Coleccion.megustan);
 		const documento = doc(coleccion, id);
 		await deleteDoc(documento);
-		console.log('se eliminó Megusta con éxito', id);
 	} catch (error) {
 		console.error(error);
 	}
@@ -279,17 +260,14 @@ export const getMegustaById = async (postId: string): Promise<Megusta[]> => {
 	const condicion = query(coleccion, where('postId', '==', postId));
 
 	const megusta = await getDocs(condicion);
-	console.log('postid,megusta', postId, megusta);
 
 	if (megusta.empty) {
-		console.log('No existe ninguna me gusta para este usuario');
 		return megustaArray;
 	}
 
 	megusta.forEach((doc: any) => {
 		const payload: Megustaform = doc.data() as Megustaform;
 		megustaArray.push({ id: doc.id, ...payload });
-		console.log('me gusta array', megustaArray);
 	});
 
 	return megustaArray;
@@ -307,17 +285,14 @@ export const getPosById = async (postId: string): Promise<publicacion[]> => {
 	const condicion = query(coleccion, where('id', '==', postId));
 
 	const publicaciones = await getDocs(condicion);
-	console.log('postid,megusta', postId, publicaciones);
 
 	if (publicaciones.empty) {
-		console.log('No existe ninguna me gusta para este usuario');
 		return publicacionArray;
 	}
 
 	publicaciones.forEach((doc: any) => {
 		const payload: publicacionform = doc.data() as publicacionform;
 		publicacionArray.push({ id: doc.id, ...payload });
-		console.log('me gusta array', publicacionArray);
 	});
 
 	return publicacionArray;

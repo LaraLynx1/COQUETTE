@@ -14,6 +14,12 @@ export class LoginComponent extends HTMLElement {
 	}
 
 	connectedCallback() {
+		const button2 = this.shadowRoot?.querySelector('#gotoegister');
+
+		button2?.addEventListener('click', () => {
+			dispatch(navigate(PANTALLAS.SIGNUP));
+		});
+
 		const button = this.shadowRoot?.querySelector('#botonregreso');
 
 		button?.addEventListener('click', () => {
@@ -106,6 +112,7 @@ export class LoginComponent extends HTMLElement {
 			signUpLink.href = '#';
 
 			signUpLink.textContent = 'Don’t have an account?';
+			signUpLink.setAttribute('id', 'gotoegister');
 			linksContainer.appendChild(signUpLink);
 			const forgotPasswordLink = document.createElement('a');
 			forgotPasswordLink.href = '#';

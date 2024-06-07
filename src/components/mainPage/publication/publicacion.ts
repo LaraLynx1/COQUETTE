@@ -54,7 +54,6 @@ class Crearpublicacion extends HTMLElement {
 			corazon?.setAttribute('type', 'solid');
 		}
 		this.megusta = !this.megusta;
-		console.log('Me gusta cambiado');
 	}
 
 	favoritotoggle() {
@@ -94,8 +93,6 @@ class Crearpublicacion extends HTMLElement {
 
 	async render() {
 		if (this.shadowRoot) {
-			console.log('ENTRANDO A RENDER');
-
 			this.shadowRoot.innerHTML = '';
 			this.shadowRoot.innerHTML = `<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>`;
 
@@ -196,10 +193,8 @@ class Crearpublicacion extends HTMLElement {
 
 			//quitar de la lista me gusta
 			const postIdtodelete = post.id;
-			console.log('postIdtodelete', postIdtodelete);
 
 			const megusta = await getMegustaById(postIdtodelete);
-			console.log('megusta', megusta);
 
 			if (megusta.length > 0) {
 				deleteMegusta(megusta[0].id);

@@ -16,13 +16,11 @@ class fotoslike extends HTMLElement {
 		const usuario = appState.user;
 		const publicacionesByLike = await getpublicacionBylike(usuario!);
 
-		console.log('cantidad de me gustan', publicacionesByLike.length);
-
 		publicacionesByLike.forEach(async (meGusta) => {
 			//traer el post basados en el posId
 			const publicaciones = await getPosById(meGusta.postId);
 			const publicate = this.ownerDocument.createElement('crear-foto') as Crearfoto;
-			console.log(publicate);
+
 			publicate.setAttribute(datacosasfotos.image, publicaciones[0].image);
 
 			this.shadowRoot?.appendChild(publicate);
