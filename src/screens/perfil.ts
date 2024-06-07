@@ -2,6 +2,7 @@ import '../components/mainPage/mainPagePadre';
 import styles from './profile.css';
 import { fotosperfil } from '../data/data';
 import fotowrapper from '../components/profilePage/fotoswrapper';
+import fotoslike from '../components/profilePage/fotoswrapper2';
 import { addObserver, appState, dispatch } from '../store/index';
 import { navigate } from '../types/store';
 import { PANTALLAS } from '../types/enumeraciones';
@@ -121,9 +122,27 @@ class Perfil extends HTMLElement {
 			const divfotos = this.ownerDocument.createElement('div');
 			divfotos.className = 'div-fotos';
 
+			const misfotos = this.ownerDocument.createElement('h3');
+			misfotos.innerHTML = 'Mis fotos:';
+
 			const fotos = this.ownerDocument.createElement('foto-wrapper') as fotowrapper;
 			divfotos.appendChild(fotos);
 			divfondo.appendChild(divfotos);
+			//hasta aqui
+			const divalinea2 = this.ownerDocument.createElement('div');
+			divalinea2.className = 'div-linea2';
+			divfondo.appendChild(divalinea2);
+
+			const divlikes = this.ownerDocument.createElement('div');
+			divlikes.className = 'div-fotos';
+
+			const misfotoslikes = this.ownerDocument.createElement('h3');
+			misfotoslikes.innerHTML = 'Mis likes:';
+
+			const fotoslikes = this.ownerDocument.createElement('foto-likes') as fotoslike;
+			divlikes.appendChild(fotoslikes);
+			divfondo.appendChild(divlikes);
+			//hasta aqui
 
 			const csscardfollow = this.ownerDocument.createElement('style');
 			csscardfollow.innerHTML = styles;

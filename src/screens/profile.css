@@ -1,5 +1,5 @@
 .div-fondo {
-	height: 100vh;
+	height: 130vh;
 	display: flex;
 	align-items: center;
 	background-color: bisque;
@@ -11,7 +11,7 @@
 	width: 80%;
 }
 .div-fotos {
-	background-color: white;
+	background-color: rgb(255, 255, 255);
 	display: flex;
 	width: 80%;
 	justify-content: center;
@@ -63,7 +63,12 @@
 }
 .div-linea {
 	width: 90%;
-	background-color: black;
+	background-color: rgb(255, 187, 224);
+	height: 2px;
+}
+.div-linea2 {
+	width: 70%;
+	background-color: rgb(255, 187, 224);
 	height: 2px;
 }
 @media (max-width: 600px) {

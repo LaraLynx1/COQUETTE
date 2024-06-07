@@ -193,6 +193,32 @@ export const getpublicacionByUser = async (user: string): Promise<publicacion[]>
 	return publicacionArray;
 };
 
+export const getpublicacionBylike = async (user: string): Promise<publicacion[]> => {
+	let coleccion;
+	try {
+		coleccion = collection(db, Coleccion.megustan);
+	} catch (error) {
+		console.log('Datos error', error);
+	}
+
+	const condicion = query(coleccion, where('user', '==', user));
+
+	const publicacionesByUser = await getDocs(condicion);
+
+	if (publicacionesByUser.empty) {
+		console.log('No existe ninguna publicación para este usuario');
+		return [];
+	}
+	const publicacionArray: Array<publicacion> = [];
+
+	publicacionesByUser.forEach((doc: any) => {
+		const payload: publicacionform = doc.data() as publicacionform;
+		publicacionArray.push({ id: doc.id, ...payload });
+	});
+
+	return publicacionArray;
+};
+
 export const sumarMegusta = async (publicacion: publicacion): Promise<void> => {
 	try {
 		const coleccion = collection(db, Coleccion.publicaciones);
