@@ -17,7 +17,6 @@ const firebaseConfig = {
 	measurementId: 'G-LZBKJP8VGN',
 };
 
-
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
@@ -54,38 +53,44 @@ export const getUsers = async () => {
 	return usersArray;
 };
 
-export const registrarUsuario = async (user: string, email: string, password: string) => {
-	await createUserWithEmailAndPassword(auth, email, password)
-		.then(async (userCredential) => {
-			// Signed up
-			const userCredentials = userCredential.user.uid;
+/*  export const registrarUsuario = async (user: string, email: string, password: string) => {
+	await createUserWithEmailAndPassword(auth, email, password).then(async (userCredential) => {
+		// Signed up
+		const userCredentials = userCredential.user.uid;
 
-			console.log(userCredentials);
+		console.log(userCredentials);
 
-			const docRef = await addDoc(collection(db, 'usuarios'), {
-				user: user,
-				emailaddress: email,
-				authCredentials: userCredentials,
-				profile:
-					'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg',
-			});
-			//console.log("Document written with ID: ", docRef.id);
-			await updateDoc(docRef, {
-				firebaseID: docRef.id,
-			});
+		const docRef = await addDoc(collection(db, 'usuarios'), {
+			user: user,
+			emailaddress: email,
+			authCredentials: userCredentials,
+			profile:
+				'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg',
+		});
+		//console.log("Document written with ID: ", docRef.id);
+		await updateDoc(docRef, {
+			firebaseID: docRef.id,
+		});
+	});
+}; */
 
 // REGISTRAR USUARIO
 
-export const registrarUsuario = async (user: string, email: string, password: string, birthday: string, phone: string) => {
+export const registrarUsuario1 = async (
+	user: string,
+	email: string,
+	password: string,
+	birthday: string,
+	phone: string
+) => {
 	const allUsers = await getUsers();
 	for (let index = 0; index < allUsers.length; index++) {
 		if (email == allUsers[index].email) {
-			alert("El email ya esta registrado");
+			alert('El email ya esta registrado');
 			return;
 		}
-
 	}
-	const credentials = await createUserWithEmailAndPassword(auth, email, password)
+	const credentials = await createUserWithEmailAndPassword(auth, email, password);
 	const userCredentials = credentials.user.uid;
 	try {
 		const docRef = await addDoc(collection(db, 'usuarios'), {
@@ -102,8 +107,8 @@ export const registrarUsuario = async (user: string, email: string, password: st
 
 		return docRef.id;
 	} catch (error) {
-			const errorMessage = error;
-			alert(errorMessage);
+		const errorMessage = error;
+		alert(errorMessage);
 		return '';
 	}
 };
@@ -114,10 +119,9 @@ export const login = async (username: string, password: string) => {
 	const allUsers = await getUsers();
 	for (let index = 0; index < allUsers.length; index++) {
 		if (username == allUsers[index].username) {
-			alert("El usuario ya esta registrado");
+			alert('El usuario ya esta registrado');
 			return;
 		}
-
 	}
 	try {
 		const credentials = await signInWithEmailAndPassword(auth, username, password);
@@ -126,11 +130,10 @@ export const login = async (username: string, password: string) => {
 		return userCredentials;
 	} catch (error) {
 		const errorMessage = error;
-			alert(errorMessage);
+		alert(errorMessage);
 		return '';
 	}
-
-}
+};
 
 export const addpublicacion = async (publicacion: publicacionform) => {
 	try {
