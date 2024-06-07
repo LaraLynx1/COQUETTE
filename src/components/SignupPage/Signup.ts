@@ -3,6 +3,7 @@ import styles from './Signup.css';
 import { dispatch } from '../../store/index';
 import { navigate } from '../../types/store';
 import { PANTALLAS } from '../../types/enumeraciones';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 class SignUpComponent extends HTMLElement {
 	constructor() {
@@ -12,7 +13,7 @@ class SignUpComponent extends HTMLElement {
 	}
 
 	connectedCallback() {
-		this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.onSubmit.bind(this));
+		this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.submitSignup.bind(this));
 
 		const button = this.shadowRoot?.querySelector('#botonregreso');
 		button?.addEventListener('click', () => {
@@ -21,10 +22,11 @@ class SignUpComponent extends HTMLElement {
 	}
 
 	disconnectedCallback() {
-		this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.onSubmit.bind(this));
+		this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.submitSignup.bind(this));
 	}
 
-  async onSubmit(event: Event) {
+  async submitSignup(event: Event) {
+	console.log("submitSignup");
     event.preventDefault();
     const username = (
       this.shadowRoot?.querySelector("#username") as HTMLInputElement
@@ -63,6 +65,7 @@ class SignUpComponent extends HTMLElement {
 			header.textContent = 'Sign up Now';
 
 			const form = document.createElement('form');
+			form.onsubmit = this.submitSignup.bind(this);
 
 			const usernameInput = document.createElement('input');
 			usernameInput.id = 'username';
@@ -107,6 +110,7 @@ class SignUpComponent extends HTMLElement {
 			submitButton.setAttribute('id', 'botonregreso');
 			submitButton.textContent = 'Sign up';
 			submitButton.type = 'submit';
+			submitButton.onclick = this.submitSignup.bind(this);
 			form.appendChild(submitButton);
 
 			const footerLinks = document.createElement('div');

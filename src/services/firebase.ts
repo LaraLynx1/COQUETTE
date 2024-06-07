@@ -64,8 +64,28 @@ export const getUsers = async () => {
 // getData();
 
 export const registrarUsuario = async (user: string, email: string, password: string, birthday: string, phone: string) => {	
-	await createUserWithEmailAndPassword(auth, email, password)
-		.then(async (userCredential) => {
+	const credentials = await createUserWithEmailAndPassword(auth, email, password)
+	const userCredentials = credentials.user.uid;
+	try {
+		const docRef = await addDoc(collection(db, 'usuarios'), {
+			user: user,
+			emailaddress: email,
+			authCredentials: userCredentials,
+			profile:
+				'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg',
+		});
+		//console.log("Document written with ID: ", docRef.id);
+		await updateDoc(docRef, {
+			firebaseID: docRef.id,
+		});
+
+		return docRef.id;
+	} catch (error) {
+			const errorMessage = error;
+			alert(errorMessage);
+		
+	}
+		/*.then(async (userCredential) => {
 			// Signed up
 			const userCredentials = userCredential.user.uid;
 
@@ -90,7 +110,7 @@ export const registrarUsuario = async (user: string, email: string, password: st
 			const errorMessage = error.message;
 			alert(errorMessage);
 			// ..
-		});
+		});*/
 };
 
 export const addpublicacion = async (publicacion: publicacionform) => {
