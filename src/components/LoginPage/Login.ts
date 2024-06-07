@@ -62,6 +62,7 @@ export class LoginComponent extends HTMLElement {
             formContainer.appendChild(header);
             const form = document.createElement('form');
             form.onsubmit = this.submitLogin.bind(this);
+            
             const usernameLabel = document.createElement('label');
             usernameLabel.textContent = 'Email';
 

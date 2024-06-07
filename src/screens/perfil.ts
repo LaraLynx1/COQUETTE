@@ -5,6 +5,7 @@ import fotowrapper from '../components/profilePage/fotoswrapper';
 import { addObserver, dispatch } from '../store/index';
 import { navigate } from '../types/store';
 import { PANTALLAS } from '../types/enumeraciones';
+import { logOut } from '../services/firebase';
 
 class Perfil extends HTMLElement {
 	constructor() {
@@ -19,13 +20,44 @@ class Perfil extends HTMLElement {
 		button?.addEventListener('click', () => {
 			dispatch(navigate(PANTALLAS.DASHBOARD));
 		});
+
+		const button2 = this.shadowRoot?.querySelector('#cerrarsesion');
+		button2?.addEventListener('click', () => {
+			this.shadowRoot?.querySelector('form')?.addEventListener('submit', this.submitLogout.bind(this));
+		});
 	}
+
+	disconnectedCallback() {
+        this.shadowRoot?.querySelector('form')?.removeEventListener('submit', this.submitLogout.bind(this));
+    }
+
 	attributeChangedCallback(attrName: any, oldVal: any, newVal: any) {
 		this.render();
 	}
 
+	async submitLogout (event: Event) {
+		event.preventDefault();
+		try {
+			const verify = await logOut();
+			if (verify) {
+				dispatch(navigate(PANTALLAS.LOGIN));
+			}
+			else {
+				alert('Error al cerrar sesión');
+			}
+		} catch (error) {
+			console.log(error);
+			alert(error);
+		}
+
+	}
+
 	render() {
 		if (this.shadowRoot) {
+
+			const form = document.createElement('form');
+			form.onsubmit = this.submitLogout.bind(this);
+
 			const divfondo = this.ownerDocument.createElement('div');
 			divfondo.className = 'div-fondo';
 
@@ -50,8 +82,8 @@ class Perfil extends HTMLElement {
 			const divarribatextonombre = this.ownerDocument.createElement('div');
 			divarribatextonombre.className = 'div-arribatextoboton';
 
-			const usrname = this.ownerDocument.createElement('h3');
-			usrname.innerHTML = 'Mochi_miel';
+			const usrname = this.ownerDocument.createElement('input');
+			// usrname.innerHTML = ${user.name};
 
 			const btncerrar = this.ownerDocument.createElement('button');
 			btncerrar.setAttribute('id', 'cerrarperfil');
@@ -64,10 +96,19 @@ class Perfil extends HTMLElement {
 			btneditar.setAttribute('id', 'editarperfil');
 			btneditar.innerHTML = 'Editar Perfil';
 
+			const btSalida = this.ownerDocument.createElement('button');
+			btSalida.setAttribute('id','cerrarsesion');
+			btSalida.textContent = 'Salir';
+			btSalida.type = 'submit'
+			btSalida.onclick = this.submitLogout.bind(this);
+			btSalida.innerHTML = 'Salir';
+			form.appendChild(btSalida);
+
 			const seguidores = this.ownerDocument.createElement('h3');
 			seguidores.innerHTML = '300 seguidores';
 
 			divarribatexto.appendChild(divarribatextonombre);
+			divarribatexto.appendChild(form)
 			divarribatexto.appendChild(btneditar);
 			divarribatexto.appendChild(seguidores);
 

@@ -3,9 +3,11 @@ import 'firebase/firestore';
 const { initializeApp } = require('firebase/app');
 const { getFirestore } = require('firebase/firestore');
 const { collection, addDoc, getDocs, updateDoc } = require('firebase/firestore');
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { publicacionform, publicacion, Coleccion } from '../types/publicacion';
 import { doc, query, where } from 'firebase/firestore';
+
+
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyANsoNo49zqX0WQ9mlb3yOFNAc31Lt-dKU',
@@ -52,6 +54,18 @@ export const getUsers = async () => {
 
 	console.log('get', usersArray);
 	return usersArray;
+};
+
+export const logOut = async () => {
+	try {
+		console.log('logOut');
+		const verify = await signOut(auth);
+		return true;
+	} catch (error) {
+		console.log('Error logOut', error);
+		alert(error);
+		return '';
+	} 
 };
 
 // REGISTRAR USUARIO
@@ -171,3 +185,4 @@ export const sumarMegusta = async (publicacion: publicacion): Promise<void> => {
 		console.error(error);
 	}
 };
+
