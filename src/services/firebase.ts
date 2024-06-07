@@ -3,7 +3,7 @@ import 'firebase/firestore';
 const { initializeApp } = require('firebase/app');
 const { getFirestore } = require('firebase/firestore');
 const { collection, addDoc, getDocs, updateDoc } = require('firebase/firestore');
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { publicacionform, publicacion, Coleccion } from '../types/publicacion';
 import { doc, query, where } from 'firebase/firestore';
 
@@ -53,26 +53,17 @@ export const getUsers = async () => {
 	return usersArray;
 };
 
-/*  export const registrarUsuario = async (user: string, email: string, password: string) => {
-	await createUserWithEmailAndPassword(auth, email, password).then(async (userCredential) => {
-		// Signed up
-		const userCredentials = userCredential.user.uid;
-
-		console.log(userCredentials);
-
-		const docRef = await addDoc(collection(db, 'usuarios'), {
-			user: user,
-			emailaddress: email,
-			authCredentials: userCredentials,
-			profile:
-				'https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg',
-		});
-		//console.log("Document written with ID: ", docRef.id);
-		await updateDoc(docRef, {
-			firebaseID: docRef.id,
-		});
-	});
-}; */
+export const logOut = async () => {
+	try {
+		console.log('logOut');
+		const verify = await signOut(auth);
+		return true;
+	} catch (error) {
+		console.log('Error logOut', error);
+		alert(error);
+		return '';
+	}
+};
 
 // REGISTRAR USUARIO
 
