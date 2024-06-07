@@ -29,8 +29,8 @@ class SignUpComponent extends HTMLElement {
 
 	async onSubmit(event: Event) {
 
-		const credentials = await signInWithEmailAndPassword(auth, email, password);
-		const userExists = users.some((i) => i.email != user.email);
+		// const credentials = await signInWithEmailAndPassword(auth, email, password);
+		// const userExists = users.some((i) => i.email != user.email);
 
 		event.preventDefault();
 		const username = (this.shadowRoot?.querySelector('#username') as HTMLInputElement).value;
